@@ -1,7 +1,10 @@
 package spreedly.client.java.http;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -9,15 +12,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Tests the HttpRequestHandler implementation.
@@ -26,7 +24,7 @@ import static org.mockito.Mockito.when;
  */
 public class UrlConnectionHttpHandlerTest {
 
-    private static final String TEST_AUTHORIZATION = "<DUMMY STRING>";
+    private static final BasicHttpAuth TEST_AUTHORIZATION = new BasicHttpAuth("username", "password");
     private static final String TEST_URL = "http://fake.domain.com/api";
 
     private HttpURLConnection mockConnection;
@@ -99,13 +97,8 @@ public class UrlConnectionHttpHandlerTest {
         // create a throw-away dummy URL.
         URL testUrl = new URL(TEST_URL);
 
-        // Request properties
-        Map<String, String> properties = new HashMap<>();
-        properties.put("Accept", "application/json");
-        properties.put("Content-Type", "application/json");
-
         // Execute the request get the result.
-        Request request = new Request(testUrl, properties, "POST", TEST_AUTHORIZATION, source);
+        Request request = new Request(testUrl, "POST", TEST_AUTHORIZATION, source);
         Response result = handler.execute(request);
 
         // Confirm that the mocked connection received the expected request.

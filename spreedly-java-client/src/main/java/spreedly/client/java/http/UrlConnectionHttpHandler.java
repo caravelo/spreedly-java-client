@@ -76,7 +76,9 @@ public class UrlConnectionHttpHandler implements HttpHandler {
     }
 
     protected void setRequestProperties(HttpURLConnection connection, Request request) {
-        connection.setRequestProperty("Authorization", request.authorization);
+        connection.setRequestProperty("Authorization", request.authorization.getAuthString());
+        connection.setRequestProperty("Content-Type", "application/xml");
+        connection.setRequestProperty("Accept", "application/xml");
         if (request.properties != null) {
         	for (Map.Entry<String, String> entry : request.properties.entrySet()) {
             	connection.setRequestProperty(entry.getKey(), entry.getValue());
