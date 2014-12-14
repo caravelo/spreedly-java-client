@@ -1,21 +1,27 @@
 package spreedly.client.java;
 
-public class Spreedly {
+import spreedly.client.java.model.Transaction;
+import spreedly.client.java.request.TransactionRequest;
 
-    protected final String environmentKey;
-    protected final String accessSecret;
+public class Spreedly
+{
 
-    private Spreedly(String environmentKey, String accessSecret) {
-        this.environmentKey = environmentKey;
-        this.accessSecret = accessSecret;
+    private final Credentials credentials;
+
+    private Spreedly(String environmentKey, String accessSecret)
+    {
+        this.credentials = new Credentials(environmentKey, accessSecret);
     }
 
-    public static Spreedly newClient(String environmentKey, String accessSecret) {
+    public static Spreedly getInstance(String environmentKey, String accessSecret)
+    {
         return new Spreedly(environmentKey, accessSecret);
     }
 
-    public void findTransaction(String token) {
-        
+    public Transaction findTransaction(String token) throws Exception
+    {
+        // XXX: PROPER EXCEPTIONS AND EXCEPTION HANDLING!!!
+        return TransactionRequest.show(token, credentials);
     }
 
 }

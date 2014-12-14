@@ -30,6 +30,10 @@ public final class Request {
 
     ///// PUBLIC CONSTRUCTORS /////
 
+    public Request(URL url, String method, BasicHttpAuth authorization) {
+        this(url, method, authorization, null, null);
+    }
+
     public Request(URL url, String method, BasicHttpAuth authorization, OutputSource body) {
         this(url, method, authorization, body, null);
     }
