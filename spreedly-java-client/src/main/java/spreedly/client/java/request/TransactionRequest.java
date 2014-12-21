@@ -8,11 +8,11 @@ import spreedly.client.java.Credentials;
 import spreedly.client.java.exception.HttpHandlingException;
 import spreedly.client.java.exception.XmlParserException;
 import spreedly.client.java.http.HttpHandler;
+import spreedly.client.java.http.HttpHandlerFactory;
 import spreedly.client.java.http.Request;
 import spreedly.client.java.http.Response;
-import spreedly.client.java.http.UrlConnectionHttpHandler;
 import spreedly.client.java.model.Transaction;
-import spreedly.client.java.xml.SimpleXmlParser;
+import spreedly.client.java.xml.XmlParserFactory;
 
 public class TransactionRequest
 {
@@ -22,12 +22,10 @@ public class TransactionRequest
         URL url = UrlsBuilder.showTransactionUrl(token);
         Request request = new Request(url, GET, credentials);
 
-        // XXX: Use interface created by appropriate factory
-        HttpHandler httpHandler = new UrlConnectionHttpHandler();
+        HttpHandler httpHandler = HttpHandlerFactory.getHttpHandler();
         Response response = httpHandler.execute(request);
 
-        // XXX: Use interface created by appropriate factory
-        return new SimpleXmlParser().parseTransaction(response.body);
+        return XmlParserFactory.getXmlParser().parseTransaction(response.body);
     }
 
 }
