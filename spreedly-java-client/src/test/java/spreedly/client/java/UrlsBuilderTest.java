@@ -2,11 +2,13 @@ package spreedly.client.java;
 
 import static org.junit.Assert.assertEquals;
 
+import java.net.URL;
+
 import org.junit.Test;
 
-import spreedly.client.java.request.Urls;
+import spreedly.client.java.request.UrlsBuilder;
 
-public class UrlsTest
+public class UrlsBuilderTest
 {
     private static final String ANY_TOKEN = "JlyLp8cy1aAu7RRDGnAk83UZi2Z";
 
@@ -18,9 +20,9 @@ public class UrlsTest
         String expectedUrl = "https://core.spreedly.com/v1/transactions/JlyLp8cy1aAu7RRDGnAk83UZi2Z.xml";
 
         // When
-        String url = Urls.showTransactionUrl(token);
+        URL url = UrlsBuilder.showTransactionUrl(token);
 
         // Then
-        assertEquals(expectedUrl, url);
+        assertEquals(expectedUrl, url.toString());
     }
 }

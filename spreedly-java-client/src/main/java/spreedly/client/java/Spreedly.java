@@ -1,5 +1,6 @@
 package spreedly.client.java;
 
+import spreedly.client.java.exception.SpreedlyClientException;
 import spreedly.client.java.model.Transaction;
 import spreedly.client.java.request.TransactionRequest;
 
@@ -18,9 +19,8 @@ public class Spreedly
         return new Spreedly(environmentKey, accessSecret);
     }
 
-    public Transaction findTransaction(String token) throws Exception
+    public Transaction findTransaction(String token) throws SpreedlyClientException
     {
-        // XXX: PROPER EXCEPTIONS AND EXCEPTION HANDLING!!!
         return TransactionRequest.show(token, credentials);
     }
 

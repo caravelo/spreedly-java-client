@@ -17,6 +17,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import spreedly.client.java.exception.HttpHandlingException;
+
 /**
  * Tests the HttpRequestHandler implementation.
  *
@@ -80,7 +82,7 @@ public class UrlConnectionHttpHandlerTest {
     }
 
     private Response runResponseTest(int statusCode, final String requestBody,
-                                     String response, String error) throws IOException {
+                                     String response, String error) throws IOException, HttpHandlingException {
         // Configure the mock connection.
         ByteArrayOutputStream requestOutputStream = new ByteArrayOutputStream();
         configureMockConnection(requestOutputStream, statusCode, response, error);
@@ -98,7 +100,7 @@ public class UrlConnectionHttpHandlerTest {
         URL testUrl = new URL(TEST_URL);
 
         // Execute the request get the result.
-        Request request = new Request(testUrl, "POST", TEST_AUTHORIZATION, source);
+        Request request = new Request(testUrl, Request.POST, TEST_AUTHORIZATION, source);
         Response result = handler.execute(request);
 
         // Confirm that the mocked connection received the expected request.
