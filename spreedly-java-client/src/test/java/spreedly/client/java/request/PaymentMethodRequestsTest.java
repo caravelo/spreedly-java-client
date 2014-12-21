@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import spreedly.client.java.Credentials;
 
-public class TransactionRequestTest
+public class PaymentMethodRequestsTest
 {
     // TODO: actual request must be mocked! Use Betamax or something like this?
 
@@ -15,10 +15,10 @@ public class TransactionRequestTest
     public void testShow() throws Exception
     {
         // Given
-        String token = "Jsa3OQ6vkevAUpzwfQg4CHO8EdS";
+        String token = "D9Smhdu9z5ijCc0RjAQIjOJ9MOy";
 
         // When
-        TransactionRequest.show(token, AUTH);
+        PaymentMethodRequests.show(token, AUTH);
 
         // Then
         // TODO: assert fields values
