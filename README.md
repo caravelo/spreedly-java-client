@@ -1,4 +1,4 @@
-# Spreedly Java Client [![Build Status](https://travis-ci.org/CYFLabs/spreedly-java-client)](https://travis-ci.org/CYFLabs/spreedly-java-client)
+# Spreedly Java Client [![Build Status](https://travis-ci.org/CYFLabs/spreedly-java-client.svg?branch=master)](https://travis-ci.org/CYFLabs/spreedly-java-client)
 
 You can sign up for a Spreedly account at [Spreedly](https://spreedly.com/).
 
