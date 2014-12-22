@@ -3,7 +3,9 @@
   <groupId>com.github.agseco</groupId>
   <artifactId>spreedly-java-client</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Spreedly Client Library for Java</name>
+  <url>https://github.com/CYFLabs/spreedly-java-client</url>
+  <name>spreedly-java-client</name>
+  <description>Spreedly Client Library for Java</description>
   <dependencies>
   	<dependency>
   		<groupId>junit</groupId>

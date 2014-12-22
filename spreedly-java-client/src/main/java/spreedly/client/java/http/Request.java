@@ -40,7 +40,7 @@ public final class Request {
 
     public Request(URL url, String method, BasicHttpAuth authorization, OutputSource body, Proxy proxy) {
         this.url = url;
-        this.properties = new HashMap<>();
+        this.properties = new HashMap<String, String>();
         this.method = method;
         this.authorization = authorization;
         this.body = body;
