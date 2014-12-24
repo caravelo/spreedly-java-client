@@ -1,16 +1,21 @@
 package spreedly.client.java.request;
 
+import org.junit.Rule;
 import org.junit.Test;
 
 import spreedly.client.java.Credentials;
+import co.freeside.betamax.Betamax;
+import co.freeside.betamax.Recorder;
 
 public class PaymentMethodRequestsTest
 {
-    // TODO: actual request must be mocked! Use Betamax or something like this?
 
     private static final Credentials AUTH = 
-            new Credentials("IG8KIz0eOF4ECwpVtiRJDE0XBCD", "1ahpbV0VNUy55A3dBRVRT8EpXMpFJLZeoS4pjzu4wiGL5qfNLWyemoF6kjc7wPU3");
+            new Credentials("test", "test");
 
+    @Rule public Recorder recorder = new Recorder();
+
+    @Betamax(tape = "show-payment-method")
     @Test
     public void testShow() throws Exception
     {

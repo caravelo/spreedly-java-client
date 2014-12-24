@@ -1,0 +1,81 @@
+!tape
+name: show-transaction
+interactions:
+- recorded: 2014-12-24T13:20:00.007Z
+  request:
+    method: GET
+    uri: https://core.spreedly.com/v1/transactions/Jsa3OQ6vkevAUpzwfQg4CHO8EdS.xml
+    headers:
+      Accept: application/xml
+      Authorization: Basic SUc4S0l6MGVPRjRFQ3dwVnRpUkpERTBYQkNEOjFhaHBiVjBWTlV5NTVBM2RCUlZSVDhFcFhNcEZKTFplb1M0cGp6dTR3aUdMNXFmTkxXeWVtb0Y2a2pjN3dQVTM=
+      Connection: keep-alive
+      Content-Type: application/xml
+      Host: core.spreedly.com
+      User-Agent: Java/1.7.0_67
+  response:
+    status: 200
+    headers:
+      Cache-Control: max-age=0, private, must-revalidate
+      Content-Type: application/xml; charset=utf-8
+      Date: Wed, 24 Dec 2014 13:19:59 GMT
+      ETag: '"04a5f20acbc414256be01b3563f26509"'
+      Server: nginx
+      Status: 200 OK
+      X-Content-Type-Options: nosniff
+      X-Frame-Options: SAMEORIGIN
+      X-Request-Id: core_313aefc6f9d422499e611d39e681711c
+      X-Runtime: '0.081066'
+      X-XSS-Protection: 1; mode=block
+    body: |
+      <transaction>
+        <on_test_gateway type="boolean">false</on_test_gateway>
+        <created_at type="dateTime">2014-11-28T22:25:26+00:00</created_at>
+        <updated_at type="dateTime">2014-11-28T22:25:26+00:00</updated_at>
+        <succeeded type="boolean">true</succeeded>
+        <token>Jsa3OQ6vkevAUpzwfQg4CHO8EdS</token>
+        <state>succeeded</state>
+        <gateway_specific_fields nil="true"/>
+        <gateway_specific_response_fields nil="true"/>
+        <transaction_type>RedactPaymentMethod</transaction_type>
+        <order_id nil="true"/>
+        <ip nil="true"/>
+        <gateway_transaction_id nil="true"/>
+        <message key="messages.transaction_succeeded">Succeeded!</message>
+        <payment_method>
+          <token>HKu11ZWm4WJWS6t7hI0k0Qb6FvW</token>
+          <created_at type="dateTime">2014-11-28T09:28:08+00:00</created_at>
+          <updated_at type="dateTime">2014-11-28T22:25:26+00:00</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>redacted</storage_state>
+          <test type="boolean">false</test>
+          <last_four_digits>0001</last_four_digits>
+          <first_six_digits>400555</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>Test</first_name>
+          <last_name>1417166886252</last_name>
+          <month type="integer">5</month>
+          <year type="integer">2017</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <full_name>Test 1417166886252</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number></number>
+        </payment_method>
+      </transaction>

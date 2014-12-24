@@ -1,0 +1,67 @@
+!tape
+name: show-payment-method
+interactions:
+- recorded: 2014-12-24T13:17:59.533Z
+  request:
+    method: GET
+    uri: https://core.spreedly.com/v1/payment_methods/D9Smhdu9z5ijCc0RjAQIjOJ9MOy.xml
+    headers:
+      Accept: application/xml
+      Authorization: Basic SUc4S0l6MGVPRjRFQ3dwVnRpUkpERTBYQkNEOjFhaHBiVjBWTlV5NTVBM2RCUlZSVDhFcFhNcEZKTFplb1M0cGp6dTR3aUdMNXFmTkxXeWVtb0Y2a2pjN3dQVTM=
+      Connection: keep-alive
+      Content-Type: application/xml
+      Host: core.spreedly.com
+      User-Agent: Java/1.7.0_67
+  response:
+    status: 200
+    headers:
+      Cache-Control: max-age=0, private, must-revalidate
+      Content-Type: application/xml; charset=utf-8
+      Date: Wed, 24 Dec 2014 13:17:59 GMT
+      ETag: '"c6d5cbfa918f2eb5a9f7d1b7173b0a7d"'
+      Server: nginx
+      Status: 200 OK
+      X-Content-Type-Options: nosniff
+      X-Frame-Options: SAMEORIGIN
+      X-Request-Id: core_28ca1d46b8adc5ef8d96fc8c32152cd8
+      X-Runtime: '0.100571'
+      X-XSS-Protection: 1; mode=block
+    body: |
+      <payment_method>
+        <token>D9Smhdu9z5ijCc0RjAQIjOJ9MOy</token>
+        <created_at type="dateTime">2014-11-27T09:30:39+00:00</created_at>
+        <updated_at type="dateTime">2014-11-27T22:25:20+00:00</updated_at>
+        <email nil="true"/>
+        <data nil="true"/>
+        <storage_state>redacted</storage_state>
+        <test type="boolean">false</test>
+        <last_four_digits>4242</last_four_digits>
+        <first_six_digits>424242</first_six_digits>
+        <card_type>visa</card_type>
+        <first_name>Test</first_name>
+        <last_name>1417080633043</last_name>
+        <month type="integer">1</month>
+        <year type="integer">2016</year>
+        <address1 nil="true"/>
+        <address2 nil="true"/>
+        <city nil="true"/>
+        <state nil="true"/>
+        <zip nil="true"/>
+        <country nil="true"/>
+        <phone_number nil="true"/>
+        <full_name>Test 1417080633043</full_name>
+        <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+        <shipping_address1 nil="true"/>
+        <shipping_address2 nil="true"/>
+        <shipping_city nil="true"/>
+        <shipping_state nil="true"/>
+        <shipping_zip nil="true"/>
+        <shipping_country nil="true"/>
+        <shipping_phone_number nil="true"/>
+        <payment_method_type>credit_card</payment_method_type>
+        <errors>
+          <error attribute="number" key="errors.blank">Number can't be blank</error>
+        </errors>
+        <verification_value></verification_value>
+        <number></number>
+      </payment_method>
