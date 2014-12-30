@@ -1,15 +1,15 @@
 package spreedly.client.java.xml;
 
 import static org.custommonkey.xmlunit.XMLAssert.assertXMLEqual;
-import static spreedly.client.java.model.VerifyPaymentMethodRequest.CURRENCY_CODE;
-import static spreedly.client.java.model.VerifyPaymentMethodRequest.DESCRIPTION;
-import static spreedly.client.java.model.VerifyPaymentMethodRequest.EMAIL;
-import static spreedly.client.java.model.VerifyPaymentMethodRequest.IP;
-import static spreedly.client.java.model.VerifyPaymentMethodRequest.MERCHANT_LOCATION_DESCRIPTOR;
-import static spreedly.client.java.model.VerifyPaymentMethodRequest.MERCHANT_NAME_DESCRIPTOR;
-import static spreedly.client.java.model.VerifyPaymentMethodRequest.ORDER_ID;
-import static spreedly.client.java.model.VerifyPaymentMethodRequest.PAYMENT_METHOD_TOKEN;
-import static spreedly.client.java.model.VerifyPaymentMethodRequest.RETAIN_ON_SUCCESS;
+import static spreedly.client.java.model.Fields.CURRENCY_CODE;
+import static spreedly.client.java.model.Fields.DESCRIPTION;
+import static spreedly.client.java.model.Fields.EMAIL;
+import static spreedly.client.java.model.Fields.IP;
+import static spreedly.client.java.model.Fields.MERCHANT_LOCATION_DESCRIPTOR;
+import static spreedly.client.java.model.Fields.MERCHANT_NAME_DESCRIPTOR;
+import static spreedly.client.java.model.Fields.ORDER_ID;
+import static spreedly.client.java.model.Fields.PAYMENT_METHOD_TOKEN;
+import static spreedly.client.java.model.Fields.RETAIN_ON_SUCCESS;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

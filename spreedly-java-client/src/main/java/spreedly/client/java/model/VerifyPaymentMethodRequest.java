@@ -1,5 +1,15 @@
 package spreedly.client.java.model;
 
+import static spreedly.client.java.model.Fields.CURRENCY_CODE;
+import static spreedly.client.java.model.Fields.DESCRIPTION;
+import static spreedly.client.java.model.Fields.EMAIL;
+import static spreedly.client.java.model.Fields.IP;
+import static spreedly.client.java.model.Fields.MERCHANT_LOCATION_DESCRIPTOR;
+import static spreedly.client.java.model.Fields.MERCHANT_NAME_DESCRIPTOR;
+import static spreedly.client.java.model.Fields.ORDER_ID;
+import static spreedly.client.java.model.Fields.PAYMENT_METHOD_TOKEN;
+import static spreedly.client.java.model.Fields.RETAIN_ON_SUCCESS;
+
 import java.util.Map;
 
 import org.simpleframework.xml.Element;
@@ -8,17 +18,6 @@ import org.simpleframework.xml.Root;
 @Root(name = "transaction")
 public class VerifyPaymentMethodRequest
 {
-    // TODO: move all fields spread among all entities into a common place 
-
-    public static final String PAYMENT_METHOD_TOKEN = "payment_method_token";
-    public static final String RETAIN_ON_SUCCESS = "retain_on_success";
-    public static final String CURRENCY_CODE = "currency_code";
-    public static final String ORDER_ID = "order_id";
-    public static final String DESCRIPTION = "description";
-    public static final String IP = "ip";
-    public static final String EMAIL = "email";
-    public static final String MERCHANT_NAME_DESCRIPTOR = "merchant_name_descriptor";
-    public static final String MERCHANT_LOCATION_DESCRIPTOR = "merchant_location_descriptor";
 
     @Element(name = PAYMENT_METHOD_TOKEN)
     private final String paymentMethodToken;
