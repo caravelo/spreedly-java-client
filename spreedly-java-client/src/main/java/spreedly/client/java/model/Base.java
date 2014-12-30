@@ -32,4 +32,19 @@ public class Base
         this.updatedAt = updatedAt;
     }
 
+    public Date getCreatedAt()
+    {
+        return createdAt;
+    }
+
+    public String getToken()
+    {
+        return token;
+    }
+
+    public String getUpdatedAt()
+    {
+        return updatedAt;
+    }
+
 }

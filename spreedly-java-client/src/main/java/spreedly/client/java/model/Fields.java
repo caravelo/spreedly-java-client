@@ -19,6 +19,8 @@ public class Fields
     public static final String FIRST_NAME = "first_name";
     public static final String FIRST_SIX_DIGITS = "first_six_digits";
     public static final String FULL_NAME = "full_name";
+    public static final String GATEWAY_TOKEN = "gateway_token";
+    public static final String GATEWAY_TRANSACTION_ID = "gateway_transaction_id";
     public static final String IP = "ip";
     public static final String LAST_FOUR_DIGITS = "last_four_digits";
     public static final String LAST_NAME = "last_name";
@@ -29,6 +31,8 @@ public class Fields
     public static final String NUMBER = "number";
     public static final String ON_TEST_GATEWAY = "on_test_gateway";
     public static final String ORDER_ID = "order_id";
+    public static final String PAYMENT_METHOD = "payment_method";
+    public static final String PAYMENT_METHOD_ADDED = "payment_method_added";
     public static final String PAYMENT_METHOD_TOKEN = "payment_method_token";
     public static final String PAYMENT_METHOD_TYPE = "payment_method_type";
     public static final String PHONE_NUMBER = "phone_number";
@@ -50,10 +54,5 @@ public class Fields
     public static final String VERIFICATION_VALUE = "verification_value";
     public static final String YEAR = "year";
     public static final String ZIP = "zip";
-
-    public static final String GATEWAY_TRANSACTION_ID = "gateway_transaction_id";
-    public static final String GATEWAY_TOKEN = "gateway_token";
-    public static final String PAYMENT_METHOD_ADDED = "payment_method_added";
-    public static final String PAYMENT_METHOD = "payment_method";
 
 }

@@ -42,104 +42,103 @@ import org.simpleframework.xml.Root;
 @Root(name = "payment_method")
 public class PaymentMethod extends Base
 {
-    // XXX: generate getters
 
     @Element(name = EMAIL, required = false)
-    protected final String email;
+    private final String email;
 
     @Element(name = DATA, required = false)
-    protected final String data;
+    private final String data;
 
     // TODO: could be Enum type instead of String
     @Element(name = STORAGE_STATE)
-    protected final String storageState;
+    private final String storageState;
 
     @Element(name = TEST)
-    protected final boolean test;
+    private final boolean test;
 
     @Element(name = LAST_FOUR_DIGITS)
-    protected final String lastFourDigits;
+    private final String lastFourDigits;
 
     @Element(name = FIRST_SIX_DIGITS)
-    protected final String firstSixDigits;
+    private final String firstSixDigits;
 
     // TODO: could be Enum type instead of String
     @Element(name = CARD_TYPE)
-    protected final String cardType;
+    private final String cardType;
 
     @Element(name = FIRST_NAME)
-    protected final String firstName;
+    private final String firstName;
 
     @Element(name = LAST_NAME)
-    protected final String lastName;
+    private final String lastName;
 
     @Element(name = MONTH)
-    protected final int month;
+    private final int month;
 
     @Element(name = YEAR)
-    protected final int year;
+    private final int year;
 
     @Element(name = ADDRESS_1, required = false)
-    protected final String address1;
+    private final String address1;
 
     @Element(name = ADDRESS_2, required = false)
-    protected final String address2;
+    private final String address2;
 
     @Element(name = CITY, required = false)
-    protected final String city;
+    private final String city;
 
     @Element(name = STATE, required = false)
-    protected final String state;
+    private final String state;
 
     @Element(name = ZIP, required = false)
-    protected final String zip;
+    private final String zip;
 
     @Element(name = COUNTRY, required = false)
-    protected final String country;
+    private final String country;
 
     @Element(name = PHONE_NUMBER, required = false)
-    protected final String phoneNumber;
+    private final String phoneNumber;
 
     @Element(name = SHIPPING_ADDRESS_1, required = false)
-    protected final String shippingAddress1;
+    private final String shippingAddress1;
 
     @Element(name = SHIPPING_ADDRESS_2, required = false)
-    protected final String shippingAddress2;
+    private final String shippingAddress2;
 
     @Element(name = SHIPPING_CITY, required = false)
-    protected final String shippingCity;
+    private final String shippingCity;
 
     @Element(name = SHIPPING_STATE, required = false)
-    protected final String shippingState;
+    private final String shippingState;
 
     @Element(name = SHIPPING_ZIP, required = false)
-    protected final String shippingZip;
+    private final String shippingZip;
 
     @Element(name = SHIPPING_COUNTRY, required = false)
-    protected final String shippingCountry;
+    private final String shippingCountry;
 
     @Element(name = SHIPPING_PHONE_NUMBER, required = false)
-    protected final String shippingPhoneNumber;
+    private final String shippingPhoneNumber;
 
     @Element(name = FULL_NAME)
-    protected final String fullName;
+    private final String fullName;
 
     @Element(name = ELIGIBLE_FOR_CARD_UPDATER)
-    protected final boolean eligibleForCardUpdater;
+    private final boolean eligibleForCardUpdater;
 
     // TODO: could be Enum type instead of String
     @Element(name = PAYMENT_METHOD_TYPE)
-    protected final String paymentMethodType;
+    private final String paymentMethodType;
 
     // TODO: when Error model object is available
 //    @Element(name = ERRORS)
-//    protected final List<Error> errors;
+//    private final List<Error> errors;
 
     @Element(name = VERIFICATION_VALUE, required = false)
-    protected final String verification_value;
+    private final String verification_value;
 
     @Element(name = NUMBER, required = false)
-    protected final String number;
+    private final String number;
 
     public PaymentMethod(
             @Element(name = TOKEN) String token,
@@ -211,6 +210,156 @@ public class PaymentMethod extends Base
 //        this.errors = errors;
         this.verification_value = verificationValue;
         this.number = number;
+    }
+
+    public String getAddress1()
+    {
+        return address1;
+    }
+
+    public String getAddress2()
+    {
+        return address2;
+    }
+
+    public String getCardType()
+    {
+        return cardType;
+    }
+
+    public String getCity()
+    {
+        return city;
+    }
+
+    public String getCountry()
+    {
+        return country;
+    }
+
+    public String getData()
+    {
+        return data;
+    }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public String getFirstName()
+    {
+        return firstName;
+    }
+
+    public String getFirstSixDigits()
+    {
+        return firstSixDigits;
+    }
+
+    public String getFullName()
+    {
+        return fullName;
+    }
+
+    public String getLastFourDigits()
+    {
+        return lastFourDigits;
+    }
+
+    public String getLastName()
+    {
+        return lastName;
+    }
+
+    public int getMonth()
+    {
+        return month;
+    }
+
+    public String getNumber()
+    {
+        return number;
+    }
+
+    public String getPaymentMethodType()
+    {
+        return paymentMethodType;
+    }
+
+    public String getPhoneNumber()
+    {
+        return phoneNumber;
+    }
+
+    public String getShippingAddress1()
+    {
+        return shippingAddress1;
+    }
+
+    public String getShippingAddress2()
+    {
+        return shippingAddress2;
+    }
+
+    public String getShippingCity()
+    {
+        return shippingCity;
+    }
+
+    public String getShippingCountry()
+    {
+        return shippingCountry;
+    }
+
+    public String getShippingPhoneNumber()
+    {
+        return shippingPhoneNumber;
+    }
+
+    public String getShippingState()
+    {
+        return shippingState;
+    }
+
+    public String getShippingZip()
+    {
+        return shippingZip;
+    }
+
+    public String getState()
+    {
+        return state;
+    }
+
+    public String getStorageState()
+    {
+        return storageState;
+    }
+
+    public String getVerification_value()
+    {
+        return verification_value;
+    }
+
+    public int getYear()
+    {
+        return year;
+    }
+
+    public String getZip()
+    {
+        return zip;
+    }
+
+    public boolean isEligibleForCardUpdater()
+    {
+        return eligibleForCardUpdater;
+    }
+
+    public boolean isTest()
+    {
+        return test;
     }
 
 }

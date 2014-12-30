@@ -8,7 +8,6 @@ import org.simpleframework.xml.Element;
 
 public class Transaction extends Base
 {
-    // XXX: generate getters
 
     @Element(name = AMOUNT, required = false)
     private final Integer amount;
@@ -113,6 +112,96 @@ public class Transaction extends Base
         this.message = message;
         this.gatewayToken = gatewayToken;
         this.paymentMethod = paymentMethod;
+    }
+
+    public Integer getAmount()
+    {
+        return amount;
+    }
+
+    public String getCurrencyCode()
+    {
+        return currencyCode;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public String getGatewayToken()
+    {
+        return gatewayToken;
+    }
+
+    public String getGatewayTransactionId()
+    {
+        return gatewayTransactionId;
+    }
+
+    public String getIp()
+    {
+        return ip;
+    }
+
+    public String getMerchantLocationDescriptor()
+    {
+        return merchantLocationDescriptor;
+    }
+
+    public String getMerchantNameDescriptor()
+    {
+        return merchantNameDescriptor;
+    }
+
+    public String getMessage()
+    {
+        return message;
+    }
+
+    public Boolean getOnTestGateway()
+    {
+        return onTestGateway;
+    }
+
+    public String getOrderId()
+    {
+        return orderId;
+    }
+
+    public PaymentMethod getPaymentMethod()
+    {
+        return paymentMethod;
+    }
+
+    public Boolean getPaymentMethodAdded()
+    {
+        return paymentMethodAdded;
+    }
+
+    public Boolean getRetainOnSuccess()
+    {
+        return retainOnSuccess;
+    }
+
+    public String getState()
+    {
+        return state;
+    }
+
+    public Boolean getSucceeded()
+    {
+        return succeeded;
+    }
+
+    public String getTransactionType()
+    {
+        return transactionType;
     }
 
 }
