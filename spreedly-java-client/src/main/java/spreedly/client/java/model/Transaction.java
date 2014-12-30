@@ -1,5 +1,12 @@
 package spreedly.client.java.model;
 
+import static spreedly.client.java.model.Fields.CREATED_AT;
+import static spreedly.client.java.model.Fields.MESSAGE;
+import static spreedly.client.java.model.Fields.SUCCEEDED;
+import static spreedly.client.java.model.Fields.TOKEN;
+import static spreedly.client.java.model.Fields.TRANSACTION_TYPE;
+import static spreedly.client.java.model.Fields.UPDATED_AT;
+
 import java.util.Date;
 
 import org.simpleframework.xml.Element;
@@ -7,10 +14,6 @@ import org.simpleframework.xml.Element;
 public class Transaction extends Base
 {
     // XXX: generate getters
-
-    protected static final String TRANSACTION_TYPE = "transaction_type";
-    protected static final String SUCCEEDED = "succeeded";
-    protected static final String MESSAGE = "message";
 
     @Element(name = TRANSACTION_TYPE)
     protected final String transactionType;

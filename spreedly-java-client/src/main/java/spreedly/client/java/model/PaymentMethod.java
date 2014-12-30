@@ -1,46 +1,48 @@
 package spreedly.client.java.model;
 
+import static spreedly.client.java.model.Fields.ADDRESS_1;
+import static spreedly.client.java.model.Fields.ADDRESS_2;
+import static spreedly.client.java.model.Fields.CARD_TYPE;
+import static spreedly.client.java.model.Fields.CITY;
+import static spreedly.client.java.model.Fields.COUNTRY;
+import static spreedly.client.java.model.Fields.CREATED_AT;
+import static spreedly.client.java.model.Fields.DATA;
+import static spreedly.client.java.model.Fields.ELIGIBLE_FOR_CARD_UPDATER;
+import static spreedly.client.java.model.Fields.EMAIL;
+import static spreedly.client.java.model.Fields.FIRST_NAME;
+import static spreedly.client.java.model.Fields.FIRST_SIX_DIGITS;
+import static spreedly.client.java.model.Fields.FULL_NAME;
+import static spreedly.client.java.model.Fields.LAST_FOUR_DIGITS;
+import static spreedly.client.java.model.Fields.LAST_NAME;
+import static spreedly.client.java.model.Fields.MONTH;
+import static spreedly.client.java.model.Fields.NUMBER;
+import static spreedly.client.java.model.Fields.PAYMENT_METHOD_TYPE;
+import static spreedly.client.java.model.Fields.PHONE_NUMBER;
+import static spreedly.client.java.model.Fields.SHIPPING_ADDRESS_1;
+import static spreedly.client.java.model.Fields.SHIPPING_ADDRESS_2;
+import static spreedly.client.java.model.Fields.SHIPPING_CITY;
+import static spreedly.client.java.model.Fields.SHIPPING_COUNTRY;
+import static spreedly.client.java.model.Fields.SHIPPING_PHONE_NUMBER;
+import static spreedly.client.java.model.Fields.SHIPPING_STATE;
+import static spreedly.client.java.model.Fields.SHIPPING_ZIP;
+import static spreedly.client.java.model.Fields.STATE;
+import static spreedly.client.java.model.Fields.STORAGE_STATE;
+import static spreedly.client.java.model.Fields.TEST;
+import static spreedly.client.java.model.Fields.TOKEN;
+import static spreedly.client.java.model.Fields.UPDATED_AT;
+import static spreedly.client.java.model.Fields.VERIFICATION_VALUE;
+import static spreedly.client.java.model.Fields.YEAR;
+import static spreedly.client.java.model.Fields.ZIP;
+
 import java.util.Date;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-@Root(name = "payment_method") // Allows empty or missing elements
+@Root(name = "payment_method")
 public class PaymentMethod extends Base
 {
     // XXX: generate getters
-
-    protected static final String EMAIL = "email";
-    protected static final String DATA = "data";
-    protected static final String STORAGE_STATE = "storage_state";
-    protected static final String TEST = "test";
-    protected static final String LAST_FOUR_DIGITS = "last_four_digits";
-    protected static final String FIRST_SIX_DIGITS = "first_six_digits";
-    protected static final String CARD_TYPE = "card_type";
-    protected static final String FIRST_NAME = "first_name";
-    protected static final String LAST_NAME = "last_name";
-    protected static final String MONTH = "month";
-    protected static final String YEAR = "year";
-    protected static final String ADDRESS_1 = "address1";
-    protected static final String ADDRESS_2 = "address2";
-    protected static final String CITY = "city";
-    protected static final String STATE = "state";
-    protected static final String ZIP = "zip";
-    protected static final String COUNTRY = "country";
-    protected static final String PHONE_NUMBER = "phone_number";
-    protected static final String SHIPPING_ADDRESS_1 = "shipping_address1";
-    protected static final String SHIPPING_ADDRESS_2 = "shipping_address2";
-    protected static final String SHIPPING_CITY = "shipping_city";
-    protected static final String SHIPPING_STATE = "shipping_state";
-    protected static final String SHIPPING_ZIP = "shipping_zip";
-    protected static final String SHIPPING_COUNTRY = "shipping_country";
-    protected static final String SHIPPING_PHONE_NUMBER = "shipping_phone_number";
-    protected static final String FULL_NAME = "full_name";
-    protected static final String ELIGIBLE_FOR_CARD_UPDATER = "eligible_for_card_updater";
-    protected static final String PAYMENT_METHOD_TYPE = "payment_method_type";
-    protected static final String ERRORS = "errors";
-    protected static final String VERIFICATION_VALUE = "verification_value";
-    protected static final String NUMBER = "number";
 
     @Element(name = EMAIL, required = false)
     protected final String email;

@@ -1,5 +1,9 @@
 package spreedly.client.java.model;
 
+import static spreedly.client.java.model.Fields.CREATED_AT;
+import static spreedly.client.java.model.Fields.TOKEN;
+import static spreedly.client.java.model.Fields.UPDATED_AT;
+
 import java.util.Date;
 
 import org.simpleframework.xml.Element;
@@ -8,10 +12,6 @@ import org.simpleframework.xml.Root;
 @Root(name = "transaction")
 public class Base
 {
-
-    protected static final String TOKEN = "token";
-    protected static final String CREATED_AT = "created_at";
-    protected static final String UPDATED_AT = "updated_at";
 
     @Element(name = TOKEN)
     protected final String token;
