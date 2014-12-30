@@ -23,6 +23,11 @@ public class UrlsBuilder
         return buildUrl("%s/payment_methods/%s.xml", V1_BASE_URL, token);
     }
 
+    public static URL verifyPaymentMethod(String gatewayToken)
+    {
+        return buildUrl("%s/gateways/%s/verify.xml", V1_BASE_URL, gatewayToken);
+    }
+
     private static URL buildUrl(String url, Object... args)
     {
         String formattedUrl = String.format(url, args);

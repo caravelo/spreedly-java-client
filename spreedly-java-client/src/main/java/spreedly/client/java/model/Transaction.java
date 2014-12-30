@@ -6,6 +6,7 @@ import org.simpleframework.xml.Element;
 
 public class Transaction extends Base
 {
+    // XXX: generate getters
 
     protected static final String TRANSACTION_TYPE = "transaction_type";
     protected static final String SUCCEEDED = "succeeded";

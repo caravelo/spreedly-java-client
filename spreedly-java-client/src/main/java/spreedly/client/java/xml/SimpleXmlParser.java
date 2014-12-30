@@ -1,5 +1,6 @@
 package spreedly.client.java.xml;
 
+import java.io.OutputStream;
 import java.util.Date;
 
 import org.simpleframework.xml.Serializer;
@@ -25,15 +26,29 @@ public class SimpleXmlParser implements XmlParser
     }
 
     @Override
+    public PaymentMethod parsePaymentMethod(String source) throws XmlParserException
+    {
+        return read(PaymentMethod.class, source);
+    }
+
+    @Override
     public Transaction parseTransaction(String source) throws XmlParserException
     {
         return read(Transaction.class, source);
     }
 
     @Override
-    public PaymentMethod parsePaymentMethod(String source) throws XmlParserException
+    public void serialize(Object source, OutputStream out) throws XmlParserException
     {
-        return read(PaymentMethod.class, source);
+        try
+        {
+            serializer.write(source, out);
+        }
+        catch (Exception e)
+        {
+            // TODO: log and set appropriate message to raised exception
+            throw new XmlParserException(e);
+        }
     }
 
     private <T> T read(Class<T> type, String source) throws XmlParserException
@@ -44,6 +59,7 @@ public class SimpleXmlParser implements XmlParser
         }
         catch (Exception e)
         {
+            // TODO: log and set appropriate message to raised exception
             throw new XmlParserException(e);
         }
     }

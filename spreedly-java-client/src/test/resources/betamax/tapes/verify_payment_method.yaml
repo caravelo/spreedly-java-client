@@ -1,0 +1,116 @@
+!tape
+name: verify-payment-method
+interactions:
+- recorded: 2014-12-30T18:16:06.094Z
+  request:
+    method: POST
+    uri: https://core.spreedly.com/v1/gateways/XKqtfVWFvZgbwmrN5ZFdMZpB1XN/verify.xml
+    headers:
+      Accept: application/xml
+      Authorization: Basic SUc4S0l6MGVPRjRFQ3dwVnRpUkpERTBYQkNEOjFhaHBiVjBWTlV5NTVBM2RCUlZSVDhFcFhNcEZKTFplb1M0cGp6dTR3aUdMNXFmTkxXeWVtb0Y2a2pjN3dQVTM=
+      Connection: keep-alive
+      Content-Length: '481'
+      Content-Type: application/xml
+      Host: core.spreedly.com
+      User-Agent: Java/1.7.0_67
+    body: |-
+      <transaction>
+         <payment_method_token>EL8G2Njs9LdUDKlNSbonADvcxJV</payment_method_token>
+         <retain_on_success>true</retain_on_success>
+         <currency_code>EUR</currency_code>
+         <order_id>Order ID</order_id>
+         <description>Description</description>
+         <ip>192.168.1.10</ip>
+         <email>email@example.com</email>
+         <merchant_name_descriptor>Descriptor name</merchant_name_descriptor>
+         <merchant_location_descriptor>Descriptor location</merchant_location_descriptor>
+      </transaction>
+  response:
+    status: 200
+    headers:
+      Cache-Control: max-age=0, private, must-revalidate
+      Content-Type: application/xml; charset=utf-8
+      Date: Tue, 30 Dec 2014 18:16:05 GMT
+      ETag: '"3e32b8ef2f5f23dad5dfc47dfe27cf3c"'
+      Server: nginx
+      Status: 200 OK
+      X-Content-Type-Options: nosniff
+      X-Frame-Options: SAMEORIGIN
+      X-Request-Id: core_80fb359f9d4de7e04ac17229e97faa81
+      X-Runtime: '0.266965'
+      X-XSS-Protection: 1; mode=block
+    body: |
+      <transaction>
+        <on_test_gateway type="boolean">true</on_test_gateway>
+        <created_at type="dateTime">2014-12-30T18:16:05Z</created_at>
+        <updated_at type="dateTime">2014-12-30T18:16:05Z</updated_at>
+        <succeeded type="boolean">true</succeeded>
+        <state>succeeded</state>
+        <token>aKr1u6LzvCNPm4R59OZ2MG1f5xt</token>
+        <transaction_type>Verification</transaction_type>
+        <order_id>Order ID</order_id>
+        <ip>192.168.1.10</ip>
+        <description>Description</description>
+        <email>email@example.com</email>
+        <merchant_name_descriptor>Descriptor name</merchant_name_descriptor>
+        <merchant_location_descriptor>Descriptor location</merchant_location_descriptor>
+        <gateway_specific_fields nil="true"/>
+        <gateway_specific_response_fields nil="true"/>
+        <gateway_transaction_id>56</gateway_transaction_id>
+        <currency_code>EUR</currency_code>
+        <retain_on_success type="boolean">true</retain_on_success>
+        <message key="messages.transaction_succeeded">Succeeded!</message>
+        <gateway_token>XKqtfVWFvZgbwmrN5ZFdMZpB1XN</gateway_token>
+        <response>
+          <success type="boolean">true</success>
+          <message>Successful verify</message>
+          <avs_code nil="true"/>
+          <avs_message nil="true"/>
+          <cvv_code nil="true"/>
+          <cvv_message nil="true"/>
+          <pending type="boolean">false</pending>
+          <result_unknown type="boolean">false</result_unknown>
+          <error_code></error_code>
+          <error_detail nil="true"/>
+          <cancelled type="boolean">false</cancelled>
+          <created_at type="dateTime">2014-12-30T18:16:05Z</created_at>
+          <updated_at type="dateTime">2014-12-30T18:16:05Z</updated_at>
+        </response>
+        <payment_method>
+          <token>EL8G2Njs9LdUDKlNSbonADvcxJV</token>
+          <created_at type="dateTime">2014-12-30T18:07:48Z</created_at>
+          <updated_at type="dateTime">2014-12-30T18:16:05Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>Test</first_name>
+          <last_name>Test</last_name>
+          <month type="integer">12</month>
+          <year type="integer">2017</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <full_name>Test Test</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+      </transaction>

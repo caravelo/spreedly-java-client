@@ -8,6 +8,7 @@ import org.simpleframework.xml.Root;
 @Root(name = "payment_method") // Allows empty or missing elements
 public class PaymentMethod extends Base
 {
+    // XXX: generate getters
 
     protected static final String EMAIL = "email";
     protected static final String DATA = "data";
