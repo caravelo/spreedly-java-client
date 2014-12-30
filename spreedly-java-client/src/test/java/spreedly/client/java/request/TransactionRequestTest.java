@@ -16,7 +16,6 @@ public class TransactionRequestTest
     @Rule public Recorder recorder = new Recorder();
 
     @Betamax(tape = "show-transaction")
-
     @Test
     public void testShow() throws Exception
     {

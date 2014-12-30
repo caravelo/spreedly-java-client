@@ -54,7 +54,7 @@ public class PaymentMethod extends Base
     private final String storageState;
 
     @Element(name = TEST)
-    private final boolean test;
+    private final Boolean test;
 
     @Element(name = LAST_FOUR_DIGITS)
     private final String lastFourDigits;
@@ -73,10 +73,10 @@ public class PaymentMethod extends Base
     private final String lastName;
 
     @Element(name = MONTH)
-    private final int month;
+    private final Integer month;
 
     @Element(name = YEAR)
-    private final int year;
+    private final Integer year;
 
     @Element(name = ADDRESS_1, required = false)
     private final String address1;
@@ -124,7 +124,7 @@ public class PaymentMethod extends Base
     private final String fullName;
 
     @Element(name = ELIGIBLE_FOR_CARD_UPDATER)
-    private final boolean eligibleForCardUpdater;
+    private final Boolean eligibleForCardUpdater;
 
     // TODO: could be Enum type instead of String
     @Element(name = PAYMENT_METHOD_TYPE)
@@ -147,14 +147,14 @@ public class PaymentMethod extends Base
             @Element(name = EMAIL) String email,
             @Element(name = DATA) String data,
             @Element(name = STORAGE_STATE) String storageState,
-            @Element(name = TEST) boolean test,
+            @Element(name = TEST) Boolean test,
             @Element(name = LAST_FOUR_DIGITS) String lastFourDigits,
             @Element(name = FIRST_SIX_DIGITS) String firstSixDigits,
             @Element(name = CARD_TYPE) String cardType,
             @Element(name = FIRST_NAME) String firstName,
             @Element(name = LAST_NAME) String lastName,
-            @Element(name = MONTH) int month,
-            @Element(name = YEAR) int year,
+            @Element(name = MONTH) Integer month,
+            @Element(name = YEAR) Integer year,
             @Element(name = ADDRESS_1) String address1,
             @Element(name = ADDRESS_2) String address2,
             @Element(name = CITY) String city,
@@ -170,7 +170,7 @@ public class PaymentMethod extends Base
             @Element(name = SHIPPING_COUNTRY) String shippingCountry,
             @Element(name = SHIPPING_PHONE_NUMBER) String shippingPhoneNumber,
             @Element(name = FULL_NAME) String fullName,
-            @Element(name = ELIGIBLE_FOR_CARD_UPDATER) boolean eligibleForCardUpdater,
+            @Element(name = ELIGIBLE_FOR_CARD_UPDATER) Boolean eligibleForCardUpdater,
             @Element(name = PAYMENT_METHOD_TYPE) String paymentMethodType,
 //            @Element(name = ERRORS) List<Error> errors,
             @Element(name = VERIFICATION_VALUE) String verificationValue,
@@ -272,7 +272,7 @@ public class PaymentMethod extends Base
         return lastName;
     }
 
-    public int getMonth()
+    public Integer getMonth()
     {
         return month;
     }
@@ -342,7 +342,7 @@ public class PaymentMethod extends Base
         return verification_value;
     }
 
-    public int getYear()
+    public Integer getYear()
     {
         return year;
     }
@@ -352,12 +352,12 @@ public class PaymentMethod extends Base
         return zip;
     }
 
-    public boolean isEligibleForCardUpdater()
+    public Boolean isEligibleForCardUpdater()
     {
         return eligibleForCardUpdater;
     }
 
-    public boolean isTest()
+    public Boolean isTest()
     {
         return test;
     }

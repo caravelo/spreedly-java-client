@@ -23,7 +23,7 @@ public class VerifyPaymentMethodRequest
     private final String paymentMethodToken;
 
     @Element(name = RETAIN_ON_SUCCESS)
-    private final boolean retainOnSuccess;
+    private final Boolean retainOnSuccess;
 
     @Element(name = CURRENCY_CODE)
     private final String currencyCode;
@@ -100,7 +100,7 @@ public class VerifyPaymentMethodRequest
         return paymentMethodToken;
     }
 
-    public boolean isRetainOnSuccess()
+    public Boolean isRetainOnSuccess()
     {
         return retainOnSuccess;
     }
