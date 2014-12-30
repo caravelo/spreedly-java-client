@@ -23,7 +23,7 @@ public class TransactionRequestTest
         String token = "Jsa3OQ6vkevAUpzwfQg4CHO8EdS";
 
         // When
-        TransactionRequest.show(token, AUTH);
+        TransactionRequests.show(token, AUTH);
 
         // Then
         // TODO: assert fields values

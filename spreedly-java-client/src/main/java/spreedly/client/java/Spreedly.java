@@ -9,7 +9,7 @@ import spreedly.client.java.model.PaymentMethod;
 import spreedly.client.java.model.Transaction;
 import spreedly.client.java.request.GatewayRequests;
 import spreedly.client.java.request.PaymentMethodRequests;
-import spreedly.client.java.request.TransactionRequest;
+import spreedly.client.java.request.TransactionRequests;
 
 public class Spreedly
 {
@@ -33,7 +33,7 @@ public class Spreedly
 
     public Transaction findTransaction(String token) throws SpreedlyClientException
     {
-        return TransactionRequest.show(token, credentials);
+        return TransactionRequests.show(token, credentials);
     }
 
     public Transaction verifyOnGateway(String gatewayToken, String paymentMethodToken, Map<String, String> options) throws SpreedlyClientException

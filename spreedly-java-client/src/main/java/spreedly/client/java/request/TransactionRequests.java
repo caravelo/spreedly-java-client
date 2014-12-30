@@ -14,7 +14,7 @@ import spreedly.client.java.http.Response;
 import spreedly.client.java.model.Transaction;
 import spreedly.client.java.xml.XmlParserFactory;
 
-public class TransactionRequest
+public class TransactionRequests
 {
 
     public static Transaction show(String token, Credentials credentials) throws XmlParserException, HttpHandlingException
