@@ -1,6 +1,8 @@
 package spreedly.client.java.request;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static spreedly.client.java.model.Fields.CURRENCY_CODE;
 import static spreedly.client.java.model.Fields.DESCRIPTION;
 import static spreedly.client.java.model.Fields.EMAIL;
@@ -36,24 +38,42 @@ public class GatewayRequestsTest
     {
         // Given
         String gatewayToken = "XKqtfVWFvZgbwmrN5ZFdMZpB1XN";
+        String paymentMethodToken = "EL8G2Njs9LdUDKlNSbonADvcxJV";
+        String retainOnSuccess = "true";
+        String currencyCode = "EUR";
+        String orderId = "Order ID";
+        String description = "Description";
+        String ip = "192.168.1.10";
+        String email = "email@example.com";
+        String merchantNameDescriptor = "Descriptor name";
+        String merchantLocationDescriptor = "Descriptor location";
 
         Map<String, String> options = new HashMap<String, String>();
-        options.put(PAYMENT_METHOD_TOKEN, "EL8G2Njs9LdUDKlNSbonADvcxJV");
-        options.put(RETAIN_ON_SUCCESS, "true");
-        options.put(CURRENCY_CODE, "EUR");
-        options.put(ORDER_ID, "Order ID");
-        options.put(DESCRIPTION, "Description");
+        options.put(PAYMENT_METHOD_TOKEN, paymentMethodToken);
+        options.put(RETAIN_ON_SUCCESS, retainOnSuccess);
+        options.put(CURRENCY_CODE, currencyCode);
+        options.put(ORDER_ID, orderId);
+        options.put(DESCRIPTION, description);
         options.put(IP, "192.168.1.10");
-        options.put(EMAIL, "email@example.com");
-        options.put(MERCHANT_NAME_DESCRIPTOR, "Descriptor name");
-        options.put(MERCHANT_LOCATION_DESCRIPTOR, "Descriptor location");
+        options.put(EMAIL, email);
+        options.put(MERCHANT_NAME_DESCRIPTOR, merchantNameDescriptor);
+        options.put(MERCHANT_LOCATION_DESCRIPTOR, merchantLocationDescriptor);
 
         // When
         Transaction t = GatewayRequests.verify(gatewayToken, options, AUTH);
 
         // Then
         assertNotNull(t);
-        // TODO: assert transaction fields & payment method retained
+        assertTrue(t.getOnTestGateway());
+        assertTrue(t.getSucceeded());
+        assertEquals("Verification", t.getTransactionType());
+        assertEquals(orderId, t.getOrderId());
+        assertEquals(ip, t.getIp());
+        assertEquals(description, t.getDescription());
+        assertEquals(email, t.getEmail());
+        assertEquals(merchantNameDescriptor, t.getMerchantNameDescriptor());
+        assertEquals(merchantLocationDescriptor, t.getMerchantLocationDescriptor());
+        assertNotNull(t.getPaymentMethod());
     }
 
 }
