@@ -7,9 +7,7 @@ import static spreedly.client.java.model.Fields.UPDATED_AT;
 import java.util.Date;
 
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.Root;
 
-@Root(name = "transaction")
 public class Base
 {
 

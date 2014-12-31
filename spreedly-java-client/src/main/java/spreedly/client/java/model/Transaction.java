@@ -5,7 +5,9 @@ import static spreedly.client.java.model.Fields.*;
 import java.util.Date;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
+@Root(name = "transaction")
 public class Transaction extends Base
 {
 
@@ -25,6 +27,7 @@ public class Transaction extends Base
     @Element(name = STATE)
     private final String state;
 
+    // TODO: should be Enum (Authorization, Capture, Credit)
     @Element(name = TRANSACTION_TYPE)
     private final String transactionType;
 
