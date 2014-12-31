@@ -66,7 +66,8 @@ public class Transaction extends Base
     @Element(name = GATEWAY_TOKEN, required = false)
     private final String gatewayToken;
 
-    // TODO: Response element
+    @Element(name = RESPONSE, required = false)
+    private final Response response;
 
     @Element(name = PAYMENT_METHOD)
     private final PaymentMethod paymentMethod;
@@ -94,6 +95,7 @@ public class Transaction extends Base
             @Element(name = PAYMENT_METHOD_ADDED) Boolean paymentMethodAdded,
             @Element(name = MESSAGE) String message,
             @Element(name = GATEWAY_TOKEN) String gatewayToken,
+            @Element(name = RESPONSE) Response response,
             @Element(name = PAYMENT_METHOD) PaymentMethod paymentMethod)
     {
         super(token, createdAt, updatedAt);
@@ -114,6 +116,7 @@ public class Transaction extends Base
         this.paymentMethodAdded = paymentMethodAdded;
         this.message = message;
         this.gatewayToken = gatewayToken;
+        this.response = response;
         this.paymentMethod = paymentMethod;
     }
 
@@ -185,6 +188,11 @@ public class Transaction extends Base
     public Boolean getPaymentMethodAdded()
     {
         return paymentMethodAdded;
+    }
+
+    public Response getResponse()
+    {
+        return response;
     }
 
     public Boolean getRetainOnSuccess()
