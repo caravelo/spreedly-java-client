@@ -12,23 +12,18 @@ import static spreedly.client.java.model.Fields.PAYMENT_METHOD_TOKEN;
 import static spreedly.client.java.model.Fields.RETAIN_ON_SUCCESS;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.StringWriter;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
 import org.junit.Before;
 import org.junit.Test;
-import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
+import spreedly.client.java.exception.XmlParserException;
 import spreedly.client.java.model.VerifyPaymentMethodRequest;
 
 public class SimpleXmlParserTest
@@ -54,7 +49,7 @@ public class SimpleXmlParserTest
     }
 
     @Test
-    public void testSerializeVerifyPaymentMethodRequest() throws Exception
+    public void testSerializeVerifyPaymentMethodRequest() throws XmlParserException, SAXException, IOException
     {
         // Given
         Map<String, String> options = new HashMap<String, String>();
@@ -76,24 +71,10 @@ public class SimpleXmlParserTest
         parser.serialize(request, baos);
 
         // Then
-        String xml = new String(baos.toByteArray());
-        String expectedXml = getXmlFileAsString("src/test/resources/xml/verify-payment-method-request.xml");
+        Reader xml = new StringReader(baos.toString());
+        Reader expectedXml = new FileReader("src/test/resources/xml/verify-payment-method-request.xml");
 
         assertXMLEqual(expectedXml, xml);
     }
 
-    // TODO: extract into TestsUtils or similar
-    private static String getXmlFileAsString(String fileName) throws Exception
-    {
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        InputStream inputStream = new FileInputStream(new File(fileName));
-        Document doc = documentBuilderFactory.newDocumentBuilder().parse(inputStream);
-
-        StringWriter stw = new StringWriter();
-
-        Transformer serializer = TransformerFactory.newInstance().newTransformer();
-        serializer.transform(new DOMSource(doc), new StreamResult(stw));
-
-        return stw.toString();
-    }
 }
