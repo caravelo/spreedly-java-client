@@ -15,10 +15,11 @@ import spreedly.client.java.model.Transaction;
 public class TransactionRequestTest
 {
 
-    private static final Credentials AUTH = 
+    private static final Credentials AUTH =
             new Credentials("test", "test");
 
-    @Rule public Recorder recorder = new Recorder();
+    @Rule
+    public Recorder recorder = new Recorder();
 
     @Betamax(tape = "show-transaction")
     @Test
