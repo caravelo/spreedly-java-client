@@ -13,6 +13,11 @@ public class UrlsBuilder
 
     private static final String V1_BASE_URL = "https://core.spreedly.com/v1";
 
+    public static URL purchase(String gatewayToken)
+    {
+        return buildUrl("%s/gateways/%s/purchase.xml", V1_BASE_URL, gatewayToken);
+    }
+
     public static URL showTransaction(String token)
     {
         return buildUrl("%s/transactions/%s.xml", V1_BASE_URL, token);

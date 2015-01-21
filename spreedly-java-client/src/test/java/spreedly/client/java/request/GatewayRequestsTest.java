@@ -3,6 +3,7 @@ package spreedly.client.java.request;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static spreedly.client.java.model.Fields.AMOUNT;
 import static spreedly.client.java.model.Fields.CURRENCY_CODE;
 import static spreedly.client.java.model.Fields.DESCRIPTION;
 import static spreedly.client.java.model.Fields.EMAIL;
@@ -32,6 +33,52 @@ public class GatewayRequestsTest
 
     @Rule public Recorder recorder = new Recorder();
 
+    @Betamax(tape = "purchase")
+    @Test
+    public void testPurchaseAndRetain() throws Exception
+    {
+        // Given
+        String gatewayToken = "XKqtfVWFvZgbwmrN5ZFdMZpB1XN";
+        String paymentMethodToken = "U6LMHXfN6ZkOPUdXWKx6xO8DydG";
+        String amount = "1234"; // 12.34
+        String retainOnSuccess = "true";
+        String currencyCode = "EUR";
+        String orderId = "Order ID";
+        String description = "Description";
+        String ip = "192.168.1.10";
+        String email = "email@example.com";
+        String merchantNameDescriptor = "Descriptor name";
+        String merchantLocationDescriptor = "Descriptor location";
+
+        Map<String, String> options = new HashMap<String, String>();
+        options.put(PAYMENT_METHOD_TOKEN, paymentMethodToken);
+        options.put(AMOUNT, amount);
+        options.put(RETAIN_ON_SUCCESS, retainOnSuccess);
+        options.put(CURRENCY_CODE, currencyCode);
+        options.put(ORDER_ID, orderId);
+        options.put(DESCRIPTION, description);
+        options.put(IP, ip);
+        options.put(EMAIL, email);
+        options.put(MERCHANT_NAME_DESCRIPTOR, merchantNameDescriptor);
+        options.put(MERCHANT_LOCATION_DESCRIPTOR, merchantLocationDescriptor);
+
+        // When
+        Transaction t = GatewayRequests.purchase(gatewayToken, options, AUTH);
+
+        // Then
+        assertNotNull(t);
+        assertTrue(t.getOnTestGateway());
+        assertTrue(t.getSucceeded());
+        assertEquals("Purchase", t.getTransactionType());
+        assertEquals(orderId, t.getOrderId());
+        assertEquals(ip, t.getIp());
+        assertEquals(description, t.getDescription());
+        assertEquals(email, t.getEmail());
+        assertEquals(merchantNameDescriptor, t.getMerchantNameDescriptor());
+        assertEquals(merchantLocationDescriptor, t.getMerchantLocationDescriptor());
+        assertNotNull(t.getPaymentMethod());
+    }
+
     @Betamax(tape = "verify-payment-method")
     @Test
     public void testVerifyAndRetain() throws Exception
@@ -54,7 +101,7 @@ public class GatewayRequestsTest
         options.put(CURRENCY_CODE, currencyCode);
         options.put(ORDER_ID, orderId);
         options.put(DESCRIPTION, description);
-        options.put(IP, "192.168.1.10");
+        options.put(IP, ip);
         options.put(EMAIL, email);
         options.put(MERCHANT_NAME_DESCRIPTOR, merchantNameDescriptor);
         options.put(MERCHANT_LOCATION_DESCRIPTOR, merchantLocationDescriptor);
