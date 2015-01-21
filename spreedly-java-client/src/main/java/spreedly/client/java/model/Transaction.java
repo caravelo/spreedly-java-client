@@ -78,7 +78,7 @@ public class Transaction extends Base
             @Element(name = AMOUNT) Integer amount,
             @Element(name = ON_TEST_GATEWAY) Boolean onTestGateway,
             @Element(name = CREATED_AT) Date createdAt,
-            @Element(name = UPDATED_AT) String updatedAt,
+            @Element(name = UPDATED_AT) Date updatedAt,
             @Element(name = CURRENCY_CODE) String currencyCode,
             @Element(name = SUCCEEDED) Boolean succeeded,
             @Element(name = STATE) String state,

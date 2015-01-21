@@ -143,7 +143,7 @@ public class PaymentMethod extends Base
     public PaymentMethod(
             @Element(name = TOKEN) String token,
             @Element(name = CREATED_AT) Date createdAt,
-            @Element(name = UPDATED_AT) String updatedAt,
+            @Element(name = UPDATED_AT) Date updatedAt,
             @Element(name = EMAIL) String email,
             @Element(name = DATA) String data,
             @Element(name = STORAGE_STATE) String storageState,

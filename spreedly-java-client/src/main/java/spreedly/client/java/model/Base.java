@@ -18,12 +18,12 @@ public class Base
     protected final Date createdAt;
 
     @Element(name = UPDATED_AT)
-    protected final String updatedAt;
+    protected final Date updatedAt;
 
     protected Base(
             @Element(name = TOKEN) String token,
             @Element(name = UPDATED_AT) Date createdAt,
-            @Element(name = UPDATED_AT)String updatedAt)
+            @Element(name = UPDATED_AT) Date updatedAt)
     {
         this.token = token;
         this.createdAt = createdAt;
@@ -40,7 +40,7 @@ public class Base
         return token;
     }
 
-    public String getUpdatedAt()
+    public Date getUpdatedAt()
     {
         return updatedAt;
     }
