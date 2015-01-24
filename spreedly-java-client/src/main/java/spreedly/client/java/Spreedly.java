@@ -5,6 +5,7 @@ import static spreedly.client.java.model.Fields.PAYMENT_METHOD_TOKEN;
 import java.util.Map;
 
 import spreedly.client.java.exception.SpreedlyClientException;
+import spreedly.client.java.model.Fields;
 import spreedly.client.java.model.PaymentMethod;
 import spreedly.client.java.model.Transaction;
 import spreedly.client.java.request.GatewayRequests;
@@ -34,6 +35,12 @@ public class Spreedly
     public Transaction findTransaction(String token) throws SpreedlyClientException
     {
         return TransactionRequests.show(token, credentials);
+    }
+
+    public Transaction purchaseOnGateway(String gatewayToken, String paymentMethodToken, int amount, Map<String, String> options) throws SpreedlyClientException
+    {
+        options.put(Fields.AMOUNT, String.valueOf(amount));
+        return GatewayRequests.purchase(gatewayToken, options, credentials);
     }
 
     public Transaction verifyOnGateway(String gatewayToken, String paymentMethodToken, Map<String, String> options) throws SpreedlyClientException
