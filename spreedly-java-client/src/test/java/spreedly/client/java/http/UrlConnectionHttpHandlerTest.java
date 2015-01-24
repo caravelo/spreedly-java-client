@@ -9,7 +9,11 @@ import static org.mockito.Mockito.when;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -54,7 +58,7 @@ public class UrlConnectionHttpHandlerTest {
         Response response = runResponseTest(200, "request-body", "200 OK", null);
         assertNotNull(response);
         assertTrue(response.isSuccess());
-        assertEquals("200 OK", response.body);
+        assertEquals("200 OK", slurp(response.body, 10));
     }
 
     @Test
@@ -62,7 +66,7 @@ public class UrlConnectionHttpHandlerTest {
         Response response = runResponseTest(201, "request-body", "201 Created", null);
         assertNotNull(response);
         assertTrue(response.isSuccess());
-        assertEquals("201 Created", response.body);
+        assertEquals("201 Created", slurp(response.body, 10));
     }
 
     @Test
@@ -70,7 +74,7 @@ public class UrlConnectionHttpHandlerTest {
         Response response = runResponseTest(400, "request-body", null, "400 Bad Request");
         assertNotNull(response);
         assertFalse(response.isSuccess());
-        assertEquals("400 Bad Request", response.body);
+        assertEquals("400 Bad Request", slurp(response.body, 10));
     }
 
     @Test
@@ -78,7 +82,7 @@ public class UrlConnectionHttpHandlerTest {
         Response response = runResponseTest(500, "request-body", null, "500 Internal Server Error");
         assertNotNull(response);
         assertFalse(response.isSuccess());
-        assertEquals("500 Internal Server Error", response.body);
+        assertEquals("500 Internal Server Error", slurp(response.body, 10));
     }
 
     private Response runResponseTest(int statusCode, final String requestBody,
@@ -139,6 +143,40 @@ public class UrlConnectionHttpHandlerTest {
         }
 
         return mockConnection;
+    }
+
+    private static String slurp(final InputStream is, final int bufferSize) throws Exception
+    {
+        final char[] buffer = new char[bufferSize];
+        final StringBuilder out = new StringBuilder();
+
+        try
+        {
+            final Reader in = new InputStreamReader(is, "UTF-8");
+            try
+            {
+                for (;;)
+                {
+                    int rsz = in.read(buffer, 0, buffer.length);
+                    if (rsz < 0)
+                        break;
+                    out.append(buffer, 0, rsz);
+                }
+            }
+            finally
+            {
+                in.close();
+            }
+        }
+        catch (UnsupportedEncodingException ex)
+        {
+            throw ex;
+        }
+        catch (IOException ex)
+        {
+            throw ex;
+        }
+        return out.toString();
     }
 
 }

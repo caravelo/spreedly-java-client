@@ -1,5 +1,6 @@
 package spreedly.client.java.xml;
 
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
 
@@ -26,13 +27,13 @@ public class SimpleXmlParser implements XmlParser
     }
 
     @Override
-    public PaymentMethod parsePaymentMethod(String source) throws XmlParserException
+    public PaymentMethod parsePaymentMethod(InputStream source) throws XmlParserException
     {
         return read(PaymentMethod.class, source);
     }
 
     @Override
-    public Transaction parseTransaction(String source) throws XmlParserException
+    public Transaction parseTransaction(InputStream source) throws XmlParserException
     {
         return read(Transaction.class, source);
     }
@@ -51,7 +52,7 @@ public class SimpleXmlParser implements XmlParser
         }
     }
 
-    private <T> T read(Class<T> type, String source) throws XmlParserException
+    private <T> T read(Class<T> type, InputStream source) throws XmlParserException
     {
         try
         {

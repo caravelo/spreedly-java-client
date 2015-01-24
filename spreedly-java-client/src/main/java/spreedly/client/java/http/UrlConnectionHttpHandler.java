@@ -8,7 +8,6 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import spreedly.client.java.Utils;
 import spreedly.client.java.exception.HttpHandlingException;
 
 /**
@@ -149,22 +148,8 @@ public class UrlConnectionHttpHandler implements HttpHandler
             in = connection.getErrorStream();
         }
 
-        // TODO: Delegate response's input stream conversion
-        // If either stream is present, try to read the response body.
-        String body = "";
-        if (in != null)
-        {
-            try
-            {
-                body = Utils.convertStreamToString(in);
-            } finally
-            {
-                Utils.closeQuietly(in);
-            }
-        }
-
         // Build and return the HTTP response object.
-        return new Response(connection.getResponseCode(), body);
+        return new Response(connection.getResponseCode(), in);
     }
 
     // /// PRIVATE CONSTANTS /////
