@@ -12,7 +12,7 @@ import spreedly.client.java.http.HttpHandler;
 import spreedly.client.java.http.HttpHandlerFactory;
 import spreedly.client.java.http.Request;
 import spreedly.client.java.http.Response;
-import spreedly.client.java.model.PurchaseRequest;
+import spreedly.client.java.model.RequestParameters;
 import spreedly.client.java.model.Transaction;
 import spreedly.client.java.model.VerifyPaymentMethodRequest;
 import spreedly.client.java.xml.XmlOutputSource;
@@ -24,6 +24,7 @@ public class GatewayRequests
 
     public static Transaction verify(String gatewayToken, Map<String, String> options, Credentials credentials) throws XmlParserException, HttpHandlingException
     {
+        // TODO: use spreedly.client.java.model.RequestParameters instead
         VerifyPaymentMethodRequest verifyRequest = new VerifyPaymentMethodRequest(options);
 
         XmlParser xmlParser = XmlParserFactory.getXmlParser();
@@ -40,12 +41,12 @@ public class GatewayRequests
 
     public static Transaction purchase(String gatewayToken, Map<String, String> options, Credentials credentials) throws XmlParserException, HttpHandlingException
     {
-        PurchaseRequest purchaRequest = new PurchaseRequest(options);
+        RequestParameters purchaseRequest = new RequestParameters(options);
 
         XmlParser xmlParser = XmlParserFactory.getXmlParser();
 
         URL url = UrlsBuilder.purchase(gatewayToken);
-        XmlOutputSource body = new XmlOutputSource(xmlParser, purchaRequest);
+        XmlOutputSource body = new XmlOutputSource(xmlParser, purchaseRequest);
         Request request = new Request(url, POST, credentials, body);
 
         HttpHandler httpHandler = HttpHandlerFactory.getHttpHandler();

@@ -69,10 +69,13 @@ public class Transaction extends Base
     @Element(name = RESPONSE, required = false)
     private final Response response;
 
-    @Element(name = PAYMENT_METHOD)
+    @Element(name = PAYMENT_METHOD, required = false)
     private final PaymentMethod paymentMethod;
     
     // TODO: api_urls
+
+    @Element(name = REFERENCE_TOKEN, required = false)
+    private final String referenceToken;
 
     public Transaction(
             @Element(name = AMOUNT) Integer amount,
@@ -96,7 +99,8 @@ public class Transaction extends Base
             @Element(name = MESSAGE) String message,
             @Element(name = GATEWAY_TOKEN) String gatewayToken,
             @Element(name = RESPONSE) Response response,
-            @Element(name = PAYMENT_METHOD) PaymentMethod paymentMethod)
+            @Element(name = PAYMENT_METHOD) PaymentMethod paymentMethod,
+            @Element(name = REFERENCE_TOKEN) String referenceToken)
     {
         super(token, createdAt, updatedAt);
         this.amount = amount;
@@ -118,6 +122,7 @@ public class Transaction extends Base
         this.gatewayToken = gatewayToken;
         this.response = response;
         this.paymentMethod = paymentMethod;
+        this.referenceToken = referenceToken;
     }
 
     public Integer getAmount()
@@ -188,6 +193,11 @@ public class Transaction extends Base
     public Boolean getPaymentMethodAdded()
     {
         return paymentMethodAdded;
+    }
+
+    public String getReferenceToken()
+    {
+        return referenceToken;
     }
 
     public Response getResponse()

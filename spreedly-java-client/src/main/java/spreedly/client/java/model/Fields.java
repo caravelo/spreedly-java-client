@@ -44,6 +44,7 @@ public class Fields
     public static final String PAYMENT_METHOD_TYPE = "payment_method_type";
     public static final String PENDING = "pending";
     public static final String PHONE_NUMBER = "phone_number";
+    public static final String REFERENCE_TOKEN = "reference_token";
     public static final String RESPONSE = "response";
     public static final String RETAIN_ON_SUCCESS = "retain_on_success";
     public static final String SHIPPING_ADDRESS_1 = "shipping_address1";
@@ -60,6 +61,7 @@ public class Fields
     public static final String TEST = "test";
     public static final String TOKEN = "token";
     public static final String TRANSACTION_TYPE = "transaction_type";
+    public static final String TRANSACTION_TOKEN = "transaction_token";
     public static final String UPDATED_AT = "updated_at";
     public static final String VERIFICATION_VALUE = "verification_value";
     public static final String YEAR = "year";

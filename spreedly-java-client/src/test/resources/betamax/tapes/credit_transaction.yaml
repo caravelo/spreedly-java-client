@@ -1,0 +1,82 @@
+!tape
+name: credit-transaction
+interactions:
+- recorded: 2015-01-26T21:52:12.102Z
+  request:
+    method: POST
+    uri: https://core.spreedly.com/v1/transactions/3bRZFo0aySutu5BSopqRQjh5nmO/credit.xml
+    headers:
+      Accept: application/xml
+      Authorization: Basic SUc4S0l6MGVPRjRFQ3dwVnRpUkpERTBYQkNEOjFhaHBiVjBWTlV5NTVBM2RCUlZSVDhFcFhNcEZKTFplb1M0cGp6dTR3aUdMNXFmTkxXeWVtb0Y2a2pjN3dQVTM=
+      Connection: keep-alive
+      Content-Length: '436'
+      Content-Type: application/xml
+      Host: core.spreedly.com
+      User-Agent: Java/1.7.0_67
+    body: |-
+      <transaction>
+         <amount>1234</amount>
+         <currency_code>EUR</currency_code>
+         <retain_on_success>false</retain_on_success>
+         <order_id>Credit</order_id>
+         <description>Credit transaction</description>
+         <ip>10.213.44.51</ip>
+         <email>email@example.com</email>
+         <merchant_name_descriptor>Descriptor name</merchant_name_descriptor>
+         <merchant_location_descriptor>Descriptor location</merchant_location_descriptor>
+      </transaction>
+  response:
+    status: 200
+    headers:
+      Cache-Control: max-age=0, private, must-revalidate
+      Content-Type: application/xml; charset=utf-8
+      Date: Mon, 26 Jan 2015 21:52:11 GMT
+      ETag: '"1787f3b24668d1e18082e5f37e2675bf"'
+      Server: nginx
+      Status: 200 OK
+      X-Content-Type-Options: nosniff
+      X-Frame-Options: SAMEORIGIN
+      X-Request-Id: ab5c3g4i1g6d3nb6pv90.core_b5b78fe28f6dfb9c
+      X-Runtime: '0.191296'
+      X-XSS-Protection: 1; mode=block
+    body: |
+      <transaction>
+        <on_test_gateway type="boolean">true</on_test_gateway>
+        <created_at type="dateTime">2015-01-26T21:52:11Z</created_at>
+        <updated_at type="dateTime">2015-01-26T21:52:11Z</updated_at>
+        <succeeded type="boolean">true</succeeded>
+        <state>succeeded</state>
+        <token>Aj2MSgxvxksJHldLnUjeIM5FUD1</token>
+        <transaction_type>Credit</transaction_type>
+        <order_id>Credit</order_id>
+        <ip>10.213.44.51</ip>
+        <description>Credit transaction</description>
+        <merchant_name_descriptor>Descriptor name</merchant_name_descriptor>
+        <merchant_location_descriptor>Descriptor location</merchant_location_descriptor>
+        <gateway_specific_fields nil="true"/>
+        <gateway_specific_response_fields nil="true"/>
+        <gateway_transaction_id>58</gateway_transaction_id>
+        <amount type="integer">1234</amount>
+        <currency_code>EUR</currency_code>
+        <message key="messages.transaction_succeeded">Succeeded!</message>
+        <gateway_token>XKqtfVWFvZgbwmrN5ZFdMZpB1XN</gateway_token>
+        <response>
+          <success type="boolean">true</success>
+          <message>Successful credit</message>
+          <avs_code nil="true"/>
+          <avs_message nil="true"/>
+          <cvv_code nil="true"/>
+          <cvv_message nil="true"/>
+          <pending type="boolean">false</pending>
+          <result_unknown type="boolean">false</result_unknown>
+          <error_code></error_code>
+          <error_detail nil="true"/>
+          <cancelled type="boolean">false</cancelled>
+          <fraud_review nil="true"/>
+          <created_at type="dateTime">2015-01-26T21:52:11Z</created_at>
+          <updated_at type="dateTime">2015-01-26T21:52:11Z</updated_at>
+        </response>
+        <api_urls>
+        </api_urls>
+        <reference_token>3bRZFo0aySutu5BSopqRQjh5nmO</reference_token>
+      </transaction>

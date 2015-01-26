@@ -13,24 +13,29 @@ public class UrlsBuilder
 
     private static final String V1_BASE_URL = "https://core.spreedly.com/v1";
 
+    public static URL credit(String transactionToken)
+    {
+        return buildUrl("%s/transactions/%s/credit.xml", V1_BASE_URL, transactionToken);
+    }
+
     public static URL purchase(String gatewayToken)
     {
         return buildUrl("%s/gateways/%s/purchase.xml", V1_BASE_URL, gatewayToken);
     }
 
-    public static URL showTransaction(String token)
+    public static URL showTransaction(String transactionToken)
     {
-        return buildUrl("%s/transactions/%s.xml", V1_BASE_URL, token);
+        return buildUrl("%s/transactions/%s.xml", V1_BASE_URL, transactionToken);
     }
 
-    public static URL showPaymentMethod(String token)
+    public static URL showPaymentMethod(String paymentMethodToken)
     {
-        return buildUrl("%s/payment_methods/%s.xml", V1_BASE_URL, token);
+        return buildUrl("%s/payment_methods/%s.xml", V1_BASE_URL, paymentMethodToken);
     }
 
-    public static URL verifyPaymentMethod(String gatewayToken)
+    public static URL verifyPaymentMethod(String paymentMethodToken)
     {
-        return buildUrl("%s/gateways/%s/verify.xml", V1_BASE_URL, gatewayToken);
+        return buildUrl("%s/gateways/%s/verify.xml", V1_BASE_URL, paymentMethodToken);
     }
 
     private static URL buildUrl(String url, Object... args)
