@@ -14,7 +14,6 @@ import spreedly.client.java.http.Request;
 import spreedly.client.java.http.Response;
 import spreedly.client.java.model.RequestParameters;
 import spreedly.client.java.model.Transaction;
-import spreedly.client.java.model.VerifyPaymentMethodRequest;
 import spreedly.client.java.xml.XmlOutputSource;
 import spreedly.client.java.xml.XmlParser;
 import spreedly.client.java.xml.XmlParserFactory;
@@ -24,8 +23,7 @@ public class GatewayRequests
 
     public static Transaction verify(String gatewayToken, Map<String, String> options, Credentials credentials) throws XmlParserException, HttpHandlingException
     {
-        // TODO: use spreedly.client.java.model.RequestParameters instead
-        VerifyPaymentMethodRequest verifyRequest = new VerifyPaymentMethodRequest(options);
+        RequestParameters verifyRequest = new RequestParameters(options);
 
         XmlParser xmlParser = XmlParserFactory.getXmlParser();
 

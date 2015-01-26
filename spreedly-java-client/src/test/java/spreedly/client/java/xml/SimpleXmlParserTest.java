@@ -24,7 +24,7 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import spreedly.client.java.exception.XmlParserException;
-import spreedly.client.java.model.VerifyPaymentMethodRequest;
+import spreedly.client.java.model.RequestParameters;
 
 public class SimpleXmlParserTest
 {
@@ -63,7 +63,7 @@ public class SimpleXmlParserTest
         options.put(MERCHANT_NAME_DESCRIPTOR, "Descriptor name");
         options.put(MERCHANT_LOCATION_DESCRIPTOR, "Descriptor location");
 
-        VerifyPaymentMethodRequest request = new VerifyPaymentMethodRequest(options);
+        RequestParameters request = new RequestParameters(options);
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
