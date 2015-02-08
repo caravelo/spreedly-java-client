@@ -6,6 +6,7 @@ public class Fields
     public static final String ADDRESS_1 = "address1";
     public static final String ADDRESS_2 = "address2";
     public static final String AMOUNT = "amount";
+    public static final String ATTRIBUTE = "attribute";
     public static final String AVS_CODE = "avs_code";
     public static final String AVS_MESSAGE = "avs_message";
     public static final String CANCELLED = "cancelled";
@@ -29,6 +30,7 @@ public class Fields
     public static final String GATEWAY_TOKEN = "gateway_token";
     public static final String GATEWAY_TRANSACTION_ID = "gateway_transaction_id";
     public static final String IP = "ip";
+    public static final String KEY = "key";
     public static final String LAST_FOUR_DIGITS = "last_four_digits";
     public static final String LAST_NAME = "last_name";
     public static final String MERCHANT_LOCATION_DESCRIPTOR = "merchant_location_descriptor";

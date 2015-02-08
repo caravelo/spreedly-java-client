@@ -9,6 +9,7 @@ import static spreedly.client.java.model.Fields.CREATED_AT;
 import static spreedly.client.java.model.Fields.DATA;
 import static spreedly.client.java.model.Fields.ELIGIBLE_FOR_CARD_UPDATER;
 import static spreedly.client.java.model.Fields.EMAIL;
+import static spreedly.client.java.model.Fields.ERRORS;
 import static spreedly.client.java.model.Fields.FIRST_NAME;
 import static spreedly.client.java.model.Fields.FIRST_SIX_DIGITS;
 import static spreedly.client.java.model.Fields.FULL_NAME;
@@ -34,9 +35,12 @@ import static spreedly.client.java.model.Fields.VERIFICATION_VALUE;
 import static spreedly.client.java.model.Fields.YEAR;
 import static spreedly.client.java.model.Fields.ZIP;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 @Root(name = "payment_method")
@@ -130,9 +134,8 @@ public class PaymentMethod extends Base
     @Element(name = PAYMENT_METHOD_TYPE)
     private final String paymentMethodType;
 
-    // TODO: when Error model object is available
-//    @Element(name = ERRORS)
-//    private final List<Error> errors;
+    @ElementList(name = ERRORS, required = false)
+    private final Collection<Error> errors;
 
     @Element(name = VERIFICATION_VALUE, required = false)
     private final String verification_value;
@@ -172,7 +175,7 @@ public class PaymentMethod extends Base
             @Element(name = FULL_NAME) String fullName,
             @Element(name = ELIGIBLE_FOR_CARD_UPDATER) Boolean eligibleForCardUpdater,
             @Element(name = PAYMENT_METHOD_TYPE) String paymentMethodType,
-//            @Element(name = ERRORS) List<Error> errors,
+            @ElementList(name = ERRORS) List<Error> errors,
             @Element(name = VERIFICATION_VALUE) String verificationValue,
             @Element(name = NUMBER) String number
             )
@@ -207,7 +210,7 @@ public class PaymentMethod extends Base
         this.fullName = fullName;
         this.eligibleForCardUpdater = eligibleForCardUpdater;
         this.paymentMethodType = paymentMethodType;
-//        this.errors = errors;
+        this.errors = errors;
         this.verification_value = verificationValue;
         this.number = number;
     }
@@ -245,6 +248,11 @@ public class PaymentMethod extends Base
     public String getEmail()
     {
         return email;
+    }
+
+    public Collection<Error> getErrors()
+    {
+        return errors;
     }
 
     public String getFirstName()

@@ -21,6 +21,7 @@ import java.util.Map;
 import org.junit.Rule;
 import org.junit.Test;
 
+import spreedly.client.java.model.Error;
 import spreedly.client.java.model.PaymentMethod;
 import spreedly.client.java.model.Transaction;
 import co.freeside.betamax.Betamax;
@@ -151,6 +152,12 @@ public class SpreedlyTest
         assertEquals("credit_card", paymentMethod.getPaymentMethodType());
         assertTrue(1 == paymentMethod.getMonth());
         assertTrue(2016 == paymentMethod.getYear());
+        assertNotNull(paymentMethod.getErrors());
+        assertTrue(paymentMethod.getErrors().size() == 1);
+        Error e = paymentMethod.getErrors().iterator().next();
+        assertEquals("number", e.getAttribute());
+        assertEquals("errors.blank", e.getKey());
+        assertEquals("Number can't be blank", e.getMessage());
     }
 
     @Betamax(tape = "show-transaction")
