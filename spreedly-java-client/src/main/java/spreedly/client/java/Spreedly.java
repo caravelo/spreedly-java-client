@@ -24,6 +24,9 @@ import spreedly.client.java.xml.XmlParserFactory;
 public class Spreedly
 {
 
+    private final XmlParser xmlParser;
+    private final HttpHandler httpHandler;
+
     public static Spreedly newEnvironment(String environmentKey, String accessSecret)
     {
         return new Spreedly(environmentKey, accessSecret);
@@ -34,6 +37,9 @@ public class Spreedly
     private Spreedly(String environmentKey, String accessSecret)
     {
         this.credentials = new Credentials(environmentKey, accessSecret);
+
+        httpHandler = HttpHandlerFactory.getHttpHandler();
+        xmlParser = XmlParserFactory.getXmlParser();
     }
 
     public PaymentMethod findPaymentMethod(String token) throws SpreedlyClientException
@@ -41,10 +47,9 @@ public class Spreedly
         URL url = UrlsBuilder.showPaymentMethod(token);
         Request request = new Request(url, GET, credentials);
 
-        HttpHandler httpHandler = HttpHandlerFactory.getHttpHandler();
         Response response = httpHandler.execute(request);
 
-        return XmlParserFactory.getXmlParser().parsePaymentMethod(response.body);
+        return xmlParser.parsePaymentMethod(response.body);
     }
 
     public Transaction findTransaction(String token) throws SpreedlyClientException
@@ -52,10 +57,9 @@ public class Spreedly
         URL url = UrlsBuilder.showTransaction(token);
         Request request = new Request(url, GET, credentials);
 
-        HttpHandler httpHandler = HttpHandlerFactory.getHttpHandler();
         Response response = httpHandler.execute(request);
 
-        return XmlParserFactory.getXmlParser().parseTransaction(response.body);
+        return xmlParser.parseTransaction(response.body);
     }
 
     public Transaction purchaseOnGateway(String gatewayToken, String paymentMethodToken, int amount, Map<String, String> options) throws SpreedlyClientException
@@ -63,13 +67,10 @@ public class Spreedly
         options.put(AMOUNT, String.valueOf(amount));
         RequestParameters purchaseRequest = new RequestParameters(options);
 
-        XmlParser xmlParser = XmlParserFactory.getXmlParser();
-
         URL url = UrlsBuilder.purchase(gatewayToken);
         XmlOutputSource body = new XmlOutputSource(xmlParser, purchaseRequest);
         Request request = new Request(url, POST, credentials, body);
 
-        HttpHandler httpHandler = HttpHandlerFactory.getHttpHandler();
         Response response = httpHandler.execute(request);
 
         return xmlParser.parseTransaction(response.body);
@@ -80,13 +81,10 @@ public class Spreedly
         options.put(TRANSACTION_TOKEN, transactionToken);
         RequestParameters creditRequest = new RequestParameters(options);
 
-        XmlParser xmlParser = XmlParserFactory.getXmlParser();
-
         URL url = UrlsBuilder.credit(transactionToken);
         XmlOutputSource body = new XmlOutputSource(xmlParser, creditRequest);
         Request request = new Request(url, POST, credentials, body);
 
-        HttpHandler httpHandler = HttpHandlerFactory.getHttpHandler();
         Response response = httpHandler.execute(request);
 
         return xmlParser.parseTransaction(response.body);
@@ -97,13 +95,10 @@ public class Spreedly
         options.put(PAYMENT_METHOD_TOKEN, paymentMethodToken);
         RequestParameters verifyRequest = new RequestParameters(options);
 
-        XmlParser xmlParser = XmlParserFactory.getXmlParser();
-
         URL url = UrlsBuilder.verifyPaymentMethod(gatewayToken);
         XmlOutputSource body = new XmlOutputSource(xmlParser, verifyRequest);
         Request request = new Request(url, POST, credentials, body);
 
-        HttpHandler httpHandler = HttpHandlerFactory.getHttpHandler();
         Response response = httpHandler.execute(request);
 
         return xmlParser.parseTransaction(response.body);
