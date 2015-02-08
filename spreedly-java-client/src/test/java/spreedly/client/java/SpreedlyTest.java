@@ -1,7 +1,8 @@
-package spreedly.client.java.request;
+package spreedly.client.java;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static spreedly.client.java.model.Fields.AMOUNT;
 import static spreedly.client.java.model.Fields.CURRENCY_CODE;
@@ -20,27 +21,79 @@ import java.util.Map;
 import org.junit.Rule;
 import org.junit.Test;
 
-import spreedly.client.java.Credentials;
+import spreedly.client.java.model.PaymentMethod;
 import spreedly.client.java.model.Transaction;
 import co.freeside.betamax.Betamax;
 import co.freeside.betamax.Recorder;
 
-public class GatewayRequestsTest
+public class SpreedlyTest
 {
 
-    private static final Credentials AUTH = 
-            new Credentials("test", "test");
+    private final Spreedly client;
 
-    @Rule public Recorder recorder = new Recorder();
+    @Rule
+    public Recorder recorder = new Recorder();
+
+    public SpreedlyTest()
+    {
+        client = Spreedly.newEnvironment("test", "test");
+    }
+
+    @Betamax(tape = "credit-transaction")
+    @Test
+    public void testCreditTransactionShouldWork() throws Exception
+    {
+        // Given
+        String transactionToken = "3bRZFo0aySutu5BSopqRQjh5nmO";
+
+        Integer amount = 1234; // 12.34
+        String currencyCode = "EUR";
+        String orderId = "Credit";
+        String description = "Credit transaction";
+        String ip = "10.213.44.51";
+        String email = "email@example.com";
+        String merchantNameDescriptor = "Descriptor name";
+        String merchantLocationDescriptor = "Descriptor location";
+
+        Map<String, String> options = new HashMap<String, String>();
+        options.put(AMOUNT, amount.toString());
+        options.put(CURRENCY_CODE, currencyCode);
+        options.put(ORDER_ID, orderId);
+        options.put(DESCRIPTION, description);
+        options.put(IP, ip);
+        options.put(EMAIL, email);
+        options.put(MERCHANT_NAME_DESCRIPTOR, merchantNameDescriptor);
+        options.put(MERCHANT_LOCATION_DESCRIPTOR, merchantLocationDescriptor);
+
+        // When
+        Transaction t = client.refundTransaction(transactionToken, options);
+
+        // Then
+        assertNotNull(t);
+        assertEquals("Aj2MSgxvxksJHldLnUjeIM5FUD1", t.getToken());
+        assertTrue(t.getSucceeded());
+        assertEquals("Credit", t.getTransactionType());
+        assertEquals(amount, t.getAmount());
+        assertEquals(currencyCode, t.getCurrencyCode());
+        assertEquals(orderId, t.getOrderId());
+        assertEquals(ip, t.getIp());
+//      assertEquals(email, t.getEmail()); email doesn't show up even though it was sent
+        assertEquals(description, t.getDescription());
+        assertEquals(merchantNameDescriptor, t.getMerchantNameDescriptor());
+        assertEquals(merchantLocationDescriptor, t.getMerchantLocationDescriptor());
+        assertNull(t.getPaymentMethod());
+        assertEquals(transactionToken, t.getReferenceToken());
+    }
 
     @Betamax(tape = "purchase")
     @Test
     public void testPurchaseAndRetain() throws Exception
     {
         // Given
+        int amount = 1234; // 12.34
+
         String gatewayToken = "XKqtfVWFvZgbwmrN5ZFdMZpB1XN";
         String paymentMethodToken = "U6LMHXfN6ZkOPUdXWKx6xO8DydG";
-        String amount = "1234"; // 12.34
         String retainOnSuccess = "true";
         String currencyCode = "EUR";
         String orderId = "Order ID";
@@ -52,7 +105,6 @@ public class GatewayRequestsTest
 
         Map<String, String> options = new HashMap<String, String>();
         options.put(PAYMENT_METHOD_TOKEN, paymentMethodToken);
-        options.put(AMOUNT, amount);
         options.put(RETAIN_ON_SUCCESS, retainOnSuccess);
         options.put(CURRENCY_CODE, currencyCode);
         options.put(ORDER_ID, orderId);
@@ -63,7 +115,7 @@ public class GatewayRequestsTest
         options.put(MERCHANT_LOCATION_DESCRIPTOR, merchantLocationDescriptor);
 
         // When
-        Transaction t = GatewayRequests.purchase(gatewayToken, options, AUTH);
+        Transaction t = client.purchaseOnGateway(gatewayToken, paymentMethodToken, amount, options);
 
         // Then
         assertNotNull(t);
@@ -77,6 +129,49 @@ public class GatewayRequestsTest
         assertEquals(merchantNameDescriptor, t.getMerchantNameDescriptor());
         assertEquals(merchantLocationDescriptor, t.getMerchantLocationDescriptor());
         assertNotNull(t.getPaymentMethod());
+    }
+
+    @Betamax(tape = "show-payment-method")
+    @Test
+    public void testShowPaymentMethodShouldWork() throws Exception
+    {
+        // Given
+        String token = "D9Smhdu9z5ijCc0RjAQIjOJ9MOy";
+
+        // When
+        PaymentMethod paymentMethod = client.findPaymentMethod(token);
+
+        // Then
+        assertNotNull(paymentMethod);
+        assertEquals("D9Smhdu9z5ijCc0RjAQIjOJ9MOy", paymentMethod.getToken());
+        assertEquals("visa", paymentMethod.getCardType());
+        assertEquals("4242", paymentMethod.getLastFourDigits());
+        assertEquals("Test", paymentMethod.getFirstName());
+        assertEquals("1417080633043", paymentMethod.getLastName());
+        assertEquals("credit_card", paymentMethod.getPaymentMethodType());
+        assertTrue(1 == paymentMethod.getMonth());
+        assertTrue(2016 == paymentMethod.getYear());
+    }
+
+    @Betamax(tape = "show-transaction")
+    @Test
+    public void testShowTransactionShouldWork() throws Exception
+    {
+        // Given
+        String token = "Jsa3OQ6vkevAUpzwfQg4CHO8EdS";
+
+        // When
+        Transaction transaction = client.findTransaction(token);
+
+        // Then
+        assertNotNull(transaction);
+        assertEquals("Jsa3OQ6vkevAUpzwfQg4CHO8EdS", transaction.getToken());
+        assertTrue(transaction.getSucceeded());
+        assertEquals("succeeded", transaction.getState());
+        assertEquals("RedactPaymentMethod", transaction.getTransactionType());
+        assertEquals("Succeeded!", transaction.getMessage());
+        assertEquals("HKu11ZWm4WJWS6t7hI0k0Qb6FvW", transaction.getPaymentMethod().getToken());
+        assertEquals("visa", transaction.getPaymentMethod().getCardType());
     }
 
     @Betamax(tape = "verify-payment-method")
@@ -107,7 +202,7 @@ public class GatewayRequestsTest
         options.put(MERCHANT_LOCATION_DESCRIPTOR, merchantLocationDescriptor);
 
         // When
-        Transaction t = GatewayRequests.verify(gatewayToken, options, AUTH);
+        Transaction t = client.verifyOnGateway(gatewayToken, paymentMethodToken, options);
 
         // Then
         assertNotNull(t);

@@ -6,8 +6,6 @@ import java.net.URL;
 
 import org.junit.Test;
 
-import spreedly.client.java.request.UrlsBuilder;
-
 public class UrlsBuilderTest
 {
     private static final String ANY_TOKEN = "JlyLp8cy1aAu7RRDGnAk83UZi2Z";

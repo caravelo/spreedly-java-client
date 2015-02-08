@@ -1,4 +1,4 @@
-package spreedly.client.java.request;
+package spreedly.client.java;
 
 import java.net.MalformedURLException;
 import java.net.URL;
