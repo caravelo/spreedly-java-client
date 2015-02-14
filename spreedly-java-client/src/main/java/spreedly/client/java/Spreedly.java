@@ -29,8 +29,10 @@ public class Spreedly
     static final int STATUS_OK = 200;
     static final int STATUS_OK_CREATED = 201;
     static final int STATUS_UNAUTHORIZED = 401;
+    static final int STATUS_PAYMENT_REQUIRED = 402;
     static final int STATUS_TIMEOUT = 408;
     static final int STATUS_UNPROCESSABLE = 422;
+    static final int STATUS_TOO_MANY_REQUESTS = 429;
     static final int STATUS_UNAVAILABLE = 503;
 
     private final HttpHandler httpHandler;
@@ -124,6 +126,7 @@ public class Spreedly
     protected Response executeRequest(Request request) throws SpreedlyClientException
     {
         Response response = httpHandler.execute(request);
+        Errors errors;
 
         switch (response.statusCode)
         {
@@ -133,11 +136,29 @@ public class Spreedly
                 break;
 
             case STATUS_UNAUTHORIZED:
-                Errors errors = xmlParser.parseErrors(response.body);
+                errors = xmlParser.parseErrors(response.body);
                 throw new AuthenticationException(errors.getError().getMessage());
 
+            case STATUS_PAYMENT_REQUIRED:
+                // You want to use Spreedly for free uh?
+                errors = xmlParser.parseErrors(response.body);
+                throw new AuthenticationException(errors.getError().getMessage());
+
+            case STATUS_TIMEOUT:
+                // TODO: find out if there is a response's body that allows to provide a more specific message
+                throw new SpreedlyClientException("Request timeout");
+
+            case STATUS_TOO_MANY_REQUESTS:
+                // TODO: find out if there is a response's body that allows to provide a more specific message
+                throw new SpreedlyClientException("Too many requests");
+
+            case STATUS_UNAVAILABLE:
+                // TODO: find out if there is a response's body that allows to provide a more specific message
+                throw new SpreedlyClientException("Service unavailable");
+
             default:
-                break;
+                // This would be serious dude!
+                throw new SpreedlyClientException("Unexpected response");
         }
 
         return response;

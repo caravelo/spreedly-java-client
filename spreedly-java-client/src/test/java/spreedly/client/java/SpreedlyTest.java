@@ -6,6 +6,12 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
+import static spreedly.client.java.Spreedly.STATUS_OK;
+import static spreedly.client.java.Spreedly.STATUS_OK_CREATED;
+import static spreedly.client.java.Spreedly.STATUS_PAYMENT_REQUIRED;
+import static spreedly.client.java.Spreedly.STATUS_TIMEOUT;
+import static spreedly.client.java.Spreedly.STATUS_TOO_MANY_REQUESTS;
+import static spreedly.client.java.Spreedly.STATUS_UNAUTHORIZED;
 import static spreedly.client.java.http.Request.POST;
 import static spreedly.client.java.model.Fields.AMOUNT;
 import static spreedly.client.java.model.Fields.CURRENCY_CODE;
@@ -30,7 +36,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import spreedly.client.java.exception.AuthenticationException;
+import spreedly.client.java.exception.HttpHandlingException;
 import spreedly.client.java.exception.SpreedlyClientException;
+import spreedly.client.java.exception.XmlParserException;
 import spreedly.client.java.http.HttpHandler;
 import spreedly.client.java.http.Request;
 import spreedly.client.java.http.Response;
@@ -46,10 +54,10 @@ public class SpreedlyTest
 {
 
     @Mock
-    HttpHandler httpHandler;
+    private HttpHandler httpHandler;
 
     @Mock
-    XmlParser xmlParser;
+    private XmlParser xmlParser;
 
     private final Spreedly client;
 
@@ -107,28 +115,46 @@ public class SpreedlyTest
         assertEquals(transactionToken, t.getReferenceToken());
     }
 
+    @Test
+    public void testExecuteRequestShouldReturnResponseWithResponseStatusCode200() throws SpreedlyClientException
+    {
+        testExecuteRequestShouldWork(STATUS_OK);
+    }
+
+    @Test
+    public void testExecuteRequestShouldReturnResponseWithResponseStatusCode201() throws SpreedlyClientException
+    {
+        testExecuteRequestShouldWork(STATUS_OK_CREATED);
+    }
+
     @Test (expected = AuthenticationException.class)
     public void testExecuteRequestShouldThrowAuthenticationException() throws SpreedlyClientException
     {
-        // Given
-        httpHandler = Mockito.mock(HttpHandler.class);
-        xmlParser = Mockito.mock(XmlParser.class);
-        Spreedly client = new Spreedly(httpHandler, xmlParser, "cangreja", "cangrejen");
-        Request req = new Request(UrlsBuilder.showPaymentMethod("any"), POST, null);
+        testExecuteRequestShouldFail(STATUS_UNAUTHORIZED);
+    }
 
-        Response resp = new Response(Spreedly.STATUS_UNAUTHORIZED, null);
-        when(httpHandler.execute(req)).thenReturn(resp);
+    @Test (expected = SpreedlyClientException.class)
+    public void testExecuteRequestShouldThrowExceptionWithResponseStatusCode402() throws SpreedlyClientException
+    {
+        testExecuteRequestShouldFail(STATUS_PAYMENT_REQUIRED);
+    }
 
-        List<Error> errorsList = new ArrayList<>();
-        errorsList.add(new Error("", "error.key", "Authentication failed"));
-        Errors errors = new Errors(errorsList);
-        when(xmlParser.parseErrors(Mockito.any(InputStream.class))).thenReturn(errors);
+    @Test (expected = SpreedlyClientException.class)
+    public void testExecuteRequestShouldThrowExceptionWithResponseStatusCode408() throws SpreedlyClientException
+    {
+        testExecuteRequestShouldFail(STATUS_TIMEOUT);
+    }
 
-        // When
-        client.executeRequest(req);
+    @Test (expected = SpreedlyClientException.class)
+    public void testExecuteRequestShouldThrowExceptionWithResponseStatusCode429() throws SpreedlyClientException
+    {
+        testExecuteRequestShouldFail(STATUS_TOO_MANY_REQUESTS);
+    }
 
-        // Then
-        fail("Expected exception not thrown");
+    @Test (expected = SpreedlyClientException.class)
+    public void testExecuteRequestShouldThrowExceptionWithResponseStatusCode503() throws SpreedlyClientException
+    {
+        testExecuteRequestShouldFail(Spreedly.STATUS_UNAVAILABLE);
     }
 
     @Betamax(tape = "purchase")
@@ -268,6 +294,56 @@ public class SpreedlyTest
         assertEquals(merchantNameDescriptor, t.getMerchantNameDescriptor());
         assertEquals(merchantLocationDescriptor, t.getMerchantLocationDescriptor());
         assertNotNull(t.getPaymentMethod());
+    }
+
+    private Spreedly setupExecuteRequestTest(Request request, int responseStatusCode, List<Error> responseErrors) throws HttpHandlingException, XmlParserException
+    {
+        httpHandler = Mockito.mock(HttpHandler.class);
+        xmlParser = Mockito.mock(XmlParser.class);
+        Spreedly client = new Spreedly(httpHandler, xmlParser, "hey", "jude");
+
+        Response resp = new Response(responseStatusCode, null);
+        when(httpHandler.execute(request)).thenReturn(resp);
+
+        if (responseErrors != null)
+        {
+            Errors errors = new Errors(responseErrors);
+            when(xmlParser.parseErrors(Mockito.any(InputStream.class))).thenReturn(errors);
+        }
+
+        return client;
+    }
+
+    private void testExecuteRequestShouldFail(int responseStatusCode) throws SpreedlyClientException
+    {
+        // Given
+        Request request = new Request(UrlsBuilder.showPaymentMethod("any"), POST, null);
+
+        List<Error> errorsList = new ArrayList<>();
+        errorsList.add(new Error("", "error.key", "Request failed"));
+
+        Spreedly client = setupExecuteRequestTest(request, responseStatusCode, errorsList);
+
+        // When
+        client.executeRequest(request);
+
+        // Then
+        fail("Expected exception not thrown");
+    }
+
+    private void testExecuteRequestShouldWork(int responseStatusCode) throws SpreedlyClientException
+    {
+        // Given
+        Request request = new Request(UrlsBuilder.showPaymentMethod("any"), POST, null);
+
+        Spreedly client = setupExecuteRequestTest(request, responseStatusCode, null);
+
+        // When
+        Response response = client.executeRequest(request);
+
+        // Then
+        assertNotNull(response);
+        assertEquals(responseStatusCode, response.statusCode);
     }
 
 }
