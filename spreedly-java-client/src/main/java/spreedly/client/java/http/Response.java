@@ -2,7 +2,6 @@ package spreedly.client.java.http;
 
 import java.io.InputStream;
 
-
 /**
  * Encapsulates an HTTP response.
  *

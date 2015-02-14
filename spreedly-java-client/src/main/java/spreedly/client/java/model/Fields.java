@@ -21,6 +21,7 @@ public class Fields
     public static final String DESCRIPTION = "description";
     public static final String ELIGIBLE_FOR_CARD_UPDATER = "eligible_for_card_updater";
     public static final String EMAIL = "email";
+    public static final String ERROR = "error";
     public static final String ERROR_CODE = "error_code";
     public static final String ERROR_DETAIL = "error_detail";
     public static final String ERRORS = "errors";

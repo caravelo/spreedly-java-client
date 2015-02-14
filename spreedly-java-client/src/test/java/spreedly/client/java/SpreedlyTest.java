@@ -4,6 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.when;
+import static spreedly.client.java.http.Request.POST;
 import static spreedly.client.java.model.Fields.AMOUNT;
 import static spreedly.client.java.model.Fields.CURRENCY_CODE;
 import static spreedly.client.java.model.Fields.DESCRIPTION;
@@ -15,20 +18,38 @@ import static spreedly.client.java.model.Fields.ORDER_ID;
 import static spreedly.client.java.model.Fields.PAYMENT_METHOD_TOKEN;
 import static spreedly.client.java.model.Fields.RETAIN_ON_SUCCESS;
 
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
+import spreedly.client.java.exception.AuthenticationException;
+import spreedly.client.java.exception.SpreedlyClientException;
+import spreedly.client.java.http.HttpHandler;
+import spreedly.client.java.http.Request;
+import spreedly.client.java.http.Response;
 import spreedly.client.java.model.Error;
+import spreedly.client.java.model.Errors;
 import spreedly.client.java.model.PaymentMethod;
 import spreedly.client.java.model.Transaction;
+import spreedly.client.java.xml.XmlParser;
 import co.freeside.betamax.Betamax;
 import co.freeside.betamax.Recorder;
 
 public class SpreedlyTest
 {
+
+    @Mock
+    HttpHandler httpHandler;
+
+    @Mock
+    XmlParser xmlParser;
 
     private final Spreedly client;
 
@@ -84,6 +105,30 @@ public class SpreedlyTest
         assertEquals(merchantLocationDescriptor, t.getMerchantLocationDescriptor());
         assertNull(t.getPaymentMethod());
         assertEquals(transactionToken, t.getReferenceToken());
+    }
+
+    @Test (expected = AuthenticationException.class)
+    public void testExecuteRequestShouldThrowAuthenticationException() throws SpreedlyClientException
+    {
+        // Given
+        httpHandler = Mockito.mock(HttpHandler.class);
+        xmlParser = Mockito.mock(XmlParser.class);
+        Spreedly client = new Spreedly(httpHandler, xmlParser, "cangreja", "cangrejen");
+        Request req = new Request(UrlsBuilder.showPaymentMethod("any"), POST, null);
+
+        Response resp = new Response(Spreedly.STATUS_UNAUTHORIZED, null);
+        when(httpHandler.execute(req)).thenReturn(resp);
+
+        List<Error> errorsList = new ArrayList<>();
+        errorsList.add(new Error("", "error.key", "Authentication failed"));
+        Errors errors = new Errors(errorsList);
+        when(xmlParser.parseErrors(Mockito.any(InputStream.class))).thenReturn(errors);
+
+        // When
+        client.executeRequest(req);
+
+        // Then
+        fail("Expected exception not thrown");
     }
 
     @Betamax(tape = "purchase")

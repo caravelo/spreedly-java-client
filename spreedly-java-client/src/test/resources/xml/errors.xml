@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<errors>
+  <error key="errors.gateway_gateway_type_cannot_be_changed">You may not change the gateway_type of a gateway.</error>
+</errors>

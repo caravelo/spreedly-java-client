@@ -9,6 +9,7 @@ import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.transform.RegistryMatcher;
 
 import spreedly.client.java.exception.XmlParserException;
+import spreedly.client.java.model.Errors;
 import spreedly.client.java.model.PaymentMethod;
 import spreedly.client.java.model.Transaction;
 import spreedly.client.java.xml.support.ISO8601DateTransformer;
@@ -24,6 +25,12 @@ public class SimpleXmlParser implements XmlParser
         m.bind(Date.class, new ISO8601DateTransformer());
 
         serializer = new Persister(m);
+    }
+
+    @Override
+    public Errors parseErrors(InputStream source) throws XmlParserException
+    {
+        return read(Errors.class, source);
     }
 
     @Override

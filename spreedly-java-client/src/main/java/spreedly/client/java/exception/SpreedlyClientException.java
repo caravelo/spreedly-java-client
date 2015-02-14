@@ -13,14 +13,19 @@ public class SpreedlyClientException extends Exception
         super();
     }
 
-    public SpreedlyClientException(Throwable cause)
+    public SpreedlyClientException(String message)
     {
-        super(cause);
+        super(message);
     }
 
     public SpreedlyClientException(String message, Throwable cause)
     {
         super(message, cause);
+    }
+
+    public SpreedlyClientException(Throwable cause)
+    {
+        super(cause);
     }
 
 }

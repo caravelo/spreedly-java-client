@@ -1,6 +1,9 @@
 package spreedly.client.java.xml;
 
 import static org.custommonkey.xmlunit.XMLAssert.assertXMLEqual;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static spreedly.client.java.model.Fields.CURRENCY_CODE;
 import static spreedly.client.java.model.Fields.DESCRIPTION;
 import static spreedly.client.java.model.Fields.EMAIL;
@@ -12,18 +15,24 @@ import static spreedly.client.java.model.Fields.PAYMENT_METHOD_TOKEN;
 import static spreedly.client.java.model.Fields.RETAIN_ON_SUCCESS;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
 import spreedly.client.java.exception.XmlParserException;
+import spreedly.client.java.model.Error;
+import spreedly.client.java.model.Errors;
 import spreedly.client.java.model.RequestParameters;
 
 public class SimpleXmlParserTest
@@ -34,6 +43,25 @@ public class SimpleXmlParserTest
     public void setUp()
     {
         parser = new SimpleXmlParser();
+    }
+
+    @Test
+    public void testParseErrors() throws FileNotFoundException, XmlParserException
+    {
+        // Given
+        String fileName = "src/test/resources/xml/errors.xml";
+        InputStream targetStream = new FileInputStream(fileName);
+
+        // When
+        Errors errors = parser.parseErrors(targetStream);
+
+        // Then
+        assertNotNull(errors);
+        assertNotNull(errors.getErrors());
+        assertTrue(errors.getErrors().size() == 1);
+        Error e = errors.getErrors().iterator().next();
+        assertEquals("errors.gateway_gateway_type_cannot_be_changed", e.getKey());
+        assertEquals("You may not change the gateway_type of a gateway.", e.getMessage());
     }
 
     @Test

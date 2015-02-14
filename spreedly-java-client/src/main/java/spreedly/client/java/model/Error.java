@@ -9,7 +9,7 @@ import org.simpleframework.xml.Text;
 public class Error
 {
 
-    @Attribute(name = ATTRIBUTE)
+    @Attribute(name = ATTRIBUTE, required = false)
     private final String attribute;
 
     @Attribute(name = KEY)

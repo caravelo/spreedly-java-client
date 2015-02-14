@@ -9,11 +9,13 @@ import static spreedly.client.java.model.Fields.TRANSACTION_TOKEN;
 import java.net.URL;
 import java.util.Map;
 
+import spreedly.client.java.exception.AuthenticationException;
 import spreedly.client.java.exception.SpreedlyClientException;
 import spreedly.client.java.http.HttpHandler;
 import spreedly.client.java.http.HttpHandlerFactory;
 import spreedly.client.java.http.Request;
 import spreedly.client.java.http.Response;
+import spreedly.client.java.model.Errors;
 import spreedly.client.java.model.PaymentMethod;
 import spreedly.client.java.model.RequestParameters;
 import spreedly.client.java.model.Transaction;
@@ -24,22 +26,37 @@ import spreedly.client.java.xml.XmlParserFactory;
 public class Spreedly
 {
 
-    private final XmlParser xmlParser;
+    static final int STATUS_OK = 200;
+    static final int STATUS_OK_CREATED = 201;
+    static final int STATUS_UNAUTHORIZED = 401;
+    static final int STATUS_TIMEOUT = 408;
+    static final int STATUS_UNPROCESSABLE = 422;
+    static final int STATUS_UNAVAILABLE = 503;
+
     private final HttpHandler httpHandler;
+    private final XmlParser xmlParser;
+
+    private final Credentials credentials;
 
     public static Spreedly newEnvironment(String environmentKey, String accessSecret)
     {
         return new Spreedly(environmentKey, accessSecret);
     }
 
-    private final Credentials credentials;
+    protected Spreedly(HttpHandler httpHandler, XmlParser xmlParser,
+            String environmentKey, String accessSecret)
+    {
+        this.httpHandler = httpHandler;
+        this.xmlParser = xmlParser;
+
+        this.credentials = new Credentials(environmentKey, accessSecret);
+    }
 
     private Spreedly(String environmentKey, String accessSecret)
     {
-        this.credentials = new Credentials(environmentKey, accessSecret);
-
-        httpHandler = HttpHandlerFactory.getHttpHandler();
-        xmlParser = XmlParserFactory.getXmlParser();
+        this(HttpHandlerFactory.getHttpHandler(),
+                XmlParserFactory.getXmlParser(),
+                environmentKey, accessSecret);
     }
 
     public PaymentMethod findPaymentMethod(String token) throws SpreedlyClientException
@@ -102,6 +119,28 @@ public class Spreedly
         Response response = httpHandler.execute(request);
 
         return xmlParser.parseTransaction(response.body);
+    }
+
+    protected Response executeRequest(Request request) throws SpreedlyClientException
+    {
+        Response response = httpHandler.execute(request);
+
+        switch (response.statusCode)
+        {
+            // Do nothing special
+            case STATUS_OK:
+            case STATUS_OK_CREATED:
+                break;
+
+            case STATUS_UNAUTHORIZED:
+                Errors errors = xmlParser.parseErrors(response.body);
+                throw new AuthenticationException(errors.getError().getMessage());
+
+            default:
+                break;
+        }
+
+        return response;
     }
 
 }
