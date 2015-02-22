@@ -247,6 +247,7 @@ public class SpreedlyTest
         assertTrue(transaction.getSucceeded());
         assertEquals("succeeded", transaction.getState());
         assertEquals("RedactPaymentMethod", transaction.getTransactionType());
+        assertEquals("messages.transaction_succeeded", transaction.getMessageKey());
         assertEquals("Succeeded!", transaction.getMessage());
         assertEquals("HKu11ZWm4WJWS6t7hI0k0Qb6FvW", transaction.getPaymentMethod().getToken());
         assertEquals("visa", transaction.getPaymentMethod().getCardType());

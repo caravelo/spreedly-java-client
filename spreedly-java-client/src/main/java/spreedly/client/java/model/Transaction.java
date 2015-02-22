@@ -1,11 +1,36 @@
 package spreedly.client.java.model;
 
-import static spreedly.client.java.model.Fields.*;
+import static spreedly.client.java.model.Fields.AMOUNT;
+import static spreedly.client.java.model.Fields.CREATED_AT;
+import static spreedly.client.java.model.Fields.CURRENCY_CODE;
+import static spreedly.client.java.model.Fields.DESCRIPTION;
+import static spreedly.client.java.model.Fields.EMAIL;
+import static spreedly.client.java.model.Fields.GATEWAY_TOKEN;
+import static spreedly.client.java.model.Fields.GATEWAY_TRANSACTION_ID;
+import static spreedly.client.java.model.Fields.IP;
+import static spreedly.client.java.model.Fields.KEY;
+import static spreedly.client.java.model.Fields.MERCHANT_LOCATION_DESCRIPTOR;
+import static spreedly.client.java.model.Fields.MERCHANT_NAME_DESCRIPTOR;
+import static spreedly.client.java.model.Fields.MESSAGE;
+import static spreedly.client.java.model.Fields.ON_TEST_GATEWAY;
+import static spreedly.client.java.model.Fields.ORDER_ID;
+import static spreedly.client.java.model.Fields.PAYMENT_METHOD;
+import static spreedly.client.java.model.Fields.PAYMENT_METHOD_ADDED;
+import static spreedly.client.java.model.Fields.REFERENCE_TOKEN;
+import static spreedly.client.java.model.Fields.RESPONSE;
+import static spreedly.client.java.model.Fields.RETAIN_ON_SUCCESS;
+import static spreedly.client.java.model.Fields.STATE;
+import static spreedly.client.java.model.Fields.SUCCEEDED;
+import static spreedly.client.java.model.Fields.TOKEN;
+import static spreedly.client.java.model.Fields.TRANSACTION_TYPE;
+import static spreedly.client.java.model.Fields.UPDATED_AT;
 
 import java.util.Date;
 
+import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
+import org.simpleframework.xml.Text;
 
 @Root(name = "transaction")
 public class Transaction extends Base
@@ -61,7 +86,7 @@ public class Transaction extends Base
     private final Boolean paymentMethodAdded;
 
     @Element(name = MESSAGE)
-    private final String message;
+    private final Message message;
 
     @Element(name = GATEWAY_TOKEN, required = false)
     private final String gatewayToken;
@@ -96,7 +121,7 @@ public class Transaction extends Base
             @Element(name = GATEWAY_TRANSACTION_ID) String gatewayTransactionId,
             @Element(name = RETAIN_ON_SUCCESS) Boolean retainOnSuccess,
             @Element(name = PAYMENT_METHOD_ADDED) Boolean paymentMethodAdded,
-            @Element(name = MESSAGE) String message,
+            @Element(name = MESSAGE) Message message,
             @Element(name = GATEWAY_TOKEN) String gatewayToken,
             @Element(name = RESPONSE) Response response,
             @Element(name = PAYMENT_METHOD) PaymentMethod paymentMethod,
@@ -172,7 +197,12 @@ public class Transaction extends Base
 
     public String getMessage()
     {
-        return message;
+        return message.getMessage();
+    }
+
+    public String getMessageKey()
+    {
+        return message.getKey();
     }
 
     public Boolean getOnTestGateway()
@@ -223,6 +253,38 @@ public class Transaction extends Base
     public String getTransactionType()
     {
         return transactionType;
+    }
+
+    /*
+     * Helper nested class to pick message key attribute
+     */
+    private static class Message
+    {
+
+        @Attribute(name = KEY)
+        private final String key;
+
+        @Text
+        private final String message;
+
+        private Message(
+                @Attribute(name = KEY) String key,
+                @Text String message)
+        {
+            this.key = key;
+            this.message = message;
+        }
+
+        public String getKey()
+        {
+            return key;
+        }
+
+        public String getMessage()
+        {
+            return message;
+        }
+
     }
 
 }
