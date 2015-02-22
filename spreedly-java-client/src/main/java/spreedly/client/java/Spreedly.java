@@ -142,7 +142,7 @@ public class Spreedly
             case STATUS_PAYMENT_REQUIRED:
                 // You want to use Spreedly for free uh?
                 errors = xmlParser.parseErrors(response.body);
-                throw new AuthenticationException(errors.getError().getMessage());
+                throw new SpreedlyClientException(errors.getError().getMessage());
 
             case STATUS_TIMEOUT:
                 // TODO: find out if there is a response's body that allows to provide a more specific message
