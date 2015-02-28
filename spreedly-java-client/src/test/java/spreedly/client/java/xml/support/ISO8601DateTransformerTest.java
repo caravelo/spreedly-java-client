@@ -1,8 +1,9 @@
 package spreedly.client.java.xml.support;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.util.Date;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 public class ISO8601DateTransformerTest
@@ -19,14 +20,21 @@ public class ISO8601DateTransformerTest
         Date dDate = t.read(sDate);
 
         // Then
-        Assert.assertNotNull(dDate);
+        assertNotNull(dDate);
     }
 
-    // TODO: test write
-//    @Test
-//    public void testWriteWithShouldWork() throws Exception
-//    {
-//        
-//    }
+    @Test
+    public void testWriteWithShouldWork() throws Exception
+    {
+        // Given
+        ISO8601DateTransformer t = new ISO8601DateTransformer();
+        Date dDate = new Date();
+
+        // When
+        String sDate = t.write(dDate);
+
+        // Then
+        assertNotNull(sDate);
+    }
 
 }
