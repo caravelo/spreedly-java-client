@@ -30,10 +30,17 @@ public class Errors
      * 
      * @return the first error in the errors list it it's not empty, null otherwise
      */
-    public Error getFirstError()
+    public Error getSingleError()
     {
         if (errors != null && !errors.isEmpty())
         {
+            int size = errors.size();
+            if (size > 1)
+            {
+                String message = String.format("Expected single error but found [{}]", size);
+                throw new RuntimeException(message);
+            }
+
             return errors.get(0);
         }
         else

@@ -6,11 +6,14 @@ import static spreedly.client.java.model.Fields.AMOUNT;
 import static spreedly.client.java.model.Fields.PAYMENT_METHOD_TOKEN;
 import static spreedly.client.java.model.Fields.TRANSACTION_TOKEN;
 
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Map;
 
 import spreedly.client.java.exception.AuthenticationException;
 import spreedly.client.java.exception.SpreedlyClientException;
+import spreedly.client.java.exception.UnproccessableTransactionException;
+import spreedly.client.java.exception.XmlParserException;
 import spreedly.client.java.http.HttpHandler;
 import spreedly.client.java.http.HttpHandlerFactory;
 import spreedly.client.java.http.Request;
@@ -137,16 +140,19 @@ public class Spreedly
 
             case STATUS_UNAUTHORIZED:
                 errors = xmlParser.parseErrors(response.body);
-                throw new AuthenticationException(errors.getFirstError().getMessage());
+                throw new AuthenticationException(errors.getSingleError().getMessage());
 
             case STATUS_PAYMENT_REQUIRED:
                 // You want to use Spreedly for free uh?
                 errors = xmlParser.parseErrors(response.body);
-                throw new SpreedlyClientException(errors.getFirstError().getMessage());
+                throw new SpreedlyClientException(errors.getSingleError().getMessage());
 
             case STATUS_TIMEOUT:
                 // TODO: find out if there is a response's body that allows to provide a more specific message
                 throw new SpreedlyClientException("Request timeout");
+
+            case STATUS_UNPROCESSABLE:
+                handleUnprocessableTransactionError(response);
 
             case STATUS_TOO_MANY_REQUESTS:
                 // TODO: find out if there is a response's body that allows to provide a more specific message
@@ -162,6 +168,25 @@ public class Spreedly
         }
 
         return response;
+    }
+
+    protected void handleUnprocessableTransactionError(Response response) throws SpreedlyClientException
+    {
+        // According to Spreedly API's docs there are 2 different types of response bodies...
+        InputStream body = response.body;
+
+        // 1. The transaction was created thus the transaction details are available (most likely scenario)
+        try
+        {
+            Transaction transaction = xmlParser.parseTransaction(body);
+            throw new UnproccessableTransactionException(transaction);
+        }
+        catch (XmlParserException e)
+        {
+            // 2. The transaction wasn't created and the response body contains just error details
+            Errors errors = xmlParser.parseErrors(response.body);
+            throw new SpreedlyClientException(errors.getSingleError().getMessage());
+        }
     }
 
 }

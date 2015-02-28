@@ -1,5 +1,6 @@
 package spreedly.client.java;
 
+import static java.lang.String.format;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -12,6 +13,7 @@ import static spreedly.client.java.Spreedly.STATUS_PAYMENT_REQUIRED;
 import static spreedly.client.java.Spreedly.STATUS_TIMEOUT;
 import static spreedly.client.java.Spreedly.STATUS_TOO_MANY_REQUESTS;
 import static spreedly.client.java.Spreedly.STATUS_UNAUTHORIZED;
+import static spreedly.client.java.Spreedly.STATUS_UNPROCESSABLE;
 import static spreedly.client.java.http.Request.POST;
 import static spreedly.client.java.model.Fields.AMOUNT;
 import static spreedly.client.java.model.Fields.CURRENCY_CODE;
@@ -38,6 +40,7 @@ import org.mockito.Mockito;
 import spreedly.client.java.exception.AuthenticationException;
 import spreedly.client.java.exception.HttpHandlingException;
 import spreedly.client.java.exception.SpreedlyClientException;
+import spreedly.client.java.exception.UnproccessableTransactionException;
 import spreedly.client.java.exception.XmlParserException;
 import spreedly.client.java.http.HttpHandler;
 import spreedly.client.java.http.Request;
@@ -59,6 +62,8 @@ public class SpreedlyTest
     @Mock
     private XmlParser xmlParser;
 
+    private final Spreedly mockClient;
+
     private final Spreedly client;
 
     @Rule
@@ -66,7 +71,37 @@ public class SpreedlyTest
 
     public SpreedlyTest()
     {
+        httpHandler = Mockito.mock(HttpHandler.class);
+        xmlParser = Mockito.mock(XmlParser.class);
+        mockClient = new Spreedly(httpHandler, xmlParser, "hey", "jude");
+
         client = Spreedly.newEnvironment("test", "test");
+    }
+
+    @Test (expected = SpreedlyClientException.class)
+    public void handleUnprocessableTransactionErrorShouldThrowException() throws SpreedlyClientException
+    {
+        // Given
+        Response response = prepareMockResponse(Mockito.any(Request.class), STATUS_UNPROCESSABLE);
+
+        // When
+        mockClient.handleUnprocessableTransactionError(response);
+
+        // Then
+        fail();
+    }
+
+    @Test (expected = UnproccessableTransactionException.class)
+    public void handleUnprocessableTransactionErrorShouldThrowUnproccessableTransactionException() throws SpreedlyClientException
+    {
+        // Given
+        Response response = prepareMockResponse(Mockito.any(Request.class), STATUS_UNPROCESSABLE);
+
+        // When
+        mockClient.handleUnprocessableTransactionError(response);
+
+        // Then
+        fail(format("Expected [{}] not thrown", UnproccessableTransactionException.class.getName()));
     }
 
     @Betamax(tape = "credit-transaction")
@@ -297,22 +332,24 @@ public class SpreedlyTest
         assertNotNull(t.getPaymentMethod());
     }
 
-    private Spreedly setupExecuteRequestTest(Request request, int responseStatusCode, List<Error> responseErrors) throws HttpHandlingException, XmlParserException
+    private void prepareExecuteRequestTest(Request request, int responseStatusCode, List<Error> responseErrors) throws HttpHandlingException, XmlParserException
     {
-        httpHandler = Mockito.mock(HttpHandler.class);
-        xmlParser = Mockito.mock(XmlParser.class);
-        Spreedly client = new Spreedly(httpHandler, xmlParser, "hey", "jude");
-
-        Response resp = new Response(responseStatusCode, null);
-        when(httpHandler.execute(request)).thenReturn(resp);
+        prepareMockResponse(request, responseStatusCode);
 
         if (responseErrors != null)
         {
             Errors errors = new Errors(responseErrors);
             when(xmlParser.parseErrors(Mockito.any(InputStream.class))).thenReturn(errors);
         }
+    }
 
-        return client;
+    private Response prepareMockResponse(Request request, int responseStatusCode)
+            throws HttpHandlingException
+    {
+        Response response = new Response(responseStatusCode, null);
+        when(httpHandler.execute(request)).thenReturn(response);
+
+        return response;
     }
 
     private void testExecuteRequestShouldFail(int responseStatusCode) throws SpreedlyClientException
@@ -323,10 +360,10 @@ public class SpreedlyTest
         List<Error> errorsList = new ArrayList<>();
         errorsList.add(new Error("", "error.key", "Request failed"));
 
-        Spreedly client = setupExecuteRequestTest(request, responseStatusCode, errorsList);
+        prepareExecuteRequestTest(request, responseStatusCode, errorsList);
 
         // When
-        client.executeRequest(request);
+        mockClient.executeRequest(request);
 
         // Then
         fail("Expected exception not thrown");
@@ -337,10 +374,10 @@ public class SpreedlyTest
         // Given
         Request request = new Request(UrlsBuilder.showPaymentMethod("any"), POST, null);
 
-        Spreedly client = setupExecuteRequestTest(request, responseStatusCode, null);
+        prepareExecuteRequestTest(request, responseStatusCode, null);
 
         // When
-        Response response = client.executeRequest(request);
+        Response response = mockClient.executeRequest(request);
 
         // Then
         assertNotNull(response);
