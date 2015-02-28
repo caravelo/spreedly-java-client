@@ -43,7 +43,6 @@ public class UrlConnectionHttpHandler implements HttpHandler
         }
         catch (IOException e)
         {
-            // TODO: fine grained Spreedly error codes evaluation (HTTP, gateway, etc)
             log.error(e.getMessage(), e);
             throw new HttpHandlingException(e);
         }

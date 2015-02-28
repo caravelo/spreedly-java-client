@@ -1,5 +1,7 @@
 package spreedly.client.java.xml;
 
+import static java.lang.String.format;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
@@ -7,6 +9,8 @@ import java.util.Date;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.transform.RegistryMatcher;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import spreedly.client.java.exception.XmlParserException;
 import spreedly.client.java.model.Errors;
@@ -16,6 +20,8 @@ import spreedly.client.java.xml.support.ISO8601DateTransformer;
 
 public class SimpleXmlParser implements XmlParser
 {
+
+    private static final Logger log = LoggerFactory.getLogger(SimpleXmlParser.class);
 
     private final Serializer serializer;
 
@@ -54,8 +60,9 @@ public class SimpleXmlParser implements XmlParser
         }
         catch (Exception e)
         {
-            // TODO: log and set appropriate message to raised exception
-            throw new XmlParserException(e);
+            String message = "Unable to parse object to XML";
+            log.error(format("{}: {}", message, e.getMessage()));
+            throw new XmlParserException(message, e);
         }
     }
 
@@ -67,8 +74,9 @@ public class SimpleXmlParser implements XmlParser
         }
         catch (Exception e)
         {
-            // TODO: log and set appropriate message to raised exception
-            throw new XmlParserException(e);
+            String message = "Unable to XML to object";
+            log.error(format("{}: {}", message, e.getMessage()));
+            throw new XmlParserException(message, e);
         }
     }
 }
