@@ -98,6 +98,26 @@ public class Spreedly
         return xmlParser.parseTransaction(response.body);
     }
 
+    public Transaction purchaseOnGatewayWithSpecificFields(
+            String gatewayToken,
+            String paymentMethodToken,
+            int amount, Map<String,
+            String> options,
+            String gatewayType,
+            Map<String, String> specificFields) throws SpreedlyClientException
+    {
+        options.put(AMOUNT, String.valueOf(amount));
+        RequestParameters purchaseRequest = new RequestParameters(options);
+
+        URL url = UrlsBuilder.purchase(gatewayToken);
+        XmlOutputSource body = new XmlOutputSource(xmlParser, purchaseRequest);
+        Request request = new Request(url, POST, credentials, body);
+
+        Response response = httpHandler.execute(request);
+
+        return xmlParser.parseTransaction(response.body);
+    }
+
     public Transaction refundTransaction(String transactionToken, Map<String, String> options) throws SpreedlyClientException
     {
         options.put(TRANSACTION_TOKEN, transactionToken);

@@ -34,6 +34,7 @@ import spreedly.client.java.model.Error;
 import spreedly.client.java.model.Errors;
 import spreedly.client.java.model.RequestParameters;
 import spreedly.client.java.model.GatewaySpecificFields;
+import spreedly.client.java.model.Transaction;
 
 public class SimpleXmlParserTest
 {
@@ -88,9 +89,27 @@ public class SimpleXmlParserTest
     }
 
     @Test
-    public void testParseTransaction()
+    public void testParseTransaction() throws FileNotFoundException, XmlParserException
     {
-        // TODO: to be completed
+     // TODO: to be completed
+    }
+
+    @Test
+    public void testParseTransactionWithGatewaySpecificFields() throws FileNotFoundException, XmlParserException
+    {
+        // Given
+        String fileName = "src/test/resources/xml/transaction-with-gateway-specific-fields.xml";
+        InputStream targetStream = new FileInputStream(fileName);
+
+        // When
+        Transaction t = parser.parseTransaction(targetStream);
+
+        // Then
+        assertNotNull(t);
+        GatewaySpecificFields gatewaySpecificFields = t.getGatewaySpecificFields();
+        assertEquals("stripe", gatewaySpecificFields.getGatewayType());
+        Map<String, String> fieldsMap = gatewaySpecificFields.getSpecificFields();
+        assertEquals("5K Race Ticket", fieldsMap.get("statement_description"));
     }
 
     @Test
