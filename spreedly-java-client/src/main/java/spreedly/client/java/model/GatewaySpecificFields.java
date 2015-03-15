@@ -1,5 +1,8 @@
 package spreedly.client.java.model;
 
+import static spreedly.client.java.model.Fields.GATEWAY_SPECIFIC_FIELDS;
+
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -11,7 +14,7 @@ import org.simpleframework.xml.stream.OutputNode;
 
 import spreedly.client.java.model.GatewaySpecificFields.GatewaySpecificFieldsConverter;
 
-@Root(name = "gateway_specific_fields")
+@Root(name = GATEWAY_SPECIFIC_FIELDS)
 @Convert(GatewaySpecificFieldsConverter.class)
 public class GatewaySpecificFields
 {
@@ -47,7 +50,22 @@ public class GatewaySpecificFields
         @Override
         public GatewaySpecificFields read(InputNode node) throws Exception
         {
-            throw new UnsupportedOperationException("Not supported yet.");
+            // Gateway type node (e.g. "stripe")
+            InputNode gatewayTypeNode = node.getNext();
+            String gatewayType = gatewayTypeNode.getName();
+
+            Map<String, String> fieldsMap = new HashMap<String, String>();
+
+            // Loop through gateway's specific fields
+            InputNode fieldNode;
+            while ((fieldNode = gatewayTypeNode.getNext()) != null)
+            {
+                String fieldName = fieldNode.getName();
+                String fieldValue = fieldNode.getValue();
+                fieldsMap.put(fieldName, fieldValue);
+            }
+
+            return new GatewaySpecificFields(gatewayType, fieldsMap);
         }
 
         @Override
@@ -64,41 +82,4 @@ public class GatewaySpecificFields
             }
         }
     }
-
-//    static class GatewayType
-//    {
-//        @Element
-//        private final String gatewayType;
-//
-//        @ElementMap(entry = "property", key = "key", attribute = true, inline = true)
-//        @Path(value = "stripe")
-//        private final Map<String, String> specificFields;
-//
-//        public GatewayType(String gatewayType, Map<String, String> specificFields)
-//        {
-//            this.gatewayType = gatewayType;
-//            this.specificFields = specificFields;
-//        }
-//
-//        public String getGatewayType()
-//        {
-//            return gatewayType;
-//        }
-//
-//        static class GatewayTypeConverter implements Converter<GatewayType>
-//        {
-//            @Override
-//            public GatewayType read(InputNode node) throws Exception
-//            {
-//                throw new UnsupportedOperationException("Not supported yet.");
-//            }
-//
-//            @Override
-//            public void write(OutputNode node, GatewayType value) throws Exception
-//            {
-//                node.setName(value.getGatewayType());
-//                node.getChild("blabla");
-//            }
-//        }
-//    }
 }

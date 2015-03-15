@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import spreedly.client.java.exception.XmlParserException;
 import spreedly.client.java.model.Errors;
+import spreedly.client.java.model.GatewaySpecificFields;
 import spreedly.client.java.model.PaymentMethod;
 import spreedly.client.java.model.Transaction;
 import spreedly.client.java.xml.support.ISO8601DateTransformer;
@@ -66,6 +67,11 @@ public class SimpleXmlParser implements XmlParser
             log.error(format("{}: {}", message, e.getMessage()));
             throw new XmlParserException(message, e);
         }
+    }
+
+    protected GatewaySpecificFields parseGatewaySpecificFields(InputStream source) throws XmlParserException
+    {
+        return read(GatewaySpecificFields.class, source);
     }
 
     private <T> T read(Class<T> type, InputStream source) throws XmlParserException

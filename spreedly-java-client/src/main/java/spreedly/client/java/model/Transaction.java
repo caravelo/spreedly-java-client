@@ -5,6 +5,7 @@ import static spreedly.client.java.model.Fields.CREATED_AT;
 import static spreedly.client.java.model.Fields.CURRENCY_CODE;
 import static spreedly.client.java.model.Fields.DESCRIPTION;
 import static spreedly.client.java.model.Fields.EMAIL;
+import static spreedly.client.java.model.Fields.GATEWAY_SPECIFIC_FIELDS;
 import static spreedly.client.java.model.Fields.GATEWAY_TOKEN;
 import static spreedly.client.java.model.Fields.GATEWAY_TRANSACTION_ID;
 import static spreedly.client.java.model.Fields.IP;
@@ -35,6 +36,38 @@ import org.simpleframework.xml.Text;
 @Root(name = "transaction")
 public class Transaction extends Base
 {
+
+    /*
+     * Helper nested class to pick message key attribute
+     */
+    private static class Message
+    {
+
+        @Attribute(name = KEY)
+        private final String key;
+
+        @Text
+        private final String message;
+
+        private Message(
+                @Attribute(name = KEY) String key,
+                @Text String message)
+        {
+            this.key = key;
+            this.message = message;
+        }
+
+        public String getKey()
+        {
+            return key;
+        }
+
+        public String getMessage()
+        {
+            return message;
+        }
+
+    }
 
     @Element(name = AMOUNT, required = false)
     private final Integer amount;
@@ -74,7 +107,10 @@ public class Transaction extends Base
     @Element(name = MERCHANT_LOCATION_DESCRIPTOR, required = false)
     private final String merchantLocationDescriptor;
 
-    // TODO: gateway_specific_fields, gateway_specific_response_fields
+    // TODO: gateway_specific_response_fields
+
+    @Element(name = GATEWAY_SPECIFIC_FIELDS, required = false)
+    private final GatewaySpecificFields gatewaySpecificFields;
 
     @Element(name = GATEWAY_TRANSACTION_ID, required = false)
     private final String gatewayTransactionId;
@@ -93,11 +129,11 @@ public class Transaction extends Base
 
     @Element(name = RESPONSE, required = false)
     private final Response response;
+    
+    // TODO: api_urls
 
     @Element(name = PAYMENT_METHOD, required = false)
     private final PaymentMethod paymentMethod;
-    
-    // TODO: api_urls
 
     @Element(name = REFERENCE_TOKEN, required = false)
     private final String referenceToken;
@@ -118,6 +154,7 @@ public class Transaction extends Base
             @Element(name = EMAIL) String email,
             @Element(name = MERCHANT_NAME_DESCRIPTOR) String merchantNameDescriptor,
             @Element(name = MERCHANT_LOCATION_DESCRIPTOR) String merchantLocationDescriptor,
+            @Element(name = GATEWAY_SPECIFIC_FIELDS) GatewaySpecificFields gatewaySpecificFields,
             @Element(name = GATEWAY_TRANSACTION_ID) String gatewayTransactionId,
             @Element(name = RETAIN_ON_SUCCESS) Boolean retainOnSuccess,
             @Element(name = PAYMENT_METHOD_ADDED) Boolean paymentMethodAdded,
@@ -140,6 +177,7 @@ public class Transaction extends Base
         this.email = email;
         this.merchantNameDescriptor = merchantNameDescriptor;
         this.merchantLocationDescriptor = merchantLocationDescriptor;
+        this.gatewaySpecificFields = gatewaySpecificFields;
         this.gatewayTransactionId = gatewayTransactionId;
         this.retainOnSuccess = retainOnSuccess;
         this.paymentMethodAdded = paymentMethodAdded;
@@ -168,6 +206,11 @@ public class Transaction extends Base
     public String getEmail()
     {
         return email;
+    }
+
+    public GatewaySpecificFields getGatewaySpecificFields()
+    {
+        return gatewaySpecificFields;
     }
 
     public String getGatewayToken()
@@ -253,38 +296,6 @@ public class Transaction extends Base
     public String getTransactionType()
     {
         return transactionType;
-    }
-
-    /*
-     * Helper nested class to pick message key attribute
-     */
-    private static class Message
-    {
-
-        @Attribute(name = KEY)
-        private final String key;
-
-        @Text
-        private final String message;
-
-        private Message(
-                @Attribute(name = KEY) String key,
-                @Text String message)
-        {
-            this.key = key;
-            this.message = message;
-        }
-
-        public String getKey()
-        {
-            return key;
-        }
-
-        public String getMessage()
-        {
-            return message;
-        }
-
     }
 
 }

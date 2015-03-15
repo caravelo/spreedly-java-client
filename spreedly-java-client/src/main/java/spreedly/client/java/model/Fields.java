@@ -28,6 +28,7 @@ public class Fields
     public static final String FIRST_NAME = "first_name";
     public static final String FIRST_SIX_DIGITS = "first_six_digits";
     public static final String FULL_NAME = "full_name";
+    public static final String GATEWAY_SPECIFIC_FIELDS = "gateway_specific_fields";
     public static final String GATEWAY_TOKEN = "gateway_token";
     public static final String GATEWAY_TRANSACTION_ID = "gateway_transaction_id";
     public static final String IP = "ip";

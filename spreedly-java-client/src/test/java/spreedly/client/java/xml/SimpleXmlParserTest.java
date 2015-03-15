@@ -65,6 +65,23 @@ public class SimpleXmlParserTest
     }
 
     @Test
+    public void testParseGatewaySpecificFields() throws FileNotFoundException, XmlParserException
+    {
+        // Given
+        String fileName = "src/test/resources/xml/stripe-specific-fields.xml";
+        InputStream targetStream = new FileInputStream(fileName);
+
+        // When
+        GatewaySpecificFields fields = parser.parseGatewaySpecificFields(targetStream);
+
+        // Then
+        assertNotNull(fields);
+        assertEquals("stripe", fields.getGatewayType());
+        Map<String, String> fieldsMap = fields.getSpecificFields();
+        assertEquals("5K Race Ticket", fieldsMap.get("statement_description"));
+    }
+
+    @Test
     public void testParsePaymentMethod()
     {
         // TODO: to be completed
