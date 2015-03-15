@@ -37,38 +37,6 @@ import org.simpleframework.xml.Text;
 public class Transaction extends Base
 {
 
-    /*
-     * Helper nested class to pick message key attribute
-     */
-    private static class Message
-    {
-
-        @Attribute(name = KEY)
-        private final String key;
-
-        @Text
-        private final String message;
-
-        private Message(
-                @Attribute(name = KEY) String key,
-                @Text String message)
-        {
-            this.key = key;
-            this.message = message;
-        }
-
-        public String getKey()
-        {
-            return key;
-        }
-
-        public String getMessage()
-        {
-            return message;
-        }
-
-    }
-
     @Element(name = AMOUNT, required = false)
     private final Integer amount;
 
@@ -296,6 +264,38 @@ public class Transaction extends Base
     public String getTransactionType()
     {
         return transactionType;
+    }
+
+    /*
+     * Helper nested class to pick message key attribute
+     */
+    private static class Message
+    {
+
+        @Attribute(name = KEY)
+        private final String key;
+
+        @Text
+        private final String message;
+
+        private Message(
+                @Attribute(name = KEY) String key,
+                @Text String message)
+        {
+            this.key = key;
+            this.message = message;
+        }
+
+        public String getKey()
+        {
+            return key;
+        }
+
+        public String getMessage()
+        {
+            return message;
+        }
+
     }
 
 }

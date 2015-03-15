@@ -32,8 +32,9 @@ import org.xml.sax.SAXException;
 import spreedly.client.java.exception.XmlParserException;
 import spreedly.client.java.model.Error;
 import spreedly.client.java.model.Errors;
-import spreedly.client.java.model.RequestParameters;
 import spreedly.client.java.model.GatewaySpecificFields;
+import spreedly.client.java.model.RequestParameters;
+import spreedly.client.java.model.RequestParametersWithGatewaySpecificFields;
 import spreedly.client.java.model.Transaction;
 
 public class SimpleXmlParserTest
@@ -91,7 +92,7 @@ public class SimpleXmlParserTest
     @Test
     public void testParseTransaction() throws FileNotFoundException, XmlParserException
     {
-     // TODO: to be completed
+        // TODO: to be completed
     }
 
     @Test
@@ -116,10 +117,10 @@ public class SimpleXmlParserTest
     public void testSerializeGatewaySpecificFields() throws XmlParserException, SAXException, IOException
     {
         // Given
-        Map<String, String> options = new HashMap<String, String>();
-        options.put("statement_description", "5K Race Ticket");
+        Map<String, String> fieldsMap = new HashMap<String, String>();
+        fieldsMap.put("statement_description", "5K Race Ticket");
 
-        GatewaySpecificFields p = new GatewaySpecificFields("stripe", options);
+        GatewaySpecificFields p = new GatewaySpecificFields("stripe", fieldsMap);
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
@@ -129,6 +130,39 @@ public class SimpleXmlParserTest
         // Then
         Reader xml = new StringReader(baos.toString());
         Reader expectedXml = new FileReader("src/test/resources/xml/stripe-specific-fields.xml");
+
+        assertXMLEqual(expectedXml, xml);
+    }
+
+    @Test
+    public void testSerializeRequestParametersWithGatewaySpecificFields() throws XmlParserException, SAXException, IOException
+    {
+        // Given
+        Map<String, String> options = new HashMap<String, String>();
+        options.put(PAYMENT_METHOD_TOKEN, "PPxU2Cl4mIDD7KdHZEHLGxYJfTj");
+        options.put(RETAIN_ON_SUCCESS, "true");
+        options.put(CURRENCY_CODE, "EUR");
+        options.put(ORDER_ID, "Order ID");
+        options.put(DESCRIPTION, "Description");
+        options.put(IP, "192.168.1.10");
+        options.put(EMAIL, "email@example.com");
+        options.put(MERCHANT_NAME_DESCRIPTOR, "Descriptor name");
+        options.put(MERCHANT_LOCATION_DESCRIPTOR, "Descriptor location");
+
+        String gatewayType = "stripe";
+        Map<String, String> fieldsMap = new HashMap<String, String>();
+        fieldsMap.put("statement_description", "5K Race Ticket");
+
+        RequestParametersWithGatewaySpecificFields request = new RequestParametersWithGatewaySpecificFields(options, gatewayType, fieldsMap);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        // When
+        parser.serialize(request, baos);
+
+        // Then
+        Reader xml = new StringReader(baos.toString());
+        Reader expectedXml = new FileReader("src/test/resources/xml/purchase-with-gateway-specific-fields-request.xml");
 
         assertXMLEqual(expectedXml, xml);
     }

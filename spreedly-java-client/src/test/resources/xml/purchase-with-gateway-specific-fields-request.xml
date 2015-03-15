@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transaction>
+   <payment_method_token>PPxU2Cl4mIDD7KdHZEHLGxYJfTj</payment_method_token>
+   <retain_on_success>true</retain_on_success>
+   <currency_code>EUR</currency_code>
+   <order_id>Order ID</order_id>
+   <description>Description</description>
+   <ip>192.168.1.10</ip>
+   <email>email@example.com</email>
+   <merchant_name_descriptor>Descriptor name</merchant_name_descriptor>
+   <merchant_location_descriptor>Descriptor location</merchant_location_descriptor>
+   <gateway_specific_fields>
+      <stripe>
+         <statement_description>5K Race Ticket</statement_description>
+      </stripe>
+   </gateway_specific_fields>
+</transaction>

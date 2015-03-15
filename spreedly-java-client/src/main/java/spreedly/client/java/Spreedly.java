@@ -21,6 +21,7 @@ import spreedly.client.java.http.Response;
 import spreedly.client.java.model.Errors;
 import spreedly.client.java.model.PaymentMethod;
 import spreedly.client.java.model.RequestParameters;
+import spreedly.client.java.model.RequestParametersWithGatewaySpecificFields;
 import spreedly.client.java.model.Transaction;
 import spreedly.client.java.xml.XmlOutputSource;
 import spreedly.client.java.xml.XmlParser;
@@ -107,7 +108,9 @@ public class Spreedly
             Map<String, String> specificFields) throws SpreedlyClientException
     {
         options.put(AMOUNT, String.valueOf(amount));
-        RequestParameters purchaseRequest = new RequestParameters(options);
+
+        RequestParametersWithGatewaySpecificFields purchaseRequest = new RequestParametersWithGatewaySpecificFields(
+                options, gatewayType, specificFields);
 
         URL url = UrlsBuilder.purchase(gatewayToken);
         XmlOutputSource body = new XmlOutputSource(xmlParser, purchaseRequest);

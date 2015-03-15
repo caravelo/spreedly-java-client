@@ -69,6 +69,13 @@ public class SimpleXmlParser implements XmlParser
         }
     }
 
+    /**
+     * Eases isolated testability of gateway specific fields parsing.
+     * 
+     * @param source
+     * @return
+     * @throws XmlParserException
+     */
     protected GatewaySpecificFields parseGatewaySpecificFields(InputStream source) throws XmlParserException
     {
         return read(GatewaySpecificFields.class, source);

@@ -22,10 +22,10 @@ public class GatewaySpecificFields
     private final String gatewayType;
     private final Map<String, String> specificFields;
 
-    public GatewaySpecificFields(String gatewayType, Map<String, String> specificFields)
+    public GatewaySpecificFields(String gatewayType, Map<String, String> specificFieldsMap)
     {
         this.gatewayType = gatewayType;
-        this.specificFields = specificFields;
+        this.specificFields = specificFieldsMap;
     }
 
     public String getGatewayType()
