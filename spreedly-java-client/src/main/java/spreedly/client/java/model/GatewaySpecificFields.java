@@ -50,8 +50,19 @@ public class GatewaySpecificFields
         @Override
         public GatewaySpecificFields read(InputNode node) throws Exception
         {
+            if (node == null)
+            {
+                return null;
+            }
+
             // Gateway type node (e.g. "stripe")
             InputNode gatewayTypeNode = node.getNext();
+
+            if (gatewayTypeNode == null)
+            {
+                return null;
+            }
+
             String gatewayType = gatewayTypeNode.getName();
 
             Map<String, String> fieldsMap = new HashMap<String, String>();
