@@ -33,6 +33,7 @@ import spreedly.client.java.exception.XmlParserException;
 import spreedly.client.java.model.Error;
 import spreedly.client.java.model.Errors;
 import spreedly.client.java.model.RequestParameters;
+import spreedly.client.java.model.GatewaySpecificFields;
 
 public class SimpleXmlParserTest
 {
@@ -64,15 +65,36 @@ public class SimpleXmlParserTest
     }
 
     @Test
+    public void testParsePaymentMethod()
+    {
+        // TODO: to be completed
+    }
+
+    @Test
     public void testParseTransaction()
     {
         // TODO: to be completed
     }
 
     @Test
-    public void testParsePaymentMethod()
+    public void testSerializeGatewaySpecificFields() throws XmlParserException, SAXException, IOException
     {
-        // TODO: to be completed
+        // Given
+        Map<String, String> options = new HashMap<String, String>();
+        options.put("statement_description", "5K Race Ticket");
+
+        GatewaySpecificFields p = new GatewaySpecificFields("stripe", options);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        // When
+        parser.serialize(p, baos);
+
+        // Then
+        Reader xml = new StringReader(baos.toString());
+        Reader expectedXml = new FileReader("src/test/resources/xml/stripe-specific-fields.xml");
+
+        assertXMLEqual(expectedXml, xml);
     }
 
     @Test

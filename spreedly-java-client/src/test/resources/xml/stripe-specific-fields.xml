@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gateway_specific_fields>
+   <stripe>
+      <statement_description>5K Race Ticket</statement_description>
+   </stripe>
+</gateway_specific_fields>

@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.util.Date;
 
 import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.convert.AnnotationStrategy;
 import org.simpleframework.xml.core.Persister;
 import org.simpleframework.xml.transform.RegistryMatcher;
 import org.slf4j.Logger;
@@ -30,7 +31,8 @@ public class SimpleXmlParser implements XmlParser
         RegistryMatcher m = new RegistryMatcher();
         m.bind(Date.class, new ISO8601DateTransformer());
 
-        serializer = new Persister(m);
+        // Support custom Converters
+        serializer = new Persister(new AnnotationStrategy(), m);
     }
 
     @Override
