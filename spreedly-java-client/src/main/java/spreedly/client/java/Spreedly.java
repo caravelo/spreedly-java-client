@@ -2,6 +2,7 @@ package spreedly.client.java;
 
 import static spreedly.client.java.http.Request.GET;
 import static spreedly.client.java.http.Request.POST;
+import static spreedly.client.java.http.Request.PUT;
 import static spreedly.client.java.model.Fields.AMOUNT;
 import static spreedly.client.java.model.Fields.PAYMENT_METHOD_TOKEN;
 import static spreedly.client.java.model.Fields.TRANSACTION_TOKEN;
@@ -116,6 +117,16 @@ public class Spreedly
         URL url = UrlsBuilder.purchase(gatewayToken);
         XmlOutputSource body = new XmlOutputSource(xmlParser, purchaseRequest);
         Request request = new Request(url, POST, credentials, body);
+
+        Response response = httpHandler.execute(request);
+
+        return xmlParser.parseTransaction(response.body);
+    }
+
+    public Transaction redactPaymentMethod(String paymentMethodToken) throws SpreedlyClientException
+    {
+        URL url = UrlsBuilder.redactPaymentMethod(paymentMethodToken);
+        Request request = new Request(url, PUT, credentials);
 
         Response response = httpHandler.execute(request);
 

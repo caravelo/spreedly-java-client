@@ -238,6 +238,23 @@ public class SpreedlyTest
         assertNotNull(t.getPaymentMethod());
     }
 
+    @Betamax(tape = "redact-payment-method")
+    @Test
+    public void testRedactPaymentMethod() throws Exception
+    {
+        // Given
+        String paymentMethodToken = "QfoZx6FiL8fAZykd3HkL7l7bchC";
+
+        // When
+        Transaction t = client.redactPaymentMethod(paymentMethodToken);
+
+        // Then
+        assertNotNull(t);
+        assertTrue(t.getSucceeded());
+        assertEquals("RedactPaymentMethod", t.getTransactionType());
+        assertNotNull(t.getPaymentMethod());
+    }
+
     @Betamax(tape = "show-payment-method")
     @Test
     public void testShowPaymentMethodShouldWork() throws Exception
