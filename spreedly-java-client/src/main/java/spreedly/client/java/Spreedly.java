@@ -8,6 +8,7 @@ import static spreedly.client.java.model.Fields.TRANSACTION_TOKEN;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 
 import spreedly.client.java.exception.AuthenticationException;
@@ -119,6 +120,11 @@ public class Spreedly
         Response response = httpHandler.execute(request);
 
         return xmlParser.parseTransaction(response.body);
+    }
+
+    public Transaction refundTransaction(String transactionToken) throws SpreedlyClientException
+    {
+        return refundTransaction(transactionToken, new HashMap<String, String>());
     }
 
     public Transaction refundTransaction(String transactionToken, Map<String, String> options) throws SpreedlyClientException
