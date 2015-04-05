@@ -21,7 +21,7 @@ import spreedly.client.java.model.Transaction;
  * @author Alejandro Garcia Seco
  *
  */
-public class UnproccessableTransactionException extends SpreedlyClientException
+public class UnprocessableTransactionException extends SpreedlyClientException
 {
 
     /**
@@ -31,7 +31,7 @@ public class UnproccessableTransactionException extends SpreedlyClientException
 
     private final Transaction transactionDetails;
 
-    public UnproccessableTransactionException(Transaction unprocessableTransaction)
+    public UnprocessableTransactionException(Transaction unprocessableTransaction)
     {
         this.transactionDetails = unprocessableTransaction;
     }

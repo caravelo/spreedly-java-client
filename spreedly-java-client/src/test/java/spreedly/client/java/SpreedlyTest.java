@@ -40,7 +40,7 @@ import org.mockito.Mockito;
 import spreedly.client.java.exception.AuthenticationException;
 import spreedly.client.java.exception.HttpHandlingException;
 import spreedly.client.java.exception.SpreedlyClientException;
-import spreedly.client.java.exception.UnproccessableTransactionException;
+import spreedly.client.java.exception.UnprocessableTransactionException;
 import spreedly.client.java.exception.XmlParserException;
 import spreedly.client.java.http.HttpHandler;
 import spreedly.client.java.http.Request;
@@ -91,7 +91,7 @@ public class SpreedlyTest
         fail();
     }
 
-    @Test (expected = UnproccessableTransactionException.class)
+    @Test (expected = UnprocessableTransactionException.class)
     public void handleUnprocessableTransactionErrorShouldThrowUnproccessableTransactionException() throws SpreedlyClientException
     {
         // Given
@@ -101,7 +101,7 @@ public class SpreedlyTest
         mockClient.handleUnprocessableTransactionError(response);
 
         // Then
-        fail(format("Expected [{}] not thrown", UnproccessableTransactionException.class.getName()));
+        fail(format("Expected [{}] not thrown", UnprocessableTransactionException.class.getName()));
     }
 
     @Betamax(tape = "credit-transaction")

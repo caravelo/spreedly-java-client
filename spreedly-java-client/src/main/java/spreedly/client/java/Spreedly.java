@@ -14,7 +14,7 @@ import java.util.Map;
 
 import spreedly.client.java.exception.AuthenticationException;
 import spreedly.client.java.exception.SpreedlyClientException;
-import spreedly.client.java.exception.UnproccessableTransactionException;
+import spreedly.client.java.exception.UnprocessableTransactionException;
 import spreedly.client.java.exception.XmlParserException;
 import spreedly.client.java.http.HttpHandler;
 import spreedly.client.java.http.HttpHandlerFactory;
@@ -219,7 +219,7 @@ public class Spreedly
         try
         {
             Transaction transaction = xmlParser.parseTransaction(body);
-            throw new UnproccessableTransactionException(transaction);
+            throw new UnprocessableTransactionException(transaction);
         }
         catch (XmlParserException e)
         {
