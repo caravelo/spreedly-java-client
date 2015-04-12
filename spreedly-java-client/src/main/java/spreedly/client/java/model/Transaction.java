@@ -272,7 +272,7 @@ public class Transaction extends Base
     private static class Message
     {
 
-        @Attribute(name = KEY)
+        @Attribute(name = KEY, required = false)
         private final String key;
 
         @Text
