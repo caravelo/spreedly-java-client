@@ -72,7 +72,7 @@ public class Spreedly
         URL url = UrlsBuilder.showPaymentMethod(token);
         Request request = new Request(url, GET, credentials);
 
-        Response response = httpHandler.execute(request);
+        Response response = executeRequest(request);
 
         return xmlParser.parsePaymentMethod(response.body);
     }
@@ -82,7 +82,7 @@ public class Spreedly
         URL url = UrlsBuilder.showTransaction(token);
         Request request = new Request(url, GET, credentials);
 
-        Response response = httpHandler.execute(request);
+        Response response = executeRequest(request);
 
         return xmlParser.parseTransaction(response.body);
     }
@@ -96,7 +96,7 @@ public class Spreedly
         XmlOutputSource body = new XmlOutputSource(xmlParser, purchaseRequest);
         Request request = new Request(url, POST, credentials, body);
 
-        Response response = httpHandler.execute(request);
+        Response response = executeRequest(request);
 
         return xmlParser.parseTransaction(response.body);
     }
@@ -118,7 +118,7 @@ public class Spreedly
         XmlOutputSource body = new XmlOutputSource(xmlParser, purchaseRequest);
         Request request = new Request(url, POST, credentials, body);
 
-        Response response = httpHandler.execute(request);
+        Response response = executeRequest(request);
 
         return xmlParser.parseTransaction(response.body);
     }
@@ -128,7 +128,7 @@ public class Spreedly
         URL url = UrlsBuilder.redactPaymentMethod(paymentMethodToken);
         Request request = new Request(url, PUT, credentials);
 
-        Response response = httpHandler.execute(request);
+        Response response = executeRequest(request);
 
         return xmlParser.parseTransaction(response.body);
     }
@@ -147,7 +147,7 @@ public class Spreedly
         XmlOutputSource body = new XmlOutputSource(xmlParser, creditRequest);
         Request request = new Request(url, POST, credentials, body);
 
-        Response response = httpHandler.execute(request);
+        Response response = executeRequest(request);
 
         return xmlParser.parseTransaction(response.body);
     }
@@ -161,11 +161,12 @@ public class Spreedly
         XmlOutputSource body = new XmlOutputSource(xmlParser, verifyRequest);
         Request request = new Request(url, POST, credentials, body);
 
-        Response response = httpHandler.execute(request);
+        Response response = executeRequest(request);
 
         return xmlParser.parseTransaction(response.body);
     }
 
+    // TODO: isolate into RequestsExecutor or similar
     protected Response executeRequest(Request request) throws SpreedlyClientException
     {
         Response response = httpHandler.execute(request);
