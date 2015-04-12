@@ -89,7 +89,9 @@ public class Spreedly
 
     public Transaction purchaseOnGateway(String gatewayToken, String paymentMethodToken, int amount, Map<String, String> options) throws SpreedlyClientException
     {
+        options.put(PAYMENT_METHOD_TOKEN, paymentMethodToken);
         options.put(AMOUNT, String.valueOf(amount));
+
         RequestParameters purchaseRequest = new RequestParameters(options);
 
         URL url = UrlsBuilder.purchase(gatewayToken);
@@ -109,6 +111,7 @@ public class Spreedly
             String gatewayType,
             Map<String, String> specificFields) throws SpreedlyClientException
     {
+        options.put(PAYMENT_METHOD_TOKEN, paymentMethodToken);
         options.put(AMOUNT, String.valueOf(amount));
 
         RequestParametersWithGatewaySpecificFields purchaseRequest = new RequestParametersWithGatewaySpecificFields(

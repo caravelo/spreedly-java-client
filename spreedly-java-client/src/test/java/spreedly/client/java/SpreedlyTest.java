@@ -23,7 +23,6 @@ import static spreedly.client.java.model.Fields.IP;
 import static spreedly.client.java.model.Fields.MERCHANT_LOCATION_DESCRIPTOR;
 import static spreedly.client.java.model.Fields.MERCHANT_NAME_DESCRIPTOR;
 import static spreedly.client.java.model.Fields.ORDER_ID;
-import static spreedly.client.java.model.Fields.PAYMENT_METHOD_TOKEN;
 import static spreedly.client.java.model.Fields.RETAIN_ON_SUCCESS;
 
 import java.io.InputStream;
@@ -211,7 +210,6 @@ public class SpreedlyTest
         String merchantLocationDescriptor = "Descriptor location";
 
         Map<String, String> options = new HashMap<String, String>();
-        options.put(PAYMENT_METHOD_TOKEN, paymentMethodToken);
         options.put(RETAIN_ON_SUCCESS, retainOnSuccess);
         options.put(CURRENCY_CODE, currencyCode);
         options.put(ORDER_ID, orderId);
@@ -322,7 +320,6 @@ public class SpreedlyTest
         String merchantLocationDescriptor = "Descriptor location";
 
         Map<String, String> options = new HashMap<String, String>();
-        options.put(PAYMENT_METHOD_TOKEN, paymentMethodToken);
         options.put(RETAIN_ON_SUCCESS, retainOnSuccess);
         options.put(CURRENCY_CODE, currencyCode);
         options.put(ORDER_ID, orderId);
