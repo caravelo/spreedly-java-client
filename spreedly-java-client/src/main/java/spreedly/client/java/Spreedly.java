@@ -155,6 +155,16 @@ public class Spreedly
         return xmlParser.parseTransaction(response.body);
     }
 
+    public Transaction retainPaymentMethod(String paymentMethodToken) throws SpreedlyClientException
+    {
+        URL url = UrlsBuilder.retainPaymentMethod(paymentMethodToken);
+        Request request = new Request(url, PUT, credentials);
+
+        Response response = executeRequest(request);
+
+        return xmlParser.parseTransaction(response.body);
+    }
+
     public Transaction verifyOnGateway(String gatewayToken, String paymentMethodToken, Map<String, String> options) throws SpreedlyClientException
     {
         options.put(PAYMENT_METHOD_TOKEN, paymentMethodToken);

@@ -1,0 +1,76 @@
+!tape
+name: retain-payment-method
+interactions:
+- recorded: 2015-06-21T18:48:28.594Z
+  request:
+    method: PUT
+    uri: https://core.spreedly.com/v1/payment_methods/MsBqngzrAY84i9MNvZ08scYX4w0/retain.xml
+    headers:
+      Accept: application/xml
+      Authorization: Basic SUc4S0l6MGVPRjRFQ3dwVnRpUkpERTBYQkNEOjFhaHBiVjBWTlV5NTVBM2RCUlZSVDhFcFhNcEZKTFplb1M0cGp6dTR3aUdMNXFmTkxXeWVtb0Y2a2pjN3dQVTM=
+      Connection: keep-alive
+      Content-Type: application/xml
+      Host: core.spreedly.com
+      User-Agent: Java/1.7.0_67
+  response:
+    status: 200
+    headers:
+      Cache-Control: max-age=0, private, must-revalidate
+      Content-Type: application/xml; charset=utf-8
+      Date: Sun, 21 Jun 2015 18:48:28 GMT
+      ETag: '"c251640f311dee34dfd5cdeba3c63b90"'
+      Server: nginx
+      Status: 200 OK
+      X-Content-Type-Options: nosniff
+      X-Frame-Options: SAMEORIGIN
+      X-Request-Id: ae2t4g0bcch7h3d8o94g.core_58497954e5428b5a
+      X-Runtime: '0.177600'
+      X-XSS-Protection: 1; mode=block
+    body: |
+      <transaction>
+        <token>T6E2yy2sxyqHgOEEt6FP9zgHcAz</token>
+        <created_at type="dateTime">2015-06-21T18:48:28Z</created_at>
+        <updated_at type="dateTime">2015-06-21T18:48:28Z</updated_at>
+        <succeeded type="boolean">true</succeeded>
+        <transaction_type>RetainPaymentMethod</transaction_type>
+        <state>succeeded</state>
+        <message key="messages.transaction_succeeded">Succeeded!</message>
+        <payment_method>
+          <token>MsBqngzrAY84i9MNvZ08scYX4w0</token>
+          <created_at type="dateTime">2015-06-21T18:45:22Z</created_at>
+          <updated_at type="dateTime">2015-06-21T18:48:28Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>Test</first_name>
+          <last_name>Test</last_name>
+          <month type="integer">4</month>
+          <year type="integer">2017</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>Test Test</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+      </transaction>

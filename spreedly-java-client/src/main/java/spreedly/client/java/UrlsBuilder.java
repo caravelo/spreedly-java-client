@@ -28,6 +28,11 @@ public class UrlsBuilder
         return buildUrl("%s/payment_methods/%s/redact.xml", V1_BASE_URL, paymentMethodToken);
     }
 
+    public static URL retainPaymentMethod(String paymentMethodToken)
+    {
+        return buildUrl("%s/payment_methods/%s/retain.xml", V1_BASE_URL, paymentMethodToken);
+    }
+
     public static URL showTransaction(String transactionToken)
     {
         return buildUrl("%s/transactions/%s.xml", V1_BASE_URL, transactionToken);

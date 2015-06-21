@@ -74,7 +74,7 @@ public class SpreedlyTest
         xmlParser = Mockito.mock(XmlParser.class);
         mockClient = new Spreedly(httpHandler, xmlParser, "hey", "jude");
 
-        client = Spreedly.newEnvironment("test", "test");
+        client = Spreedly.newEnvironment("IG8KIz0eOF4ECwpVtiRJDE0XBCD", "1ahpbV0VNUy55A3dBRVRT8EpXMpFJLZeoS4pjzu4wiGL5qfNLWyemoF6kjc7wPU3");
     }
 
     @Test (expected = SpreedlyClientException.class)
@@ -250,6 +250,23 @@ public class SpreedlyTest
         assertNotNull(t);
         assertTrue(t.getSucceeded());
         assertEquals("RedactPaymentMethod", t.getTransactionType());
+        assertNotNull(t.getPaymentMethod());
+    }
+
+    @Betamax(tape = "retain-payment-method")
+    @Test
+    public void testRetainPaymentMethod() throws Exception
+    {
+        // Given
+        String paymentMethodToken = "MsBqngzrAY84i9MNvZ08scYX4w0";
+
+        // When
+        Transaction t = client.retainPaymentMethod(paymentMethodToken);
+
+        // Then
+        assertNotNull(t);
+        assertTrue(t.getSucceeded());
+        assertEquals("RetainPaymentMethod", t.getTransactionType());
         assertNotNull(t.getPaymentMethod());
     }
 
