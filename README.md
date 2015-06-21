@@ -40,3 +40,59 @@ Special Thanks
 =======
 
 To [Stripe](https://github.com/stripe/stripe-java) because we have used their implementation as our base.
+
+Supported actions (6/38)
+==================
+
+### Gateways
+
+- Authorize
+- Create
+- General Credit
+- Index
+- Options Index
+- Purchase :white_check_mark:
+- Redact
+- Retain
+- Show
+- Store
+- Transactions
+- Update
+- Verify :white_check_mark:
+
+### Payment Methods
+
+- Create (Transparent Redirect)
+- Create (Authenticated API)
+- Create (JavaScript API)
+- Index
+- Recache
+- Redact :white_check_mark:
+- Retain
+- Show :white_check_mark:
+- Transactions
+- Update
+
+### Transactions
+
+- Capture
+- Credit :white_check_mark:
+- Index
+- Purchase
+- Show :white_check_mark:
+- Transcript
+- Void
+
+### Receivers
+
+- Create
+- Deliver
+- Index
+- Redact
+- Show
+- Update
+
+### Certificates
+
+- Create
+- Update
