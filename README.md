@@ -68,7 +68,7 @@ Supported actions (6/38)
 - Index
 - Recache
 - Redact :white_check_mark:
-- Retain
+- Retain :white_check_mark:
 - Show :white_check_mark:
 - Transactions
 - Update
