@@ -40,7 +40,7 @@ public class Transaction extends Base
     @Element(name = AMOUNT, required = false)
     private final Integer amount;
 
-    @Element(name = ON_TEST_GATEWAY)
+    @Element(name = ON_TEST_GATEWAY, required = false)
     private final Boolean onTestGateway;
 
     @Element(name = CURRENCY_CODE, required = false)
