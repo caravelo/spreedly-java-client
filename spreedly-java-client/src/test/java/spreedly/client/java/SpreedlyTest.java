@@ -320,6 +320,18 @@ public class SpreedlyTest
         assertEquals("visa", transaction.getPaymentMethod().getCardType());
     }
 
+    @Betamax(tape = "transactions-index")
+    @Test
+    public void testListTransactionsShouldWork() throws Exception
+    {
+        // When
+        List<Transaction> txs = client.listTransactions();
+
+        // Then
+        assertNotNull(txs);
+        assertEquals(20, txs.size());
+    }
+
     @Betamax(tape = "verify-payment-method")
     @Test
     public void testVerifyAndRetain() throws Exception

@@ -275,8 +275,11 @@ public class Transaction extends Base
         @Attribute(name = KEY, required = false)
         private final String key;
 
-        @Text
+        @Text(required = false)
         private final String message;
+
+        // Required to support empty <message nil="true" /> elements
+        private Message(){ this(null, null); }
 
         private Message(
                 @Attribute(name = KEY) String key,

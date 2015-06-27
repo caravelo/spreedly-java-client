@@ -18,6 +18,11 @@ public class UrlsBuilder
         return buildUrl("%s/transactions/%s/credit.xml", V1_BASE_URL, transactionToken);
     }
 
+    public static URL indexTransactions()
+    {
+        return buildUrl("%s/transactions.xml", V1_BASE_URL);
+    }
+
     public static URL purchase(String gatewayToken)
     {
         return buildUrl("%s/gateways/%s/purchase.xml", V1_BASE_URL, gatewayToken);

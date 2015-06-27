@@ -41,7 +41,7 @@ Special Thanks
 
 To [Stripe](https://github.com/stripe/stripe-java) because we have used their implementation as our base.
 
-Supported actions (6/38)
+Supported actions (8/38)
 ==================
 
 ### Gateways
@@ -77,7 +77,7 @@ Supported actions (6/38)
 
 - Capture
 - Credit :white_check_mark:
-- Index
+- Index :white_check_mark:
 - Purchase
 - Show :white_check_mark:
 - Transcript

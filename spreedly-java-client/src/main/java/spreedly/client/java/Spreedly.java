@@ -10,6 +10,7 @@ import static spreedly.client.java.model.Fields.TRANSACTION_TOKEN;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import spreedly.client.java.exception.AuthenticationException;
@@ -85,6 +86,16 @@ public class Spreedly
         Response response = executeRequest(request);
 
         return xmlParser.parseTransaction(response.body);
+    }
+
+    public List<Transaction> listTransactions() throws SpreedlyClientException
+    {
+        URL url = UrlsBuilder.indexTransactions();
+        Request request = new Request(url, GET, credentials);
+
+        Response response = executeRequest(request);
+
+        return xmlParser.parseTransactions(response.body);
     }
 
     public Transaction purchaseOnGateway(String gatewayToken, String paymentMethodToken, int amount, Map<String, String> options) throws SpreedlyClientException
