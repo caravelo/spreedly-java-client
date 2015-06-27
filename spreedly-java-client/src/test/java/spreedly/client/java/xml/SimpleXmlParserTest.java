@@ -23,6 +23,7 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Before;
@@ -111,6 +112,21 @@ public class SimpleXmlParserTest
         assertEquals("stripe", gatewaySpecificFields.getGatewayType());
         Map<String, String> fieldsMap = gatewaySpecificFields.getSpecificFields();
         assertEquals("5K Race Ticket", fieldsMap.get("statement_description"));
+    }
+
+    @Test
+    public void testParseTransactionsIndex() throws FileNotFoundException, XmlParserException
+    {
+        // Given
+        String fileName = "src/test/resources/xml/transactions-index.xml";
+        InputStream targetStream = new FileInputStream(fileName);
+
+        // When
+        List<Transaction> txs = parser.parseTransactions(targetStream);
+
+        // Then
+        assertNotNull(txs);
+        assertEquals(2, txs.size());
     }
 
     @Test

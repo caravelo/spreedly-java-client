@@ -5,6 +5,7 @@ import static java.lang.String.format;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
+import java.util.List;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.convert.AnnotationStrategy;
@@ -19,6 +20,7 @@ import spreedly.client.java.model.GatewaySpecificFields;
 import spreedly.client.java.model.PaymentMethod;
 import spreedly.client.java.model.Transaction;
 import spreedly.client.java.xml.support.ISO8601DateTransformer;
+import spreedly.client.java.xml.support.Transactions;
 
 public class SimpleXmlParser implements XmlParser
 {
@@ -52,6 +54,13 @@ public class SimpleXmlParser implements XmlParser
     public Transaction parseTransaction(InputStream source) throws XmlParserException
     {
         return read(Transaction.class, source);
+    }
+
+    @Override
+    public List<Transaction> parseTransactions(InputStream source) throws XmlParserException
+    {
+        Transactions txs = read(Transactions.class, source);
+        return txs.getTransactions();
     }
 
     @Override
