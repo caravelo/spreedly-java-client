@@ -330,6 +330,20 @@ public class SpreedlyTest
         // Then
         assertNotNull(txs);
         assertEquals(20, txs.size());
+        assertEquals("YmySJkrJsRTUHWAbZI3hUSWkgip", txs.get(0).getToken());
+    }
+
+    @Betamax(tape = "transactions-index-since-token")
+    @Test
+    public void testListTransactionsSinceTokenShouldWork() throws Exception
+    {
+        // When
+        List<Transaction> txs = client.listTransactions("MxB6h6V8ztpuIYWX7WOOyIKIvJI");
+
+        // Then
+        assertNotNull(txs);
+        assertEquals(20, txs.size());
+        assertEquals("4N22h5LQt38t7r9AzCJ2i0UWen", txs.get(0).getToken());
     }
 
     @Betamax(tape = "verify-payment-method")

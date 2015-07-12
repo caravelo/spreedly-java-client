@@ -91,11 +91,13 @@ public class Spreedly
     public List<Transaction> listTransactions() throws SpreedlyClientException
     {
         URL url = UrlsBuilder.indexTransactions();
-        Request request = new Request(url, GET, credentials);
+        return listTransactions(url);
+    }
 
-        Response response = executeRequest(request);
-
-        return xmlParser.parseTransactions(response.body);
+    public List<Transaction> listTransactions(String sinceToken) throws SpreedlyClientException
+    {
+        URL url = UrlsBuilder.indexTransactions(sinceToken);
+        return listTransactions(url);
     }
 
     public Transaction purchaseOnGateway(String gatewayToken, String paymentMethodToken, int amount, Map<String, String> options) throws SpreedlyClientException
@@ -252,6 +254,16 @@ public class Spreedly
             Errors errors = xmlParser.parseErrors(response.body);
             throw new SpreedlyClientException(errors.getSingleError().getMessage());
         }
+    }
+
+    private List<Transaction> listTransactions(URL url)
+            throws SpreedlyClientException, XmlParserException
+    {
+        Request request = new Request(url, GET, credentials);
+
+        Response response = executeRequest(request);
+
+        return xmlParser.parseTransactions(response.body);
     }
 
 }

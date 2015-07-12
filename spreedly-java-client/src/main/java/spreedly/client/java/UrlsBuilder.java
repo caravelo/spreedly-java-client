@@ -23,6 +23,11 @@ public class UrlsBuilder
         return buildUrl("%s/transactions.xml", V1_BASE_URL);
     }
 
+    public static URL indexTransactions(String sinceToken)
+    {
+        return buildUrl("%s/transactions.xml?since_token=%s", V1_BASE_URL, sinceToken);
+    }
+
     public static URL purchase(String gatewayToken)
     {
         return buildUrl("%s/gateways/%s/purchase.xml", V1_BASE_URL, gatewayToken);

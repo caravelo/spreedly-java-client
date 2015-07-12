@@ -1,10 +1,10 @@
 !tape
-name: transactions-index
+name: transactions-index-since-token
 interactions:
-- recorded: 2015-07-12T13:29:58.716Z
+- recorded: 2015-07-12T13:30:42.382Z
   request:
     method: GET
-    uri: https://core.spreedly.com/v1/transactions.xml
+    uri: https://core.spreedly.com/v1/transactions.xml?since_token=MxB6h6V8ztpuIYWX7WOOyIKIvJI
     headers:
       Accept: application/xml
       Authorization: Basic SUc4S0l6MGVPRjRFQ3dwVnRpUkpERTBYQkNEOjFhaHBiVjBWTlV5NTVBM2RCUlZSVDhFcFhNcEZKTFplb1M0cGp6dTR3aUdMNXFmTkxXeWVtb0Y2a2pjN3dQVTM=
@@ -17,204 +17,17 @@ interactions:
     headers:
       Cache-Control: max-age=0, private, must-revalidate
       Content-Type: application/xml; charset=utf-8
-      Date: Sun, 12 Jul 2015 13:29:55 GMT
-      ETag: '"2d599b6f0e9e2342290dc8d501878fea"'
+      Date: Sun, 12 Jul 2015 13:30:39 GMT
+      ETag: '"fd4c3956833e7cea99cb6771e60cffc6"'
       Server: nginx
       Status: 200 OK
       X-Content-Type-Options: nosniff
       X-Frame-Options: SAMEORIGIN
-      X-Request-Id: aeg4og0m9tm6g1ef3stg.core_ef169fe0caa9cb1b
-      X-Runtime: '0.767175'
+      X-Request-Id: aeg7c00ptdvkligp5nvg.core_ebe61e29009a88d6
+      X-Runtime: '0.625170'
       X-XSS-Protection: 1; mode=block
     body: |
       <transactions>
-        <transaction>
-          <token>YmySJkrJsRTUHWAbZI3hUSWkgip</token>
-          <created_at type="dateTime">2014-09-03T09:55:28Z</created_at>
-          <updated_at type="dateTime">2014-09-03T09:55:28Z</updated_at>
-          <succeeded type="boolean">true</succeeded>
-          <transaction_type>AddGateway</transaction_type>
-          <state>succeeded</state>
-          <message key="messages.transaction_succeeded">Succeeded!</message>
-          <gateway>
-            <token>XzD4jIJKASKTuzX1Eekt3CB6jsK</token>
-            <gateway_type>test</gateway_type>
-            <name>Spreedly Test</name>
-            <description nil="true"/>
-            <characteristics>
-              <supports_purchase type="boolean">true</supports_purchase>
-              <supports_authorize type="boolean">true</supports_authorize>
-              <supports_capture type="boolean">true</supports_capture>
-              <supports_credit type="boolean">true</supports_credit>
-              <supports_general_credit type="boolean">true</supports_general_credit>
-              <supports_void type="boolean">true</supports_void>
-              <supports_verify type="boolean">true</supports_verify>
-              <supports_reference_purchase type="boolean">true</supports_reference_purchase>
-              <supports_purchase_via_preauthorization type="boolean">true</supports_purchase_via_preauthorization>
-              <supports_offsite_purchase type="boolean">true</supports_offsite_purchase>
-              <supports_offsite_authorize type="boolean">true</supports_offsite_authorize>
-              <supports_3dsecure_purchase type="boolean">true</supports_3dsecure_purchase>
-              <supports_3dsecure_authorize type="boolean">true</supports_3dsecure_authorize>
-              <supports_store type="boolean">true</supports_store>
-              <supports_remove type="boolean">true</supports_remove>
-              <supports_fraud_review type="boolean">false</supports_fraud_review>
-              <supports_disburse type="boolean">true</supports_disburse>
-              <supports_reference_authorization type="boolean">true</supports_reference_authorization>
-            </characteristics>
-            <credentials>
-            </credentials>
-            <gateway_specific_fields/>
-            <payment_methods>
-              <payment_method>credit_card</payment_method>
-              <payment_method>sprel</payment_method>
-              <payment_method>third_party_token</payment_method>
-              <payment_method>bank_account</payment_method>
-              <payment_method>apple_pay</payment_method>
-            </payment_methods>
-            <state>redacted</state>
-            <redacted type="boolean">true</redacted>
-            <created_at type="dateTime">2014-09-03T09:55:28Z</created_at>
-            <updated_at type="dateTime">2014-09-17T08:57:34Z</updated_at>
-          </gateway>
-        </transaction>
-        <transaction>
-          <token>LSFn5VlPeswG8tVgnP4R0sKXeNV</token>
-          <created_at type="dateTime">2014-09-03T10:37:26Z</created_at>
-          <updated_at type="dateTime">2014-09-03T10:37:26Z</updated_at>
-          <succeeded type="boolean">true</succeeded>
-          <transaction_type>AddPaymentMethod</transaction_type>
-          <retained type="boolean">false</retained>
-          <state>succeeded</state>
-          <message key="messages.transaction_succeeded">Succeeded!</message>
-          <payment_method>
-            <token>F02h84450ApfalmYlxzk5noJANg</token>
-            <created_at type="dateTime">2014-09-03T10:37:26Z</created_at>
-            <updated_at type="dateTime">2014-09-03T23:25:20Z</updated_at>
-            <email nil="true"/>
-            <data nil="true"/>
-            <storage_state>redacted</storage_state>
-            <test type="boolean">true</test>
-            <last_four_digits>1111</last_four_digits>
-            <first_six_digits>411111</first_six_digits>
-            <card_type>visa</card_type>
-            <first_name>First Name</first_name>
-            <last_name>Last Name</last_name>
-            <month type="integer">1</month>
-            <year type="integer">2015</year>
-            <address1 nil="true"/>
-            <address2 nil="true"/>
-            <city nil="true"/>
-            <state nil="true"/>
-            <zip nil="true"/>
-            <country nil="true"/>
-            <phone_number nil="true"/>
-            <company nil="true"/>
-            <full_name>First Name Last Name</full_name>
-            <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
-            <shipping_address1 nil="true"/>
-            <shipping_address2 nil="true"/>
-            <shipping_city nil="true"/>
-            <shipping_state nil="true"/>
-            <shipping_zip nil="true"/>
-            <shipping_country nil="true"/>
-            <shipping_phone_number nil="true"/>
-            <payment_method_type>credit_card</payment_method_type>
-            <errors>
-            </errors>
-            <verification_value></verification_value>
-            <number></number>
-          </payment_method>
-        </transaction>
-        <transaction>
-          <on_test_gateway type="boolean">true</on_test_gateway>
-          <created_at type="dateTime">2014-09-03T11:23:59Z</created_at>
-          <updated_at type="dateTime">2014-09-03T11:23:59Z</updated_at>
-          <succeeded type="boolean">true</succeeded>
-          <state>succeeded</state>
-          <token>MxB6h6V8ztpuIYWX7WOOyIKIvJI</token>
-          <transaction_type>Purchase</transaction_type>
-          <order_id nil="true"/>
-          <ip nil="true"/>
-          <description nil="true"/>
-          <email nil="true"/>
-          <merchant_name_descriptor nil="true"/>
-          <merchant_location_descriptor nil="true"/>
-          <gateway_specific_fields nil="true"/>
-          <gateway_specific_response_fields nil="true"/>
-          <gateway_transaction_id>62</gateway_transaction_id>
-          <amount type="integer">100</amount>
-          <currency_code>USD</currency_code>
-          <retain_on_success type="boolean">false</retain_on_success>
-          <payment_method_added type="boolean">false</payment_method_added>
-          <message key="messages.transaction_succeeded">Succeeded!</message>
-          <gateway_token>XzD4jIJKASKTuzX1Eekt3CB6jsK</gateway_token>
-          <shipping_address>
-            <name nil="true"/>
-            <address1 nil="true"/>
-            <address2 nil="true"/>
-            <city nil="true"/>
-            <state nil="true"/>
-            <zip nil="true"/>
-            <country nil="true"/>
-            <phone_number nil="true"/>
-          </shipping_address>
-          <response>
-            <success type="boolean">true</success>
-            <message>Successful purchase</message>
-            <avs_code nil="true"/>
-            <avs_message nil="true"/>
-            <cvv_code nil="true"/>
-            <cvv_message nil="true"/>
-            <pending type="boolean">false</pending>
-            <result_unknown type="boolean">false</result_unknown>
-            <error_code></error_code>
-            <error_detail nil="true"/>
-            <cancelled type="boolean">false</cancelled>
-            <fraud_review type="boolean">false</fraud_review>
-            <created_at type="dateTime">2014-09-03T11:23:59Z</created_at>
-            <updated_at type="dateTime">2014-09-03T11:23:59Z</updated_at>
-          </response>
-          <api_urls>
-          </api_urls>
-          <payment_method>
-            <token>F02h84450ApfalmYlxzk5noJANg</token>
-            <created_at type="dateTime">2014-09-03T10:37:26Z</created_at>
-            <updated_at type="dateTime">2014-09-03T23:25:20Z</updated_at>
-            <email nil="true"/>
-            <data nil="true"/>
-            <storage_state>redacted</storage_state>
-            <test type="boolean">true</test>
-            <last_four_digits>1111</last_four_digits>
-            <first_six_digits>411111</first_six_digits>
-            <card_type>visa</card_type>
-            <first_name>First Name</first_name>
-            <last_name>Last Name</last_name>
-            <month type="integer">1</month>
-            <year type="integer">2015</year>
-            <address1 nil="true"/>
-            <address2 nil="true"/>
-            <city nil="true"/>
-            <state nil="true"/>
-            <zip nil="true"/>
-            <country nil="true"/>
-            <phone_number nil="true"/>
-            <company nil="true"/>
-            <full_name>First Name Last Name</full_name>
-            <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
-            <shipping_address1 nil="true"/>
-            <shipping_address2 nil="true"/>
-            <shipping_city nil="true"/>
-            <shipping_state nil="true"/>
-            <shipping_zip nil="true"/>
-            <shipping_country nil="true"/>
-            <shipping_phone_number nil="true"/>
-            <payment_method_type>credit_card</payment_method_type>
-            <errors>
-            </errors>
-            <verification_value></verification_value>
-            <number></number>
-          </payment_method>
-        </transaction>
         <transaction>
           <on_test_gateway type="boolean">false</on_test_gateway>
           <created_at type="dateTime">2014-09-03T11:36:22Z</created_at>
@@ -1404,6 +1217,179 @@ interactions:
             <phone_number nil="true"/>
             <company nil="true"/>
             <full_name>First Name Last Name</full_name>
+            <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+            <shipping_address1 nil="true"/>
+            <shipping_address2 nil="true"/>
+            <shipping_city nil="true"/>
+            <shipping_state nil="true"/>
+            <shipping_zip nil="true"/>
+            <shipping_country nil="true"/>
+            <shipping_phone_number nil="true"/>
+            <payment_method_type>credit_card</payment_method_type>
+            <errors>
+            </errors>
+            <verification_value></verification_value>
+            <number></number>
+          </payment_method>
+        </transaction>
+        <transaction>
+          <on_test_gateway type="boolean">false</on_test_gateway>
+          <created_at type="dateTime">2014-09-04T03:25:05Z</created_at>
+          <updated_at type="dateTime">2014-09-04T03:25:06Z</updated_at>
+          <succeeded type="boolean">true</succeeded>
+          <token>IfvsqQXsQXb8aIGscd14YR8FUI9</token>
+          <state>succeeded</state>
+          <gateway_specific_fields nil="true"/>
+          <gateway_specific_response_fields nil="true"/>
+          <transaction_type>RedactPaymentMethod</transaction_type>
+          <order_id nil="true"/>
+          <ip nil="true"/>
+          <gateway_transaction_id nil="true"/>
+          <message key="messages.transaction_succeeded">Succeeded!</message>
+          <payment_method>
+            <token>RJqFJDp9bckqvAgGE55vYIIAlbn</token>
+            <created_at type="dateTime">2014-09-03T15:24:51Z</created_at>
+            <updated_at type="dateTime">2014-09-04T03:25:06Z</updated_at>
+            <email nil="true"/>
+            <data nil="true"/>
+            <storage_state>redacted</storage_state>
+            <test type="boolean">false</test>
+            <last_four_digits>0004</last_four_digits>
+            <first_six_digits>454881</first_six_digits>
+            <card_type>visa</card_type>
+            <first_name>Primer</first_name>
+            <last_name>Pago Redsys</last_name>
+            <month type="integer">12</month>
+            <year type="integer">2017</year>
+            <address1 nil="true"/>
+            <address2 nil="true"/>
+            <city nil="true"/>
+            <state nil="true"/>
+            <zip nil="true"/>
+            <country nil="true"/>
+            <phone_number nil="true"/>
+            <company nil="true"/>
+            <full_name>Primer Pago Redsys</full_name>
+            <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+            <shipping_address1 nil="true"/>
+            <shipping_address2 nil="true"/>
+            <shipping_city nil="true"/>
+            <shipping_state nil="true"/>
+            <shipping_zip nil="true"/>
+            <shipping_country nil="true"/>
+            <shipping_phone_number nil="true"/>
+            <payment_method_type>credit_card</payment_method_type>
+            <errors>
+            </errors>
+            <verification_value></verification_value>
+            <number></number>
+          </payment_method>
+        </transaction>
+        <transaction>
+          <on_test_gateway type="boolean">false</on_test_gateway>
+          <created_at type="dateTime">2014-09-04T03:25:23Z</created_at>
+          <updated_at type="dateTime">2014-09-04T03:25:23Z</updated_at>
+          <succeeded type="boolean">true</succeeded>
+          <token>Tbexm88vhWCmn8k4sYWjJHalLYf</token>
+          <state>succeeded</state>
+          <gateway_specific_fields nil="true"/>
+          <gateway_specific_response_fields nil="true"/>
+          <transaction_type>RedactPaymentMethod</transaction_type>
+          <order_id nil="true"/>
+          <ip nil="true"/>
+          <gateway_transaction_id nil="true"/>
+          <message key="messages.transaction_succeeded">Succeeded!</message>
+          <payment_method>
+            <token>M8vPEBpF0EU38BBzr8rp2VHrt7l</token>
+            <created_at type="dateTime">2014-09-03T14:26:20Z</created_at>
+            <updated_at type="dateTime">2014-09-04T03:25:23Z</updated_at>
+            <email>dev@changeyourflight.com</email>
+            <data>
+              <pnr>CYFCYF</pnr>
+              <flight_info>
+                <departure>SIN</departure>
+                <arrival>PER</arrival>
+                <key>TZ~   5~ ~~OOL~09/01/2014 09:00~SIN~09/01/2014 15:20~</key>
+              </flight_info>
+            </data>
+            <storage_state>redacted</storage_state>
+            <test type="boolean">true</test>
+            <last_four_digits>1111</last_four_digits>
+            <first_six_digits>411111</first_six_digits>
+            <card_type>visa</card_type>
+            <first_name>Primer</first_name>
+            <last_name>Pago Redsys</last_name>
+            <month type="integer">1</month>
+            <year type="integer">2015</year>
+            <address1 nil="true"/>
+            <address2 nil="true"/>
+            <city nil="true"/>
+            <state nil="true"/>
+            <zip nil="true"/>
+            <country nil="true"/>
+            <phone_number nil="true"/>
+            <company nil="true"/>
+            <full_name>Primer Pago Redsys</full_name>
+            <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+            <shipping_address1 nil="true"/>
+            <shipping_address2 nil="true"/>
+            <shipping_city nil="true"/>
+            <shipping_state nil="true"/>
+            <shipping_zip nil="true"/>
+            <shipping_country nil="true"/>
+            <shipping_phone_number nil="true"/>
+            <payment_method_type>credit_card</payment_method_type>
+            <errors>
+            </errors>
+            <verification_value></verification_value>
+            <number></number>
+          </payment_method>
+        </transaction>
+        <transaction>
+          <on_test_gateway type="boolean">false</on_test_gateway>
+          <created_at type="dateTime">2014-09-04T03:25:33Z</created_at>
+          <updated_at type="dateTime">2014-09-04T03:25:33Z</updated_at>
+          <succeeded type="boolean">true</succeeded>
+          <token>9YJxaXJcSDfqbfFyAPjwebMpIS7</token>
+          <state>succeeded</state>
+          <gateway_specific_fields nil="true"/>
+          <gateway_specific_response_fields nil="true"/>
+          <transaction_type>RedactPaymentMethod</transaction_type>
+          <order_id nil="true"/>
+          <ip nil="true"/>
+          <gateway_transaction_id nil="true"/>
+          <message key="messages.transaction_succeeded">Succeeded!</message>
+          <payment_method>
+            <token>RZp66pipVCDtOMiPHA5SJxVglXy</token>
+            <created_at type="dateTime">2014-09-03T15:20:52Z</created_at>
+            <updated_at type="dateTime">2014-09-04T03:25:33Z</updated_at>
+            <email>dev@changeyourflight.com</email>
+            <data>
+              <pnr>CYFCYF</pnr>
+              <flight_info>
+                <departure>SIN</departure>
+                <arrival>PER</arrival>
+                <key>TZ~   5~ ~~OOL~09/01/2014 09:00~SIN~09/01/2014 15:20~</key>
+              </flight_info>
+            </data>
+            <storage_state>redacted</storage_state>
+            <test type="boolean">false</test>
+            <last_four_digits>0004</last_four_digits>
+            <first_six_digits>454881</first_six_digits>
+            <card_type>visa</card_type>
+            <first_name>Primer</first_name>
+            <last_name>Pago Redsys</last_name>
+            <month type="integer">12</month>
+            <year type="integer">2017</year>
+            <address1 nil="true"/>
+            <address2 nil="true"/>
+            <city nil="true"/>
+            <state nil="true"/>
+            <zip nil="true"/>
+            <country nil="true"/>
+            <phone_number nil="true"/>
+            <company nil="true"/>
+            <full_name>Primer Pago Redsys</full_name>
             <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
             <shipping_address1 nil="true"/>
             <shipping_address2 nil="true"/>
