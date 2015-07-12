@@ -37,6 +37,7 @@ public class Spreedly
     static final int STATUS_OK_CREATED = 201;
     static final int STATUS_UNAUTHORIZED = 401;
     static final int STATUS_PAYMENT_REQUIRED = 402;
+    static final int STATUS_NOT_FOUND = 404;
     static final int STATUS_TIMEOUT = 408;
     static final int STATUS_UNPROCESSABLE = 422;
     static final int STATUS_TOO_MANY_REQUESTS = 429;
@@ -196,9 +197,10 @@ public class Spreedly
     protected Response executeRequest(Request request) throws SpreedlyClientException
     {
         Response response = httpHandler.execute(request);
+        int statusCode = response.statusCode;
         Errors errors;
 
-        switch (response.statusCode)
+        switch (statusCode)
         {
             // Do nothing special
             case STATUS_OK:
@@ -210,7 +212,7 @@ public class Spreedly
                 throw new AuthenticationException(errors.getSingleError().getMessage());
 
             case STATUS_PAYMENT_REQUIRED:
-                // You want to use Spreedly for free uh?
+            case STATUS_NOT_FOUND:
                 errors = xmlParser.parseErrors(response.body);
                 throw new SpreedlyClientException(errors.getSingleError().getMessage());
 
@@ -229,9 +231,10 @@ public class Spreedly
                 // TODO: find out if there is a response's body that allows to provide a more specific message
                 throw new SpreedlyClientException("Service unavailable");
 
+            // This might be serious dude!
             default:
-                // This would be serious dude!
-                throw new SpreedlyClientException("Unexpected response");
+                String msg = String.format("Unexpected response code [%s]", statusCode);
+                throw new SpreedlyClientException(msg);
         }
 
         return response;
