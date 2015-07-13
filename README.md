@@ -41,7 +41,7 @@ Special Thanks
 
 To [Stripe](https://github.com/stripe/stripe-java) because we have used their implementation as our base.
 
-Supported actions (8/38)
+Supported actions (9/38)
 ==================
 
 ### Gateways
@@ -65,7 +65,7 @@ Supported actions (8/38)
 - Create (Transparent Redirect)
 - Create (Authenticated API)
 - Create (JavaScript API)
-- Index
+- Index :white_check_mark:
 - Recache
 - Redact :white_check_mark:
 - Retain :white_check_mark:
