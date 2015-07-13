@@ -18,14 +18,24 @@ public class UrlsBuilder
         return buildUrl("%s/transactions/%s/credit.xml", V1_BASE_URL, transactionToken);
     }
 
+    public static URL indexPaymentMethods()
+    {
+        return index("payment_methods");
+    }
+
+    public static URL indexPaymentMethods(String sinceToken)
+    {
+        return index("payment_methods", sinceToken);
+    }
+
     public static URL indexTransactions()
     {
-        return buildUrl("%s/transactions.xml", V1_BASE_URL);
+        return index("transactions");
     }
 
     public static URL indexTransactions(String sinceToken)
     {
-        return buildUrl("%s/transactions.xml?since_token=%s", V1_BASE_URL, sinceToken);
+        return index("transactions", sinceToken);
     }
 
     public static URL purchase(String gatewayToken)
@@ -43,14 +53,14 @@ public class UrlsBuilder
         return buildUrl("%s/payment_methods/%s/retain.xml", V1_BASE_URL, paymentMethodToken);
     }
 
-    public static URL showTransaction(String transactionToken)
-    {
-        return buildUrl("%s/transactions/%s.xml", V1_BASE_URL, transactionToken);
-    }
-
     public static URL showPaymentMethod(String paymentMethodToken)
     {
         return buildUrl("%s/payment_methods/%s.xml", V1_BASE_URL, paymentMethodToken);
+    }
+
+    public static URL showTransaction(String transactionToken)
+    {
+        return buildUrl("%s/transactions/%s.xml", V1_BASE_URL, transactionToken);
     }
 
     public static URL verifyPaymentMethod(String paymentMethodToken)
@@ -70,5 +80,15 @@ public class UrlsBuilder
             log.error(e.getMessage(), e);
             throw new RuntimeException(e);
         }
+    }
+
+    private static URL index(String type)
+    {
+        return buildUrl("%s/%s.xml", V1_BASE_URL, type);
+    }
+
+    private static URL index(String type, String sinceToken)
+    {
+        return buildUrl("%s/%s.xml?since_token=%s", V1_BASE_URL, type, sinceToken);
     }
 }

@@ -20,6 +20,7 @@ import spreedly.client.java.model.GatewaySpecificFields;
 import spreedly.client.java.model.PaymentMethod;
 import spreedly.client.java.model.Transaction;
 import spreedly.client.java.xml.support.ISO8601DateTransformer;
+import spreedly.client.java.xml.support.PaymentMethods;
 import spreedly.client.java.xml.support.Transactions;
 
 public class SimpleXmlParser implements XmlParser
@@ -48,6 +49,13 @@ public class SimpleXmlParser implements XmlParser
     public PaymentMethod parsePaymentMethod(InputStream source) throws XmlParserException
     {
         return read(PaymentMethod.class, source);
+    }
+
+    @Override
+    public List<PaymentMethod> parsePaymentMethods(InputStream source) throws XmlParserException
+    {
+        PaymentMethods txs = read(PaymentMethods.class, source);
+        return txs.getPaymentMethods();
     }
 
     @Override

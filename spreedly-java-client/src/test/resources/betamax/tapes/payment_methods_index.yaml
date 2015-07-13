@@ -1,0 +1,791 @@
+!tape
+name: payment-methods-index
+interactions:
+- recorded: 2015-07-12T14:25:42.628Z
+  request:
+    method: GET
+    uri: https://core.spreedly.com/v1/payment_methods.xml
+    headers:
+      Accept: application/xml
+      Authorization: Basic SUc4S0l6MGVPRjRFQ3dwVnRpUkpERTBYQkNEOjFhaHBiVjBWTlV5NTVBM2RCUlZSVDhFcFhNcEZKTFplb1M0cGp6dTR3aUdMNXFmTkxXeWVtb0Y2a2pjN3dQVTM=
+      Connection: keep-alive
+      Content-Type: application/xml
+      Host: core.spreedly.com
+      User-Agent: Java/1.7.0_67
+  response:
+    status: 200
+    headers:
+      Cache-Control: max-age=0, private, must-revalidate
+      Content-Type: application/xml; charset=utf-8
+      Date: Sun, 12 Jul 2015 14:25:40 GMT
+      ETag: '"350f47d963f600c90ae16328603daa45"'
+      Server: nginx
+      Status: 200 OK
+      X-Content-Type-Options: nosniff
+      X-Frame-Options: SAMEORIGIN
+      X-Request-Id: aeg0s01bv062en304rog.core_dbf08b6d690947bd
+      X-Runtime: '0.257565'
+      X-XSS-Protection: 1; mode=block
+    body: |
+      <payment_methods>
+        <payment_method>
+          <token>Tgu1S5BsgFSbcSQWS5d1sWI2DEg</token>
+          <created_at type="dateTime">2014-09-26T09:55:29Z</created_at>
+          <updated_at type="dateTime">2015-01-25T03:16:02Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">false</test>
+          <last_four_digits>3010</last_four_digits>
+          <first_six_digits>421473</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>Retain</first_name>
+          <last_name>Test</last_name>
+          <month type="integer">4</month>
+          <year type="integer">2017</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>Retain Test</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-3010</number>
+        </payment_method>
+        <payment_method>
+          <token>20r2h3hqBq6GENrbpyNO2NRWdGU</token>
+          <created_at type="dateTime">2014-10-09T09:59:20Z</created_at>
+          <updated_at type="dateTime">2015-01-21T17:36:32Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>First Name</first_name>
+          <last_name>Last Name</last_name>
+          <month type="integer">1</month>
+          <year type="integer">2016</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>First Name Last Name</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>WJy825rDbGCQjYWjhJz17W6dXYQ</token>
+          <created_at type="dateTime">2014-10-09T10:02:10Z</created_at>
+          <updated_at type="dateTime">2015-01-25T10:37:32Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>First Name</first_name>
+          <last_name>Last Name</last_name>
+          <month type="integer">1</month>
+          <year type="integer">2016</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>First Name Last Name</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>LMBSUwi0yTJCC1u5aISVIT5kxGw</token>
+          <created_at type="dateTime">2014-10-09T10:13:57Z</created_at>
+          <updated_at type="dateTime">2015-01-24T09:34:38Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>First Name</first_name>
+          <last_name>Last Name</last_name>
+          <month type="integer">1</month>
+          <year type="integer">2016</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>First Name Last Name</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>JMifow6Ap5vFXtjnBaWnAtm0Zm6</token>
+          <created_at type="dateTime">2014-10-09T10:14:02Z</created_at>
+          <updated_at type="dateTime">2015-01-24T04:49:26Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>First Name</first_name>
+          <last_name>Last Name</last_name>
+          <month type="integer">1</month>
+          <year type="integer">2016</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>First Name Last Name</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>GaFIUSey7lPBq5Jb0B5AAZ8I0eH</token>
+          <created_at type="dateTime">2014-10-09T10:14:11Z</created_at>
+          <updated_at type="dateTime">2015-01-23T21:02:54Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>First Name</first_name>
+          <last_name>Last Name</last_name>
+          <month type="integer">1</month>
+          <year type="integer">2016</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>First Name Last Name</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>FhamfoDIMUdV8FnRMccvHGPmQt0</token>
+          <created_at type="dateTime">2014-10-09T10:23:50Z</created_at>
+          <updated_at type="dateTime">2015-01-23T19:16:26Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>First Name</first_name>
+          <last_name>Last Name</last_name>
+          <month type="integer">1</month>
+          <year type="integer">2016</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>First Name Last Name</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>JVrYnlaWwvXO3X3dTV3Huyxcp4B</token>
+          <created_at type="dateTime">2014-10-09T10:23:53Z</created_at>
+          <updated_at type="dateTime">2015-01-24T05:37:08Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>First Name</first_name>
+          <last_name>Last Name</last_name>
+          <month type="integer">1</month>
+          <year type="integer">2016</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>First Name Last Name</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>CozJSqA3744XUmzjsI3ikhzhEoa</token>
+          <created_at type="dateTime">2014-10-09T10:23:56Z</created_at>
+          <updated_at type="dateTime">2015-01-23T12:52:16Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>First Name</first_name>
+          <last_name>Last Name</last_name>
+          <month type="integer">1</month>
+          <year type="integer">2016</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>First Name Last Name</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>KWoY57GkGRz7aFoTOs0WWrR33al</token>
+          <created_at type="dateTime">2014-10-09T10:23:59Z</created_at>
+          <updated_at type="dateTime">2015-01-24T08:12:43Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>First Name</first_name>
+          <last_name>Last Name</last_name>
+          <month type="integer">1</month>
+          <year type="integer">2016</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>First Name Last Name</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>FN1K5KJLvxzigMJ9fMLMxWXPeJB</token>
+          <created_at type="dateTime">2014-10-09T10:34:07Z</created_at>
+          <updated_at type="dateTime">2015-01-23T19:47:39Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>First Name</first_name>
+          <last_name>Last Name</last_name>
+          <month type="integer">1</month>
+          <year type="integer">2016</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>First Name Last Name</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>7FUO2Z8VjUcIoisGh6EshvT3tKH</token>
+          <created_at type="dateTime">2014-10-09T10:34:13Z</created_at>
+          <updated_at type="dateTime">2015-01-22T04:23:09Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>First Name</first_name>
+          <last_name>Last Name</last_name>
+          <month type="integer">1</month>
+          <year type="integer">2016</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>First Name Last Name</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>GM34jDGlgMTi0jnJAnrH2ePo6HE</token>
+          <created_at type="dateTime">2014-10-09T10:34:22Z</created_at>
+          <updated_at type="dateTime">2015-01-23T21:51:42Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>First Name</first_name>
+          <last_name>Last Name</last_name>
+          <month type="integer">1</month>
+          <year type="integer">2016</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>First Name Last Name</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>JweMOYrVUPPsuXqIBXksuS9uqQ3</token>
+          <created_at type="dateTime">2014-10-09T10:35:06Z</created_at>
+          <updated_at type="dateTime">2015-01-24T05:40:09Z</updated_at>
+          <email>mrc@changeyourflight.com</email>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>Marc</first_name>
+          <last_name>Smith</last_name>
+          <month type="integer">2</month>
+          <year type="integer">2016</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>Marc Smith</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>CvNSOsciiWCE3AjLrVCvwYU2wm</token>
+          <created_at type="dateTime">2014-10-09T12:32:16Z</created_at>
+          <updated_at type="dateTime">2015-01-23T13:16:48Z</updated_at>
+          <email>ngc@changeyourflight.com</email>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>Linda</first_name>
+          <last_name>Tompson</last_name>
+          <month type="integer">2</month>
+          <year type="integer">2015</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>Linda Tompson</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>MdqTDginMWzvZ5yRI3nctfgtwEj</token>
+          <created_at type="dateTime">2014-10-09T12:51:36Z</created_at>
+          <updated_at type="dateTime">2015-01-24T11:06:07Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>First Name</first_name>
+          <last_name>Last Name</last_name>
+          <month type="integer">1</month>
+          <year type="integer">2016</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>First Name Last Name</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>16Mbnsogl8Nmo1BFifbOHHVidQ7</token>
+          <created_at type="dateTime">2014-10-09T12:51:40Z</created_at>
+          <updated_at type="dateTime">2015-01-21T15:51:42Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>First Name</first_name>
+          <last_name>Last Name</last_name>
+          <month type="integer">1</month>
+          <year type="integer">2016</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>First Name Last Name</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>Md1eWBwwJ3aZEiPSlajzCm0mqim</token>
+          <created_at type="dateTime">2014-10-09T12:51:49Z</created_at>
+          <updated_at type="dateTime">2015-01-24T11:03:35Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>First Name</first_name>
+          <last_name>Last Name</last_name>
+          <month type="integer">1</month>
+          <year type="integer">2016</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>First Name Last Name</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>IsjCffbjDoamlkBuWKd4JI7jdI0</token>
+          <created_at type="dateTime">2014-10-09T12:52:31Z</created_at>
+          <updated_at type="dateTime">2015-01-24T03:05:03Z</updated_at>
+          <email>ngc@changeyourflight.com</email>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>Linda</first_name>
+          <last_name>Tompson</last_name>
+          <month type="integer">4</month>
+          <year type="integer">2015</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>Linda Tompson</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+        <payment_method>
+          <token>O3alHR7YGZhYK5CscfaVfTWgTdu</token>
+          <created_at type="dateTime">2014-10-09T13:10:40Z</created_at>
+          <updated_at type="dateTime">2015-01-24T15:18:27Z</updated_at>
+          <email nil="true"/>
+          <data nil="true"/>
+          <storage_state>retained</storage_state>
+          <test type="boolean">true</test>
+          <last_four_digits>1111</last_four_digits>
+          <first_six_digits>411111</first_six_digits>
+          <card_type>visa</card_type>
+          <first_name>First Name</first_name>
+          <last_name>Last Name</last_name>
+          <month type="integer">1</month>
+          <year type="integer">2016</year>
+          <address1 nil="true"/>
+          <address2 nil="true"/>
+          <city nil="true"/>
+          <state nil="true"/>
+          <zip nil="true"/>
+          <country nil="true"/>
+          <phone_number nil="true"/>
+          <company nil="true"/>
+          <full_name>First Name Last Name</full_name>
+          <eligible_for_card_updater type="boolean">true</eligible_for_card_updater>
+          <shipping_address1 nil="true"/>
+          <shipping_address2 nil="true"/>
+          <shipping_city nil="true"/>
+          <shipping_state nil="true"/>
+          <shipping_zip nil="true"/>
+          <shipping_country nil="true"/>
+          <shipping_phone_number nil="true"/>
+          <payment_method_type>credit_card</payment_method_type>
+          <errors>
+          </errors>
+          <verification_value></verification_value>
+          <number>XXXX-XXXX-XXXX-1111</number>
+        </payment_method>
+      </payment_methods>

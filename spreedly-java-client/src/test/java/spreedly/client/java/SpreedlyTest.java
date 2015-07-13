@@ -320,6 +320,32 @@ public class SpreedlyTest
         assertEquals("visa", transaction.getPaymentMethod().getCardType());
     }
 
+    @Betamax(tape = "payment-methods-index")
+    @Test
+    public void testListPaymentMethodsShouldWork() throws Exception
+    {
+        // When
+        List<PaymentMethod> txs = client.listPaymentMethods();
+
+        // Then
+        assertNotNull(txs);
+        assertEquals(20, txs.size());
+        assertEquals("Tgu1S5BsgFSbcSQWS5d1sWI2DEg", txs.get(0).getToken());
+    }
+
+    @Betamax(tape = "payment-methods-index-since-token")
+    @Test
+    public void testListPaymentMethodsSinceTokenShouldWork() throws Exception
+    {
+        // When
+        List<PaymentMethod> txs = client.listPaymentMethods("O3alHR7YGZhYK5CscfaVfTWgTdu");
+
+        // Then
+        assertNotNull(txs);
+        assertEquals(20, txs.size());
+        assertEquals("Wh9NK84bsSQHMi3RfcQcyqA0icf", txs.get(0).getToken());
+    }
+
     @Betamax(tape = "transactions-index")
     @Test
     public void testListTransactionsShouldWork() throws Exception

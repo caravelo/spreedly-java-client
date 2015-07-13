@@ -89,6 +89,18 @@ public class Spreedly
         return xmlParser.parseTransaction(response.body);
     }
 
+    public List<PaymentMethod> listPaymentMethods() throws SpreedlyClientException
+    {
+        URL url = UrlsBuilder.indexPaymentMethods();
+        return listPaymentMethods(url);
+    }
+
+    public List<PaymentMethod> listPaymentMethods(String sinceToken) throws SpreedlyClientException
+    {
+        URL url = UrlsBuilder.indexPaymentMethods(sinceToken);
+        return listPaymentMethods(url);
+    }
+
     public List<Transaction> listTransactions() throws SpreedlyClientException
     {
         URL url = UrlsBuilder.indexTransactions();
@@ -257,6 +269,16 @@ public class Spreedly
             Errors errors = xmlParser.parseErrors(response.body);
             throw new SpreedlyClientException(errors.getSingleError().getMessage());
         }
+    }
+
+    private List<PaymentMethod> listPaymentMethods(URL url)
+            throws SpreedlyClientException, XmlParserException
+    {
+        Request request = new Request(url, GET, credentials);
+
+        Response response = executeRequest(request);
+
+        return xmlParser.parsePaymentMethods(response.body);
     }
 
     private List<Transaction> listTransactions(URL url)

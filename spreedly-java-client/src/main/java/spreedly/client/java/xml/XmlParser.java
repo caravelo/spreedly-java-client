@@ -16,6 +16,9 @@ public interface XmlParser
 
     PaymentMethod parsePaymentMethod(InputStream source) throws XmlParserException;
 
+    List<PaymentMethod> parsePaymentMethods(InputStream source)
+            throws XmlParserException;
+
     Transaction parseTransaction(InputStream source) throws XmlParserException;
 
     List<Transaction> parseTransactions(InputStream source) throws XmlParserException;
