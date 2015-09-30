@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.github.agseco</groupId>
+  <groupId>com.caravelo</groupId>
   <artifactId>spreedly-java-client</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <url>https://github.com/CYFLabs/spreedly-java-client</url>
+  <url>https://github.com/caravelo/spreedly-java-client</url>
   <name>spreedly-java-client</name>
   <description>Spreedly Client Library for Java</description>
   <dependencies>
