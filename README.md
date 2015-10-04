@@ -41,53 +41,53 @@ Supported actions (9/38)
 
 ### Gateways
 
-- Authorize
-- Create
-- General Credit
-- Index
-- Options Index
-- Purchase :white_check_mark:
-- Redact
-- Retain
-- Show
-- Store
-- Transactions
-- Update
-- Verify :white_check_mark:
+- [ ] Authorize
+- [ ] Create
+- [ ] General Credit
+- [ ] Index
+- [ ] Options Index
+- [x] Purchase
+- [ ] Redact
+- [ ] Retain
+- [ ] Show
+- [ ] Store
+- [ ] Transactions
+- [ ] Update
+- [x] Verify
 
 ### Payment Methods
 
-- Create (Transparent Redirect)
-- Create (Authenticated API)
-- Create (JavaScript API)
-- Index :white_check_mark:
-- Recache
-- Redact :white_check_mark:
-- Retain :white_check_mark:
-- Show :white_check_mark:
-- Transactions
-- Update
+- [ ] Create (Transparent Redirect)
+- [ ] Create (Authenticated API)
+- [ ] Create (JavaScript API)
+- [x] Index
+- [ ] Recache
+- [x] Redact
+- [x] Retain
+- [x] Show
+- [ ] Transactions
+- [ ] Update
 
 ### Transactions
 
-- Capture
-- Credit :white_check_mark:
-- Index :white_check_mark:
-- Purchase
-- Show :white_check_mark:
-- Transcript
-- Void
+- [ ] Capture
+- [x] Credit
+- [x] Index
+- [ ] Purchase
+- [x] Show
+- [ ] Transcript
+- [ ] Void
 
 ### Receivers
 
-- Create
-- Deliver
-- Index
-- Redact
-- Show
-- Update
+- [ ] Create
+- [ ] Deliver
+- [ ] Index
+- [ ] Redact
+- [ ] Show
+- [ ] Update
 
 ### Certificates
 
-- Create
-- Update
+- [ ] Create
+- [ ] Update
