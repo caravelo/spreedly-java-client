@@ -81,7 +81,7 @@ public class SimpleXmlParser implements XmlParser
         catch (Exception e)
         {
             String message = "Unable to parse object to XML";
-            log.error(format("{}: {}", message, e.getMessage()));
+            log.error(format("%s: %s", message, e.getMessage()));
             throw new XmlParserException(message, e);
         }
     }
@@ -107,7 +107,7 @@ public class SimpleXmlParser implements XmlParser
         catch (Exception e)
         {
             String message = "Unable to parse XML to object";
-            log.error(format("{}: {}", message, e.getMessage()));
+            log.error(format("%s: %s", message, e.getMessage()));
             throw new XmlParserException(message, e);
         }
     }
