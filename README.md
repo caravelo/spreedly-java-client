@@ -2,44 +2,41 @@
 
 You can sign up for a Spreedly account at [Spreedly](https://spreedly.com/).
 
-Requirements
-============
+# Installation
 
-Java 1.7 and later.
+Requires Java 1.7 and later.
 
-Installation
-============
-
-### Maven users
+## Maven users
 
 Add this dependency to your project's POM:
 
-    <dependency>
-      <groupId>com.caravelo</groupId>
-      <artifactId>spreedly-java-client</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-    </dependency>
+```xml
+<dependency>
+  <groupId>com.caravelo</groupId>
+  <artifactId>spreedly-java-client</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+</dependency>
+```
 
-### Gradle users
+## Gradle users
 
 Add this dependency to your project's build file:
 
-    compile "com.caravelo:spreedly-java-client:0.0.1-SNAPSHOT"
+```
+  compile "com.caravelo:spreedly-java-client:0.0.1-SNAPSHOT"
+```
 
-Usage
-=====
+# Usage
 
 Add sample usages. (TODO)
 
-Testing
-=======
+# Documentation
 
-Add testing info. (TODO)
+(TODO)
 
-Supported actions (9/38)
-==================
+# Supported actions (9/38)
 
-### Gateways
+## Gateways
 
 - [ ] Authorize
 - [ ] Create
@@ -55,7 +52,7 @@ Supported actions (9/38)
 - [ ] Update
 - [x] Verify
 
-### Payment Methods
+## Payment Methods
 
 - [ ] Create (Transparent Redirect)
 - [ ] Create (Authenticated API)
@@ -68,7 +65,7 @@ Supported actions (9/38)
 - [ ] Transactions
 - [ ] Update
 
-### Transactions
+## Transactions
 
 - [ ] Capture
 - [x] Credit
@@ -78,7 +75,7 @@ Supported actions (9/38)
 - [ ] Transcript
 - [ ] Void
 
-### Receivers
+## Receivers
 
 - [ ] Create
 - [ ] Deliver
@@ -87,7 +84,11 @@ Supported actions (9/38)
 - [ ] Show
 - [ ] Update
 
-### Certificates
+## Certificates
 
 - [ ] Create
 - [ ] Update
+
+# Testing
+
+Add testing info. (TODO)
