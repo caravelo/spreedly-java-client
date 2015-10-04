@@ -127,7 +127,7 @@ public class PaymentMethod extends Base
     @Element(name = FULL_NAME)
     private final String fullName;
 
-    @Element(name = ELIGIBLE_FOR_CARD_UPDATER)
+    @Element(name = ELIGIBLE_FOR_CARD_UPDATER , required = false)
     private final Boolean eligibleForCardUpdater;
 
     // TODO: could be Enum type instead of String
