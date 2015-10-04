@@ -91,7 +91,7 @@
   </build>
   <profiles>
     <profile> 
-      <id>release</id>
+      <id>stage</id>
       <build>
         <plugins>
           <plugin>
