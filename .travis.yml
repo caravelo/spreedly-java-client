@@ -1,7 +1,5 @@
 language: java
 
-before_install: cd spreedly-java-client
-
 jdk:
   #- openjdk6
   - openjdk7
