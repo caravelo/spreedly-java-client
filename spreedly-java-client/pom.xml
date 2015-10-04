@@ -1,56 +1,71 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  
   <groupId>com.caravelo</groupId>
   <artifactId>spreedly-java-client</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <url>https://github.com/caravelo/spreedly-java-client</url>
   <name>spreedly-java-client</name>
   <description>Spreedly Client Library for Java</description>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Core dependencies -->
+    <simple-xml.version>2.7.1</simple-xml.version>
+    <slf4j-log4j12.version>1.7.7</slf4j-log4j12.version>
+    <!-- Test dependencies -->
+    <junit.version>4.11</junit.version>
+    <mockito.version>1.10.8</mockito.version>
+    <betamax.version>1.1.2</betamax.version>
+    <groovy.version>2.2.0</groovy.version>
+    <xmlunit.version>1.5</xmlunit.version>
+  </properties>
+
   <dependencies>
+    <dependency>
+      <groupId>org.simpleframework</groupId>
+      <artifactId>simple-xml</artifactId>
+      <version>${simple-xml.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>${slf4j-log4j12.version}</version>
+    </dependency>
+
+    <!-- Test Dependencies -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>1.10.8</version>
+      <version>${mockito.version}</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.simpleframework</groupId>
-      <artifactId>simple-xml</artifactId>
-      <version>2.7.1</version>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-      <version>1.7.7</version>
     </dependency>
     <dependency>
       <groupId>co.freeside</groupId>
       <artifactId>betamax</artifactId>
-      <version>1.1.2</version>
+      <version>${betamax.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-all</artifactId>
-      <version>2.2.0</version>
+      <version>${groovy.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>xmlunit</groupId>
       <artifactId>xmlunit</artifactId>
-      <version>1.5</version>
+      <version>${xmlunit.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+
   <distributionManagement>
     <snapshotRepository>
       <id>ossrh</id>
