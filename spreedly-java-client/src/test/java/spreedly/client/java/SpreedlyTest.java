@@ -100,7 +100,7 @@ public class SpreedlyTest
         mockClient.handleUnprocessableTransactionError(response);
 
         // Then
-        fail(format("Expected [{}] not thrown", UnprocessableTransactionException.class.getName()));
+        fail(format("Expected [%s] not thrown", UnprocessableTransactionException.class.getName()));
     }
 
     @Betamax(tape = "credit-transaction")

@@ -1,5 +1,6 @@
 package spreedly.client.java.model;
 
+import static java.lang.String.format;
 import static spreedly.client.java.model.Fields.ERROR;
 import static spreedly.client.java.model.Fields.ERRORS;
 
@@ -37,7 +38,7 @@ public class Errors
             int size = errors.size();
             if (size > 1)
             {
-                String message = String.format("Expected single error but found [{}]", size);
+                String message = format("Expected single error but found [%s]", size);
                 throw new RuntimeException(message);
             }
 
