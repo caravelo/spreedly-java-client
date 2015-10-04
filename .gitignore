@@ -3,3 +3,9 @@ RemoteSystemsTempFiles
 .project
 .classpath
 .settings
+/target
+
+# Intellij
+.idea/
+*.iml
+*.iws
