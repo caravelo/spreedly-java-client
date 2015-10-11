@@ -59,7 +59,7 @@ public class Errors
         }
         else
         {
-            return null;
+            return Error.EMPTY;
         }
     }
 

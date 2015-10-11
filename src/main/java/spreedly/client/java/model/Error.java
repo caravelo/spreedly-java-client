@@ -9,6 +9,8 @@ import org.simpleframework.xml.Text;
 public class Error extends Message
 {
 
+    public static final Error EMPTY = new Error("", "", "");
+
     @Attribute(name = ATTRIBUTE, required = false)
     private final String attribute;
 

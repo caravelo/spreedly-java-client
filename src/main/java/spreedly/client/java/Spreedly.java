@@ -221,12 +221,16 @@ public class Spreedly
 
             case STATUS_UNAUTHORIZED:
                 errors = xmlParser.parseErrors(response.body);
-                throw new AuthenticationException(errors.getSingleError().getMessage());
+                throw new AuthenticationException(errors
+                        .getSingleError()
+                        .getMessage());
 
             case STATUS_PAYMENT_REQUIRED:
             case STATUS_NOT_FOUND:
                 errors = xmlParser.parseErrors(response.body);
-                throw new SpreedlyClientException(errors.getSingleError().getMessage());
+                throw new SpreedlyClientException(errors
+                        .getSingleError()
+                        .getMessage());
 
             case STATUS_TIMEOUT:
                 // TODO: find out if there is a response's body that allows to provide a more specific message
@@ -267,7 +271,9 @@ public class Spreedly
         {
             // 2. The transaction wasn't created and the response body contains just error details
             Errors errors = xmlParser.parseErrors(response.body);
-            throw new SpreedlyClientException(errors.getSingleError().getMessage());
+            throw new SpreedlyClientException(errors
+                    .getSingleError()
+                    .getMessage());
         }
     }
 
