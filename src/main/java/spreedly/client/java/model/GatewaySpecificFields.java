@@ -3,8 +3,9 @@ package spreedly.client.java.model;
 import static spreedly.client.java.model.Fields.GATEWAY_SPECIFIC_FIELDS;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.simpleframework.xml.Root;
 import org.simpleframework.xml.convert.Convert;
@@ -115,11 +116,12 @@ public class GatewaySpecificFields
         public void write(OutputNode node, GatewaySpecificFields value) throws Exception
         {
             OutputNode child = node.getChild(value.getGatewayType());
-
             Map<String, String> specificFields = value.getSpecificFields();
-            for (Iterator<String> keysIterator = specificFields.keySet().iterator(); keysIterator.hasNext();)
+
+            Set<Entry<String, String>> entrySet = specificFields.entrySet();
+            for (Entry<String, String> e : entrySet)
             {
-                String key = keysIterator.next();
+                String key = e.getKey();
                 OutputNode fieldNode = child.getChild(key);
                 fieldNode.setValue(specificFields.get(key));
             }
