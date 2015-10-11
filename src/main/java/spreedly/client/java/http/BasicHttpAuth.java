@@ -1,6 +1,8 @@
 package spreedly.client.java.http;
 
-import javax.xml.bind.DatatypeConverter;
+import static javax.xml.bind.DatatypeConverter.printBase64Binary;
+
+import java.nio.charset.StandardCharsets;
 
 public class BasicHttpAuth
 {
@@ -17,7 +19,8 @@ public class BasicHttpAuth
     public String getAuthString()
     {
         String plainAuthString = username + ":" +password;
-        String encodedAuthString = DatatypeConverter.printBase64Binary(plainAuthString.getBytes());
+        String encodedAuthString = printBase64Binary(plainAuthString
+                .getBytes(StandardCharsets.UTF_8));
         return "Basic " + encodedAuthString;
     }
 }
