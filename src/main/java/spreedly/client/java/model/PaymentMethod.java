@@ -215,6 +215,12 @@ public class PaymentMethod extends Base
         this.number = number;
     }
 
+    @Override
+    public boolean equals(Object obj)
+    {
+        return super.equals(obj);
+    }
+
     public String getAddress1()
     {
         return address1;
@@ -358,6 +364,12 @@ public class PaymentMethod extends Base
     public String getZip()
     {
         return zip;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return super.hashCode();
     }
 
     public Boolean isEligibleForCardUpdater()

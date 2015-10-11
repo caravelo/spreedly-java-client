@@ -24,9 +24,21 @@ public class Error extends Message
         this.attribute = attribute;
     }
 
+    @Override
+    public boolean equals(Object obj)
+    {
+        return super.equals(obj);
+    }
+
     public String getAttribute()
     {
         return attribute;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return super.hashCode();
     }
 
     @Override

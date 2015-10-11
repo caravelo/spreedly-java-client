@@ -153,6 +153,12 @@ public class Transaction extends Base
         this.referenceToken = referenceToken;
     }
 
+    @Override
+    public boolean equals(Object obj)
+    {
+        return super.equals(obj);
+    }
+
     public Integer getAmount()
     {
         return amount;
@@ -261,6 +267,12 @@ public class Transaction extends Base
     public String getTransactionType()
     {
         return transactionType;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return super.hashCode();
     }
 
     @Override

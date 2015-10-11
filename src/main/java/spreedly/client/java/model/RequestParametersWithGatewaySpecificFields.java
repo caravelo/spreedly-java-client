@@ -26,9 +26,21 @@ public class RequestParametersWithGatewaySpecificFields extends
         this.gatewaySpecificFields = specificFields;
     }
 
+    @Override
+    public boolean equals(Object obj)
+    {
+        return super.equals(obj);
+    }
+
     public GatewaySpecificFields getGatewaySpecificFields()
     {
         return gatewaySpecificFields;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return super.hashCode();
     }
 
     @Override
