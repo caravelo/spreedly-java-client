@@ -10,18 +10,18 @@ sudo: false
 
 install: mvn install
 
-#env:
-#  global:
-#   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
-#   #   via the "travis encrypt" command using the project repo's public key
-#   - secure: "lUOWQ4aBnSj/eRUY6HM+/Fffg3y9nfjuko5+W/Pe9WoYSxf8StYg4NPk3XQxRKtrsw064jWlow35JO1BhW7fUijejLrKKkcwR3JNzibYPvAJhnm14AIqSOn8aveaJ4DbFxTlLy0s3f7kFSGYnKLA77DT8BOBain3o2LEQ3P4Tpc="
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "lUOWQ4aBnSj/eRUY6HM+/Fffg3y9nfjuko5+W/Pe9WoYSxf8StYg4NPk3XQxRKtrsw064jWlow35JO1BhW7fUijejLrKKkcwR3JNzibYPvAJhnm14AIqSOn8aveaJ4DbFxTlLy0s3f7kFSGYnKLA77DT8BOBain3o2LEQ3P4Tpc="
 
-#addons:
-#  coverity_scan:
-#    project:
-#      name: "caravelo/spreedly-java-client"
-#      description: "Build submitted via Travis CI"
-#    notification_email: ags@caravelo.com
-#    build_command_prepend: "mvn clean"
-#    build_command:   "mvn -DskipTests=true compile"
-#    branch_pattern: master
+addons:
+  coverity_scan:
+    project:
+      name: "caravelo/spreedly-java-client"
+      description: "Build submitted via Travis CI"
+    notification_email: ags@caravelo.com
+    build_command_prepend: "mvn clean"
+    build_command:   "mvn -DskipTests=true compile"
+    branch_pattern: master
