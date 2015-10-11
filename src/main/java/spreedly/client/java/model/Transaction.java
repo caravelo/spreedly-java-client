@@ -9,7 +9,6 @@ import static spreedly.client.java.model.Fields.GATEWAY_SPECIFIC_FIELDS;
 import static spreedly.client.java.model.Fields.GATEWAY_TOKEN;
 import static spreedly.client.java.model.Fields.GATEWAY_TRANSACTION_ID;
 import static spreedly.client.java.model.Fields.IP;
-import static spreedly.client.java.model.Fields.KEY;
 import static spreedly.client.java.model.Fields.MERCHANT_LOCATION_DESCRIPTOR;
 import static spreedly.client.java.model.Fields.MERCHANT_NAME_DESCRIPTOR;
 import static spreedly.client.java.model.Fields.MESSAGE;
@@ -28,10 +27,8 @@ import static spreedly.client.java.model.Fields.UPDATED_AT;
 
 import java.util.Date;
 
-import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-import org.simpleframework.xml.Text;
 
 @Root(name = "transaction")
 public class Transaction extends Base
@@ -72,10 +69,10 @@ public class Transaction extends Base
     @Element(name = MERCHANT_NAME_DESCRIPTOR, required = false)
     private final String merchantNameDescriptor;
 
+    // TODO: gateway_specific_response_fields
+
     @Element(name = MERCHANT_LOCATION_DESCRIPTOR, required = false)
     private final String merchantLocationDescriptor;
-
-    // TODO: gateway_specific_response_fields
 
     @Element(name = GATEWAY_SPECIFIC_FIELDS, required = false)
     private final GatewaySpecificFields gatewaySpecificFields;
@@ -94,11 +91,11 @@ public class Transaction extends Base
 
     @Element(name = GATEWAY_TOKEN, required = false)
     private final String gatewayToken;
+    
+    // TODO: api_urls
 
     @Element(name = RESPONSE, required = false)
     private final Response response;
-    
-    // TODO: api_urls
 
     @Element(name = PAYMENT_METHOD, required = false)
     private final PaymentMethod paymentMethod;
@@ -266,39 +263,19 @@ public class Transaction extends Base
         return transactionType;
     }
 
-    /*
-     * Helper nested class to pick message key attribute
-     */
-    private static class Message
+    @Override
+    public String toString()
     {
-
-        @Attribute(name = KEY, required = false)
-        private final String key;
-
-        @Text(required = false)
-        private final String message;
-
-        // Required to support empty <message nil="true" /> elements
-        private Message(){ this(null, null); }
-
-        private Message(
-                @Attribute(name = KEY) String key,
-                @Text String message)
-        {
-            this.key = key;
-            this.message = message;
-        }
-
-        public String getKey()
-        {
-            return key;
-        }
-
-        public String getMessage()
-        {
-            return message;
-        }
-
+        return "Transaction [" + super.toString()
+                + "amount=" + amount + ", onTestGateway=" + onTestGateway + ", currencyCode=" + currencyCode
+                + ", succeeded=" + succeeded + ", state=" + state + ", transactionType=" + transactionType
+                + ", orderId=" + orderId + ", ip=" + ip + ", description=" + description + ", email=" + email
+                + ", merchantNameDescriptor=" + merchantNameDescriptor + ", merchantLocationDescriptor="
+                + merchantLocationDescriptor + ", gatewaySpecificFields=" + gatewaySpecificFields
+                + ", gatewayTransactionId=" + gatewayTransactionId + ", retainOnSuccess=" + retainOnSuccess
+                + ", paymentMethodAdded=" + paymentMethodAdded + ", message=" + message + ", gatewayToken="
+                + gatewayToken + ", response=" + response + ", paymentMethod=" + paymentMethod + ", referenceToken="
+                + referenceToken + "]";
     }
 
 }

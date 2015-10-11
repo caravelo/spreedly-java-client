@@ -21,34 +21,34 @@ public class RequestParameters
 {
 
     @Element(name = PAYMENT_METHOD_TOKEN, required = false)
-    private final String paymentMethodToken;
+    protected final String paymentMethodToken;
 
     @Element(name = AMOUNT, required = false)
-    private final String amount;
+    protected final String amount;
 
     @Element(name = CURRENCY_CODE, required = false)
-    private final String currencyCode;
+    protected final String currencyCode;
 
     @Element(name = RETAIN_ON_SUCCESS, required = false)
-    private final Boolean retainOnSuccess;
+    protected final Boolean retainOnSuccess;
 
     @Element(name = ORDER_ID, required = false)
-    private final String orderId;
+    protected final String orderId;
 
     @Element(name = DESCRIPTION, required = false)
-    private final String description;
+    protected final String description;
 
     @Element(name = IP, required = false)
-    private final String ip;
+    protected final String ip;
 
     @Element(name = EMAIL, required = false)
-    private final String email;
+    protected final String email;
 
     @Element(name = MERCHANT_NAME_DESCRIPTOR, required = false)
-    private final String merchantNameDescriptor;
+    protected final String merchantNameDescriptor;
 
     @Element(name = MERCHANT_LOCATION_DESCRIPTOR, required = false)
-    private final String merchantLocationDescriptor;
+    protected final String merchantLocationDescriptor;
 
     public RequestParameters(Map<String, String> options)
     {
@@ -63,6 +63,46 @@ public class RequestParameters
         this.email = options.get(EMAIL);
         this.merchantNameDescriptor = options.get(MERCHANT_NAME_DESCRIPTOR);
         this.merchantLocationDescriptor = options.get(MERCHANT_LOCATION_DESCRIPTOR);
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        RequestParameters other = (RequestParameters) obj;
+        if (amount == null) {
+            if (other.amount != null) return false;
+        } else if (!amount.equals(other.amount)) return false;
+        if (currencyCode == null) {
+            if (other.currencyCode != null) return false;
+        } else if (!currencyCode.equals(other.currencyCode)) return false;
+        if (description == null) {
+            if (other.description != null) return false;
+        } else if (!description.equals(other.description)) return false;
+        if (email == null) {
+            if (other.email != null) return false;
+        } else if (!email.equals(other.email)) return false;
+        if (ip == null) {
+            if (other.ip != null) return false;
+        } else if (!ip.equals(other.ip)) return false;
+        if (merchantLocationDescriptor == null) {
+            if (other.merchantLocationDescriptor != null) return false;
+        } else if (!merchantLocationDescriptor.equals(other.merchantLocationDescriptor)) return false;
+        if (merchantNameDescriptor == null) {
+            if (other.merchantNameDescriptor != null) return false;
+        } else if (!merchantNameDescriptor.equals(other.merchantNameDescriptor)) return false;
+        if (orderId == null) {
+            if (other.orderId != null) return false;
+        } else if (!orderId.equals(other.orderId)) return false;
+        if (paymentMethodToken == null) {
+            if (other.paymentMethodToken != null) return false;
+        } else if (!paymentMethodToken.equals(other.paymentMethodToken)) return false;
+        if (retainOnSuccess == null) {
+            if (other.retainOnSuccess != null) return false;
+        } else if (!retainOnSuccess.equals(other.retainOnSuccess)) return false;
+        return true;
     }
 
     public String getAmount()
@@ -115,9 +155,36 @@ public class RequestParameters
         return retainOnSuccess;
     }
 
+    @Override
+    public int hashCode()
+    {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((amount == null) ? 0 : amount.hashCode());
+        result = prime * result + ((currencyCode == null) ? 0 : currencyCode.hashCode());
+        result = prime * result + ((description == null) ? 0 : description.hashCode());
+        result = prime * result + ((email == null) ? 0 : email.hashCode());
+        result = prime * result + ((ip == null) ? 0 : ip.hashCode());
+        result = prime * result + ((merchantLocationDescriptor == null) ? 0 : merchantLocationDescriptor.hashCode());
+        result = prime * result + ((merchantNameDescriptor == null) ? 0 : merchantNameDescriptor.hashCode());
+        result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
+        result = prime * result + ((paymentMethodToken == null) ? 0 : paymentMethodToken.hashCode());
+        result = prime * result + ((retainOnSuccess == null) ? 0 : retainOnSuccess.hashCode());
+        return result;
+    }
+
     public Boolean isRetainOnSuccess()
     {
         return retainOnSuccess;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "RequestParameters [paymentMethodToken=" + paymentMethodToken + ", amount=" + amount + ", currencyCode="
+                + currencyCode + ", retainOnSuccess=" + retainOnSuccess + ", orderId=" + orderId + ", description="
+                + description + ", ip=" + ip + ", email=" + email + ", merchantNameDescriptor=" + merchantNameDescriptor
+                + ", merchantLocationDescriptor=" + merchantLocationDescriptor + "]";
     }
 
 }

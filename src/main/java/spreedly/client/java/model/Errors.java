@@ -21,6 +21,19 @@ public class Errors
         this.errors = errors;
     }
 
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        Errors other = (Errors) obj;
+        if (errors == null) {
+            if (other.errors != null) return false;
+        } else if (!errors.equals(other.errors)) return false;
+        return true;
+    }
+
     public List<Error> getErrors()
     {
         return errors;
@@ -48,6 +61,21 @@ public class Errors
         {
             return null;
         }
+    }
+
+    @Override
+    public int hashCode()
+    {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((errors == null) ? 0 : errors.hashCode());
+        return result;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Errors [errors=" + errors + "]";
     }
 
 }

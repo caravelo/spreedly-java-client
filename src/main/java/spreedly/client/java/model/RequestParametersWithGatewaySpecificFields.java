@@ -31,4 +31,11 @@ public class RequestParametersWithGatewaySpecificFields extends
         return gatewaySpecificFields;
     }
 
+    @Override
+    public String toString()
+    {
+        return "RequestParametersWithGatewaySpecificFields [" + super.toString()
+                + "gatewaySpecificFields=" + gatewaySpecificFields + "]";
+    }
+
 }

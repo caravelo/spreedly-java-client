@@ -370,4 +370,20 @@ public class PaymentMethod extends Base
         return test;
     }
 
+    @Override
+    public String toString()
+    {
+        return "PaymentMethod [" + super.toString()
+                + ", email=" + email + ", data=" + data + ", storageState=" + storageState + ", test=" + test
+                + ", lastFourDigits=" + lastFourDigits + ", firstSixDigits=" + firstSixDigits + ", cardType=" + cardType
+                + ", firstName=" + firstName + ", lastName=" + lastName + ", month=" + month + ", year=" + year
+                + ", address1=" + address1 + ", address2=" + address2 + ", city=" + city + ", state=" + state + ", zip="
+                + zip + ", country=" + country + ", phoneNumber=" + phoneNumber + ", shippingAddress1="
+                + shippingAddress1 + ", shippingAddress2=" + shippingAddress2 + ", shippingCity=" + shippingCity
+                + ", shippingState=" + shippingState + ", shippingZip=" + shippingZip + ", shippingCountry="
+                + shippingCountry + ", shippingPhoneNumber=" + shippingPhoneNumber + ", fullName=" + fullName
+                + ", eligibleForCardUpdater=" + eligibleForCardUpdater + ", paymentMethodType=" + paymentMethodType
+                + ", errors=" + errors + ", verification_value=" + verification_value + ", number=" + number + "]";
+    }
+
 }

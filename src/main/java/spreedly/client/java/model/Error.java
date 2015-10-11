@@ -6,26 +6,20 @@ import static spreedly.client.java.model.Fields.KEY;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Text;
 
-public class Error
+public class Error extends Message
 {
 
     @Attribute(name = ATTRIBUTE, required = false)
     private final String attribute;
-
-    @Attribute(name = KEY)
-    private final String key;
-
-    @Text
-    private final String message;
 
     public Error(
             @Attribute(name = ATTRIBUTE) String attribute,
             @Attribute(name = KEY) String key,
             @Text String message)
     {
+        super(key, message);
+
         this.attribute = attribute;
-        this.key = key;
-        this.message = message;
     }
 
     public String getAttribute()
@@ -33,14 +27,11 @@ public class Error
         return attribute;
     }
 
-    public String getKey()
+    @Override
+    public String toString()
     {
-        return key;
-    }
-
-    public String getMessage()
-    {
-        return message;
+        return "Error [" + super.toString()
+                + "attribute=" + attribute + "]";
     }
 
 }
