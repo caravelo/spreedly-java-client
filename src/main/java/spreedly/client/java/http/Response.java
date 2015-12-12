@@ -12,7 +12,7 @@ public final class Response {
     ///// PROPERTIES /////
 
     public final int statusCode;
-    public final InputStream body; // TODO: byte[] instead? 
+    public final InputStream body;
 
     ///// PUBLIC CONSTRUCTORS /////
 

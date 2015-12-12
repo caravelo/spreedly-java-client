@@ -1,8 +1,12 @@
 package spreedly.client.java.http;
 
+import static spreedly.client.java.Utils.streamToString;
+import static spreedly.client.java.Utils.stringToStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -16,11 +20,15 @@ import spreedly.client.java.exception.HttpHandlingException;
  * implementation simply override the
  * {@link UrlConnectionHttpHandler#execute(Request)} method.
  * 
- * @author Kevin Litwack (kevin@kevinlitwack.com)
+ * It automatically logs response 
+ * 
  */
 public class UrlConnectionHttpHandler implements HttpHandler
 {
     private static final Logger log = LoggerFactory.getLogger(UrlConnectionHttpHandler.class);
+
+    private static final int DEFAULT_CONNECT_TIMEOUT = 30000;
+    private static final int DEFAULT_READ_TIMEOUT = 30000;
 
     /**
      * Sends an HTTP request.
@@ -139,6 +147,7 @@ public class UrlConnectionHttpHandler implements HttpHandler
         // Try to get the input stream and if that fails, try to get the error
         // stream.
         InputStream in;
+
         try
         {
             in = connection.getInputStream();
@@ -147,13 +156,40 @@ public class UrlConnectionHttpHandler implements HttpHandler
             in = connection.getErrorStream();
         }
 
+        // Logs the response only if this class is set to DEBUG in the underlying logging framework
+        if (log.isDebugEnabled())
+        {
+            in = logResponse(connection.getHeaderFields(), in);
+        }
+
         // Build and return the HTTP response object.
         return new Response(connection.getResponseCode(), in);
     }
 
-    // /// PRIVATE CONSTANTS /////
+    /**
+     * Logs the response's header and body.
+     * 
+     * In order to log the body content, it is converted from InputStream to String and then converted
+     * back to InputStream again to allow further reading the stream. Even though it's ugly and inefficient:
+     * 
+     * <ol>
+     * <li>This runs only when DEBUG is enabled</li>
+     * <li>The stream is read twice only when DEBUG is enabled</li>
+     * </ol>
+     * 
+     * @param headerFields
+     * @param in
+     * @return
+     */
+    private InputStream logResponse(Map<String, List<String>> headerFields, InputStream in)
+    {
+        String responseBodyContent = streamToString(in);
 
-    private static final int DEFAULT_CONNECT_TIMEOUT = 30000;
-    private static final int DEFAULT_READ_TIMEOUT = 30000;
+        log.debug("\n\n<<<<<< Response HEADER content:\n\n{}\n\n<<<<<<\n", headerFields);
+        log.debug("\n\n<<<<<< Response BODY content:\n\n{}\n\n<<<<<<\n", responseBodyContent);
+
+        // Restore the used input stream
+        return stringToStream(responseBodyContent);
+    }
 
 }
